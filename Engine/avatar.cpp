@@ -1,5 +1,7 @@
 #include "avatar.h"
 
-void avatar::draw()
+
+void avatar::draw(Graphics &gfx)
 {
+
 }

@@ -21,8 +21,6 @@
 #pragma once
 #include <string>
 
-//change
-
 class ChiliException
 {
 public:

@@ -40,6 +40,14 @@ void Game::UpdateModel()
 {
 }
 
+void Game::load()
+{
+}
+
+void Game::save()
+{
+}
+
 void Game::ComposeFrame()
 {
 }

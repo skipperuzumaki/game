@@ -12,6 +12,7 @@ public:
 	int height;
 	rect extent;
 	std::string sprite;
-	void draw();//work in progress
+	avatar() = default;
+	void draw(Graphics &gfx);//work in progress
 };
 
