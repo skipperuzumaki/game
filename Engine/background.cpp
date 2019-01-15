@@ -1,11 +1,6 @@
 #include "background.h"
 
 
-
-background::background()
-{
-}
-
 void const background::draw(Graphics & gfx)
 {
 }

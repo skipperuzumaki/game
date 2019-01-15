@@ -6,7 +6,6 @@
 class background
 {
 public:
-	background() = default;
 	std::string imagelocation;
 	int height;
 	int width;
