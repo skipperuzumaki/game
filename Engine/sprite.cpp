@@ -22,7 +22,7 @@ sprite::sprite(const std::string filename)
 
 	const int padding = (4 - (width * 3) % 4) % 4;
 
-	for (int y = 0; y < height; y++) {
+	for (int y = height - 1; y >= 0; y--) {
 		for (int x = 0; x < width; x++) {
 			load(x, y, Color(file.get(), file.get(), file.get()));
 		}
