@@ -3,6 +3,7 @@
 #include "rect.h"
 #include "Graphics.h"
 #include <string>
+#include "sprite.h"
 
 class avatar
 {
@@ -11,8 +12,8 @@ public:
 	int width;
 	int height;
 	rect extent;
-	std::string sprite;
+	std::string spritelocation;
+	sprite sprite;
 	avatar() = default;
-	void draw(Graphics &gfx);//work in progress
 };
 
