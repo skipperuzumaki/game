@@ -41,7 +41,6 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
-	avatar charecter;
 	std::string savelocation;
-	sprite sp = sprite(100, 100);
+	sprite sp = sprite(200, 200);
 };

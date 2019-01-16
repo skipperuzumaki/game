@@ -1,9 +1,11 @@
 #pragma once
 #include "Colors.h"
+#include <string>
 
 class sprite
 {
 public:
+	sprite(const std::string filename);
 	sprite(int width, int height);
 	sprite(const sprite&rhs);
 	~sprite();

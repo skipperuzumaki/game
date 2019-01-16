@@ -28,7 +28,10 @@ Game::Game( MainWindow& wnd )
 {
 	for (int y = 0; y < sp.getheight(); y++) {
 		for (int x = 0; x < sp.getwidth(); x++) {
-			sp.load(x, y, {255,0,0});
+			sp.load(x, y, Color(
+				(x - 25)*(x - 25) + (y - 25)*(y - 25),
+				(x - 25)*(x - 25) + (y - 25)*(y - 25),
+				(x - 25)*(x - 25) + (y - 25)*(y - 25)));
 		}
 	}
 }
