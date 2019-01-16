@@ -26,6 +26,11 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
+	for (int y = 0; y < sp.getheight(); y++) {
+		for (int x = 0; x < sp.getwidth(); x++) {
+			sp.load(x, y, {255,0,0});
+		}
+	}
 }
 
 void Game::Go()
@@ -50,4 +55,5 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
+	gfx.drawsprite(200, 200, sp);
 }

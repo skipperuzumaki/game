@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "avatar.h"
+#include "sprite.h"
 
 class Game
 {
@@ -42,4 +43,5 @@ private:
 	Graphics gfx;
 	avatar charecter;
 	std::string savelocation;
+	sprite sp = sprite(100, 100);
 };

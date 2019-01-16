@@ -11,7 +11,7 @@ public:
 	int width;
 	pos loc;
 	rect extent;
-	void const draw(Graphics &gfx);
-	bool const safe(int const srcwth,int const scrht);
+	void draw(Graphics &gfx) const;
+	bool safe(int const srcwth,int const scrht);
 };
 

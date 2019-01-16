@@ -316,6 +316,17 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::drawsprite(int x, int y, sprite & s)
+{
+	const int width = s.getwidth();
+	const int height = s.getheight();
+	for (int sx = 0; sx < width; sx++) {
+		for (int sy = 0; sy < height; sy++) {
+			PutPixel(x + sx, y + sy, s.fetch(sx, sy));
+		}
+	}
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception

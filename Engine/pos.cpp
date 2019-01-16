@@ -16,7 +16,7 @@ pos pos::operator*(int i)
 	return pos({ i*x,i*y });
 }
 
-bool const pos::operator=(pos const & obj)
+bool const pos::operator==(pos const & obj)
 {
 	if (obj.x == x && obj.y == y) {
 		return true;

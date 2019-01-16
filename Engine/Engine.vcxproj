@@ -153,6 +153,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
+    <ClInclude Include="sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="avatar.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="pos.cpp" />
     <ClCompile Include="rect.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="FramebufferPS.hlsl">
