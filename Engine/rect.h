@@ -17,6 +17,7 @@ public:
 	rect(pos start, int width, int height);
 	rect(int x1, int y1, int x4, int y4);
 	bool const inside(pos const &p);
+	rect cross(rect $r);
 	bool const contains(rect  const &r);//this paraneter rect liesin the class rect
 	bool const liesin(rect &r);//this parameter rect contain the class rect
 };

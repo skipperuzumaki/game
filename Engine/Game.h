@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "avatar.h"
+#include "rect.h"
 #include "sprite.h"
 
 class Game
@@ -43,4 +44,5 @@ private:
 	Graphics gfx;
 	std::string savelocation;
 	sprite sp = sprite(200, 200);
+	rect screen = { 0,0,250,250 };
 };

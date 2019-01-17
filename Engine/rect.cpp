@@ -35,6 +35,14 @@ bool const rect::inside(pos const &p)
 	}
 }
 
+rect rect::cross(rect r)
+{
+	int X1, X2, X3, X4, Y1, Y2, Y3, Y4;
+	if (x1 > r.x1) {
+		X1 = x1;
+	}//TODO
+}
+
 bool const rect::liesin(rect &r)
 {
 	if (r.inside({ x1,x2 }) && r.inside({ x2,y2 }) && r.inside({ x3,y3 }) && r.inside({ x4,y4 })) {
