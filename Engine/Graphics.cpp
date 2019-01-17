@@ -318,13 +318,21 @@ void Graphics::PutPixel( int x,int y,Color c )
 
 void Graphics::drawsprite(int x, int y, rect & r, sprite & s)
 {
+	rect drawloc = r.cross(rect(x, y, x + s.getwidth(), y + s.getheight()));
+	for (int sx = 0; sx < drawloc.x4; sx++) {
+		for (int sy = 0; sy < drawloc.y4; sy++) {
+			PutPixel(drawloc.x1 + sx, drawloc.y1 + sy, s.fetch(sx, sy));
+		}
+	}
+}
+
+void Graphics::drawsprite(int x, int y, sprite & s)
+{
 	const int width = s.getwidth();
 	const int height = s.getheight();
 	for (int sx = 0; sx < width; sx++) {
 		for (int sy = 0; sy < height; sy++) {
-			if (r.inside({ x + sx,y + sy })) {
-				PutPixel(x + sx, y + sy, s.fetch(sx, sy));
-			}
+			PutPixel(x + sx, y + sy, s.fetch(sx, sy));
 		}
 	}
 }

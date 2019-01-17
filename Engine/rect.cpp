@@ -37,15 +37,26 @@ bool const rect::inside(pos const &p)
 
 rect rect::cross(rect r)
 {
-	int X1, X2, X3, X4, Y1, Y2, Y3, Y4;
-	if (x1 > r.x1) {
-		X1 = x1;
-	}//TODO
+	if (liesin(r)) {
+		return rect(x1, y1, x4, y4);
+	}
+	else if (contains(r)) {
+		return r;
+	}
+	else if (inside({ r.x1,r.y1 })) {
+		return rect(r.x1, r.y1, x4, y4);
+	}
+	else if (inside({ r.x4,r.y4 })) {
+		return rect(x1, y1, r.x4, r.y4);
+	}
+	else {
+		return rect(0, 0, 0, 0);
+	}
 }
 
 bool const rect::liesin(rect &r)
 {
-	if (r.inside({ x1,x2 }) && r.inside({ x2,y2 }) && r.inside({ x3,y3 }) && r.inside({ x4,y4 })) {
+	if (r.inside({ x1,x2 }) && r.inside({ x4,y4 })) {
 		return true;
 	}
 	else {
@@ -55,8 +66,7 @@ bool const rect::liesin(rect &r)
 
 bool const rect::contains(rect const &r)
 {
-	if (inside({ r.x1,r.x2 }) && inside({ r.x2,r.y2 }) &&
-		inside({ r.x3,r.y3 }) && inside({ r.x4,r.y4 })) {
+	if (inside({ r.x1,r.x2 }) && inside({ r.x4,r.y4 })) {
 		return true;
 	}
 	else {

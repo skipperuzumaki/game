@@ -58,6 +58,6 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	gfx.drawsprite(200, 200, screen, sp);
-	gfx.PutPixel(50, 50, 255, 0, 0);
+	gfx.drawsprite(200, 200, rect( 0,0,700,700 ), sp);
+	gfx.drawsprite(0, 0, sp);
 }
