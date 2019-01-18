@@ -58,7 +58,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	rect screen = rect(pos(0, 0), pos(500, 500));
+	rect screen = rect(pos(0, 0), pos(250, 250));
 	gfx.drawsprite(200, 200, screen, sp);
-	//gfx.drawsprite(0, 0, sp);
+	gfx.drawsprite(0, 0, sp);
 }
