@@ -28,10 +28,15 @@ Game::Game( MainWindow& wnd )
 {
 	for (int y = 0; y < sp.getheight(); y++) {
 		for (int x = 0; x < sp.getwidth(); x++) {
-			sp.load(x, y, Color(
-				(x - 25)*(x - 25) + (y - 25)*(y - 25),
-				(x - 25)*(x - 25) + (y - 25)*(y - 25),
-				(x - 25)*(x - 25) + (y - 25)*(y - 25)));
+			if (x < 70 && x>50) {
+				sp.load(x, y, Colors::Magenta);
+			}
+			else {
+				sp.load(x, y, Color(
+					(x - 25)*(x - 25) + (y - 25)*(y - 25),
+					(x - 25)*(x - 25) + (y - 25)*(y - 25),
+					(x - 25)*(x - 25) + (y - 25)*(y - 25)));
+			}
 		}
 	}
 }
@@ -58,7 +63,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	rect screen = rect(pos(0, 0), pos(250, 250));
+	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(200, 200, screen, sp);
-	gfx.drawsprite(0, 0, sp);
+	gfx.drawspritenonchroma(-100, -100, screen, sp);
 }

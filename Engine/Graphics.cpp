@@ -316,7 +316,7 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::drawsprite(int x, int y, rect r, sprite & s)
+void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 {
 	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
 	int kx = 0, ky = 0, kz = 0;
@@ -337,13 +337,49 @@ void Graphics::drawsprite(int x, int y, rect r, sprite & s)
 	}
 }
 
-void Graphics::drawsprite(int x, int y, sprite & s)
+void Graphics::drawsprite(int x, int y, rect r, sprite & s, Color chroma)
+{
+	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
+	int kx = 0, ky = 0, kz = 0;
+	if (drawloc.x1 == r.x1) {
+		int kx = r.x1 - x;//TODO abs()
+	}
+	if (drawloc.y1 == r.y1) {
+		int kz = r.y1 - y;//TODO abs()
+	}
+	else { int kz = 0; }
+	for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {
+		ky = kz;
+		for (int sy = drawloc.y1; sy < drawloc.y4; sy++) {
+			if (s.fetch(kx, ky) != chroma) {
+				PutPixel(sx, sy, s.fetch(kx, ky));
+			}
+			ky++;
+		}
+		kx++;
+	}
+}
+
+void Graphics::drawspritenonchroma(int x, int y, sprite & s)
 {
 	const int width = s.getwidth();
 	const int height = s.getheight();
 	for (int sx = 0; sx < width; sx++) {
 		for (int sy = 0; sy < height; sy++) {
 			PutPixel(x + sx, y + sy, s.fetch(sx, sy));
+		}
+	}
+}
+
+void Graphics::drawsprite(int x, int y, sprite & s, Color chroma)
+{
+	const int width = s.getwidth();
+	const int height = s.getheight();
+	for (int sx = 0; sx < width; sx++) {
+		for (int sy = 0; sy < height; sy++) {
+			if (s.fetch(sx, sy) != chroma) {
+				PutPixel(x + sx, y + sy, s.fetch(sx, sy));
+			}
 		}
 	}
 }
