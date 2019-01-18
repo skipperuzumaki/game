@@ -59,7 +59,7 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
-	void drawsprite(int x, int y, rect & r, sprite &s);
+	void drawsprite(int x, int y, rect r, sprite &s);
 	void drawsprite(int x, int y, sprite &s);
 	~Graphics();
 private:

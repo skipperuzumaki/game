@@ -7,8 +7,8 @@ pos pos::operator+(pos const & obj)
 
 pos::pos(int x1, int y1)
 {
-	y = y1;
 	x = x1;
+	y = y1;
 }
 
 pos pos::operator*(int i)

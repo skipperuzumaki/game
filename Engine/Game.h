@@ -44,5 +44,4 @@ private:
 	Graphics gfx;
 	std::string savelocation;
 	sprite sp = sprite(200, 200);
-	rect screen = { 0,0,500,500 };
 };

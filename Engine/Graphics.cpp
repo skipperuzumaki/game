@@ -316,13 +316,24 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::drawsprite(int x, int y, rect & r, sprite & s)
+void Graphics::drawsprite(int x, int y, rect r, sprite & s)
 {
-	rect drawloc = r.cross(rect(x, y, x + s.getwidth(), y + s.getheight()));
-	for (int sx = 0; sx < drawloc.x4; sx++) {
-		for (int sy = 0; sy < drawloc.y4; sy++) {
-			PutPixel(drawloc.x1 + sx, drawloc.y1 + sy, s.fetch(sx, sy));
+	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
+	int kx = 0, ky = 0, kz = 0;
+	if (drawloc.x1 == r.x1) {
+		int kx = r.x1 - x;//TODO abs()
+	}
+	if (drawloc.y1 == r.y1) {
+		int kz = r.y1 - y;//TODO abs()
+	}
+	else { int kz = 0; }
+	for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {
+		ky = kz;
+		for (int sy = drawloc.y1; sy < drawloc.y4; sy++) {
+			PutPixel(sx, sy, s.fetch(kx, ky));
+			ky++;
 		}
+		kx++;
 	}
 }
 
