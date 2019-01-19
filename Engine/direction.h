@@ -1,5 +1,4 @@
 #pragma once
-
 enum direction
 {
 	north,
