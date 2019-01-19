@@ -4,5 +4,7 @@ enum direction
 	north,
 	south,
 	east,
-	west
+	west,
+	start,
+	end
 };

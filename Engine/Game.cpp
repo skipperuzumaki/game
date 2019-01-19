@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "background.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -63,6 +64,8 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
+	background bkg;
+	bkg.generateroute();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(200, 200, screen, sp);
 	gfx.drawspritenonchroma(-100, -100, screen, sp);
