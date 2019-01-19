@@ -123,7 +123,7 @@ void background::generateroute()
 			else {
 				openings->at(current).push_back(direction::west);
 				last = current;
-				current++;
+				current--;
 				openings->at(current).push_back(direction::east);
 				w = 1;
 			}
@@ -179,7 +179,7 @@ void background::generateroute()
 			else {
 				openings->at(current).push_back(direction::west);
 				last = current;
-				current++;
+				current--;
 				openings->at(current).push_back(direction::east);
 				w = 1;
 			}
@@ -235,7 +235,7 @@ void background::generateroute()
 			else {
 				openings->at(current).push_back(direction::west);
 				last = current;
-				current++;
+				current--;
 				openings->at(current).push_back(direction::east);
 				w = 1;
 			}
@@ -261,11 +261,7 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 24) {
-				openings->at(current).push_back(direction::south);
-				last = current;
-				current += 5;
-				openings->at(current).push_back(direction::north);
-				w = -1;
+				openings->at(current).push_back(direction::end);
 				break;
 			}
 			else {
@@ -281,23 +277,19 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 20) {
-				openings->at(current).push_back(direction::south);
-				last = current;
-				current += 5;
-				openings->at(current).push_back(direction::north);
-				w = -1;
+				openings->at(current).push_back(direction::end);
 				break;
 			}
 			else {
 				openings->at(current).push_back(direction::west);
 				last = current;
-				current++;
+				current--;
 				openings->at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
 	}
-	//should be done
+	//did it
 }
 
 bool background::safe(int const srcwth, int const scrht)
