@@ -35,7 +35,7 @@ bool const rect::inside(pos const &p)
 	}
 }
 
-rect rect::cross(rect r)
+rect rect::cross(rect &r)
 {
 	if (liesin(r)) {
 		return rect(pos(x1, y1), pos(x4, y4));
