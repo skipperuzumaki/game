@@ -569,7 +569,40 @@ void background::cleanlevel()
 	generatecontent();
 	std::vector<std::vector<direction>> temp = openings;
 	openings.clear();
-	int i = 0;
+	for (int i = 0; i < 25; i++) {
+		std::vector<direction> k;
+		openings.push_back(k);
+	}
+	for (int i = 0; i < 25; i++) {
+		bool north = false;
+		bool south = false;
+		bool east = false;
+		bool west = false;
+		for (int k = 0; k < temp.at(i).size(); k++) {
+			if (temp.at(i).at(k) == direction::start) {
+				openings.at(i).push_back(direction::start);
+			}
+			else if (temp.at(i).at(k) == direction::end) {
+				openings.at(i).push_back(direction::end);
+			}
+			else if (temp.at(i).at(k) == direction::north && !north) {
+				openings.at(i).push_back(direction::north);
+				north = true;
+			}
+			else if (temp.at(i).at(k) == direction::south && !south) {
+				openings.at(i).push_back(direction::south);
+				south = true;
+			}
+			else if (temp.at(i).at(k) == direction::east && !east) {
+				openings.at(i).push_back(direction::east);
+				east = true;
+			}
+			else if (temp.at(i).at(k) == direction::west && !west) {
+				openings.at(i).push_back(direction::west);
+				west = true;
+			}
+		}
+	}
 }
 
 bool background::safe(int const srcwth, int const scrht)
