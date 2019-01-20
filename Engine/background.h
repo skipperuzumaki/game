@@ -12,9 +12,11 @@ class background
 {
 public:
 	background();
-	std::vector<environment> sectors[25];
-	std::vector<std::vector<direction>> openings[1];
+	std::vector<environment> sectors;
+	std::vector<std::vector<direction>> openings;
 	void generateroute();
+	void generatecontent();
+	void cleanlevel();
 	int start;
 	int end;
 	int height = 0;

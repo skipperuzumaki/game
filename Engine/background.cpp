@@ -7,48 +7,45 @@ background::background()
 void background::generateroute()
 {
 	//initialisation and clearing pushbacks
+	openings.clear();
 	for (int i = 0; i < 25; i++) {
 		std::vector<direction> k;
-		openings->push_back(k);
+		openings.push_back(k);
 	}
 	//this does the job
 	srand(int(time(NULL)));
-	int q, w, e, current, last;
+	int q, w, e, current;
 	q = rand() % 5;
 	current = q;
-	openings->at(current).push_back(direction::start);
+	openings.at(current).push_back(direction::start);
 	//initalisation done
 	w = rand() % 1;
 	if (current == 0) {
-		openings->at(current).push_back(direction::east);
-		last = current;
+		openings.at(current).push_back(direction::east);
 		current++;
-		openings->at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::west);
 		w = 0;
 	}
 	else if (current == 4) {
-		openings->at(current).push_back(direction::west);
-		last = current;
+		openings.at(current).push_back(direction::west);
 		current--;
-		openings->at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::east);
 		w = 1;
 	}
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current==4) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::east);
-				last = current;
+				openings.at(current).push_back(direction::east);
 				current++;
-				openings->at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::west);
 				w = 0;
 			}
 		}
@@ -57,18 +54,16 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current==0) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::west);
-				last = current;
+				openings.at(current).push_back(direction::west);
 				current++;
-				openings->at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
@@ -76,35 +71,31 @@ void background::generateroute()
 	//row 0 done
 	w = rand() % 1;
 	if (current == 5) {
-		openings->at(current).push_back(direction::east);
-		last = current;
+		openings.at(current).push_back(direction::east);
 		current++;
-		openings->at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::west);
 		w = 0;
 	}
 	else if (current == 9) {
-		openings->at(current).push_back(direction::west);
-		last = current;
+		openings.at(current).push_back(direction::west);
 		current--;
-		openings->at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::east);
 		w = 1;
 	}
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 9) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::east);
-				last = current;
+				openings.at(current).push_back(direction::east);
 				current++;
-				openings->at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::west);
 				w = 0;
 			}
 		}
@@ -113,18 +104,16 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 5) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::west);
-				last = current;
+				openings.at(current).push_back(direction::west);
 				current--;
-				openings->at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
@@ -132,35 +121,31 @@ void background::generateroute()
 	//row 1 done
 	w = rand() % 1;
 	if (current == 10) {
-		openings->at(current).push_back(direction::east);
-		last = current;
+		openings.at(current).push_back(direction::east);
 		current++;
-		openings->at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::west);
 		w = 0;
 	}
 	else if (current == 14) {
-		openings->at(current).push_back(direction::west);
-		last = current;
+		openings.at(current).push_back(direction::west);
 		current--;
-		openings->at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::east);
 		w = 1;
 	}
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 14) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::east);
-				last = current;
+				openings.at(current).push_back(direction::east);
 				current++;
-				openings->at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::west);
 				w = 0;
 			}
 		}
@@ -169,18 +154,16 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 10) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::west);
-				last = current;
+				openings.at(current).push_back(direction::west);
 				current--;
-				openings->at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
@@ -188,35 +171,31 @@ void background::generateroute()
 	//row 2 done
 	w = rand() % 1;
 	if (current == 15) {
-		openings->at(current).push_back(direction::east);
-		last = current;
+		openings.at(current).push_back(direction::east);
 		current++;
-		openings->at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::west);
 		w = 0;
 	}
 	else if (current == 19) {
-		openings->at(current).push_back(direction::west);
-		last = current;
+		openings.at(current).push_back(direction::west);
 		current--;
-		openings->at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::east);
 		w = 1;
 	}
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 19) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::east);
-				last = current;
+				openings.at(current).push_back(direction::east);
 				current++;
-				openings->at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::west);
 				w = 0;
 			}
 		}
@@ -225,18 +204,16 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 15) {
-				openings->at(current).push_back(direction::south);
-				last = current;
+				openings.at(current).push_back(direction::south);
 				current += 5;
-				openings->at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::north);
 				w = -1;
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::west);
-				last = current;
+				openings.at(current).push_back(direction::west);
 				current--;
-				openings->at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
@@ -244,31 +221,28 @@ void background::generateroute()
 	//row 3 done
 	w = rand() % 1;
 	if (current == 20) {
-		openings->at(current).push_back(direction::east);
-		last = current;
+		openings.at(current).push_back(direction::east);
 		current++;
-		openings->at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::west);
 		w = 0;
 	}
 	else if (current == 24) {
-		openings->at(current).push_back(direction::west);
-		last = current;
+		openings.at(current).push_back(direction::west);
 		current--;
-		openings->at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::east);
 		w = 1;
 	}
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 24) {
-				openings->at(current).push_back(direction::end);
+				openings.at(current).push_back(direction::end);
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::east);
-				last = current;
+				openings.at(current).push_back(direction::east);
 				current++;
-				openings->at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::west);
 				w = 0;
 			}
 		}
@@ -277,19 +251,325 @@ void background::generateroute()
 		while (true) {
 			e = rand() % 2;
 			if (e == 0 || current == 20) {
-				openings->at(current).push_back(direction::end);
+				openings.at(current).push_back(direction::end);
 				break;
 			}
 			else {
-				openings->at(current).push_back(direction::west);
-				last = current;
+				openings.at(current).push_back(direction::west);
 				current--;
-				openings->at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::east);
 				w = 1;
 			}
 		}
 	}
 	//did it
+}
+
+void background::generatecontent()
+{
+	generateroute();
+	int i, current, e, k;
+	for (i = 0; i < 5; i++) {
+		if (openings.at(i).size() != 0) {
+			current = i;
+			openings.at(current).push_back(direction::west);
+			current--;
+			while (current > -1) {
+				openings.at(current).push_back(direction::east);
+				if (current != 0) {
+					openings.at(current).push_back(direction::west);
+				}
+				e = rand() % 3;
+				if (e == 0) {
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+				current--;
+			}
+			break;
+		}
+	}
+	for (i = 4; i > -1; i--) {
+		if (openings.at(i).size() != 0) {
+			current = i;
+			openings.at(current).push_back(direction::east);
+			current++;
+			while (current < 5) {
+				openings.at(current).push_back(direction::west);
+				if (current != 0) {
+					openings.at(current).push_back(direction::east);
+				}
+				e = rand() % 3;
+				if (e == 0) {
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+				current++;
+			}
+			break;
+		}
+	}
+	//row 0 done
+	for (i = 5; i < 10; i++) {
+		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+			current = i;
+			if (current == 5) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else if (current == 9) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::west);
+						openings.at(current - 1).push_back(direction::east);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else {
+				e = rand() % 3;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else if (e == 1) {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+		}
+	}
+	//row 1 done
+	for (i = 10; i < 15; i++) {
+		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+			current = i;
+			if (current == 10) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else if (current == 14) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::west);
+						openings.at(current - 1).push_back(direction::east);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else {
+				e = rand() % 3;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else if (e == 1) {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+		}
+	}
+	//row 2 done
+	for (i = 15; i < 20; i++) {
+		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+			current = i;
+			if (current == 15) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else if (current == 19) {
+				e = rand() % 2;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::west);
+						openings.at(current - 1).push_back(direction::east);
+					}
+				}
+				else {
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+			else {
+				e = rand() % 3;
+				if (e == 0) {
+					k = rand() % 2;
+					if (k == 1) {
+						openings.at(current).push_back(direction::south);
+						openings.at(current + 5).push_back(direction::north);
+					}
+					else {
+						openings.at(current).push_back(direction::east);
+						openings.at(current + 1).push_back(direction::west);
+					}
+				}
+				else if (e == 1) {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+				}
+				else {
+					openings.at(current).push_back(direction::east);
+					openings.at(current + 1).push_back(direction::west);
+					openings.at(current).push_back(direction::west);
+					openings.at(current - 1).push_back(direction::east);
+					openings.at(current).push_back(direction::south);
+					openings.at(current + 5).push_back(direction::north);
+				}
+			}
+		}
+	}
+	//row 3 done
+	for (i = 20; i < 25; i++) {
+		if (openings.at(i).size() != 0 || openings.at(i).size() != 1) {
+			current = i;
+			openings.at(current).push_back(direction::west);
+			current--;
+			while (current > -1) {
+				openings.at(current).push_back(direction::east);
+				if (current != 0) {
+					openings.at(current).push_back(direction::west);
+				}
+				current--;
+			}
+			break;
+		}
+	}
+	for (i = 4; i > -1; i--) {
+		if (openings.at(i).size() != 0 || openings.at(i).size() != 1) {
+			current = i;
+			openings.at(current).push_back(direction::east);
+			current++;
+			while (current < 5) {
+				openings.at(current).push_back(direction::west);
+				if (current != 0) {
+					openings.at(current).push_back(direction::east);
+				}
+				current++;
+			}
+			break;
+		}
+	}
+}
+
+void background::cleanlevel()
+{
+	generatecontent();
+	std::vector<std::vector<direction>> temp = openings;
+	openings.clear();
+	int i = 0;
 }
 
 bool background::safe(int const srcwth, int const scrht)
@@ -302,9 +582,9 @@ void background::constructlevelsprite()
 {
 	for (int y = 0; y < level.getheight(); y++) {
 		for (int x = 0; x < level.getwidth(); x++) {
-			int h = x / sectors->at(1).background.getwidth();
-			int k = y / sectors->at(1).background.getheight();
-			level.load(x, y, sectors->at(((k * 5) + h)).background.fetch((x - h), (y - k)));
+			int h = x / sectors.at(1).background.getwidth();
+			int k = y / sectors.at(1).background.getheight();
+			level.load(x, y, sectors.at(((k * 5) + h)).background.fetch((x - h), (y - k)));
 		}
 	}
 }
