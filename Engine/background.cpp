@@ -18,18 +18,23 @@ void background::generateroute()
 	q = rand() % 5;
 	current = q;
 	openings.at(current).push_back(direction::start);
+	openings.at(current).push_back(direction::crit);
 	//initalisation done
 	w = rand() % 1;
 	if (current == 0) {
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		current++;
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		w = 0;
 	}
 	else if (current == 4) {
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		current--;
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		w = 1;
 	}
 	if (w == 0) {
@@ -37,15 +42,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current==4) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				w = 0;
 			}
 		}
@@ -55,15 +64,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current==0) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				w = 1;
 			}
 		}
@@ -72,14 +85,18 @@ void background::generateroute()
 	w = rand() % 1;
 	if (current == 5) {
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		current++;
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		w = 0;
 	}
 	else if (current == 9) {
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		current--;
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		w = 1;
 	}
 	if (w == 0) {
@@ -87,15 +104,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 9) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				w = 0;
 			}
 		}
@@ -105,15 +126,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 5) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				current--;
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				w = 1;
 			}
 		}
@@ -122,14 +147,18 @@ void background::generateroute()
 	w = rand() % 1;
 	if (current == 10) {
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		current++;
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		w = 0;
 	}
 	else if (current == 14) {
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		current--;
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		w = 1;
 	}
 	if (w == 0) {
@@ -137,15 +166,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 14) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				w = 0;
 			}
 		}
@@ -155,15 +188,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 10) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				current--;
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				w = 1;
 			}
 		}
@@ -172,14 +209,18 @@ void background::generateroute()
 	w = rand() % 1;
 	if (current == 15) {
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		current++;
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		w = 0;
 	}
 	else if (current == 19) {
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		current--;
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		w = 1;
 	}
 	if (w == 0) {
@@ -187,15 +228,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 19) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				w = 0;
 			}
 		}
@@ -205,15 +250,19 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 15) {
 				openings.at(current).push_back(direction::south);
+				openings.at(current).push_back(direction::crit);
 				current += 5;
 				openings.at(current).push_back(direction::north);
+				openings.at(current).push_back(direction::crit);
 				w = -1;
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				current--;
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				w = 1;
 			}
 		}
@@ -222,14 +271,18 @@ void background::generateroute()
 	w = rand() % 1;
 	if (current == 20) {
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		current++;
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		w = 0;
 	}
 	else if (current == 24) {
 		openings.at(current).push_back(direction::west);
+		openings.at(current).push_back(direction::crit);
 		current--;
 		openings.at(current).push_back(direction::east);
+		openings.at(current).push_back(direction::crit);
 		w = 1;
 	}
 	if (w == 0) {
@@ -237,12 +290,15 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 24) {
 				openings.at(current).push_back(direction::end);
+				openings.at(current).push_back(direction::crit);
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				current++;
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				w = 0;
 			}
 		}
@@ -252,12 +308,15 @@ void background::generateroute()
 			e = rand() % 2;
 			if (e == 0 || current == 20) {
 				openings.at(current).push_back(direction::end);
+				openings.at(current).push_back(direction::crit);
 				break;
 			}
 			else {
 				openings.at(current).push_back(direction::west);
+				openings.at(current).push_back(direction::crit);
 				current--;
 				openings.at(current).push_back(direction::east);
+				openings.at(current).push_back(direction::crit);
 				w = 1;
 			}
 		}
@@ -265,12 +324,22 @@ void background::generateroute()
 	//did it
 }
 
+bool background::oncrit(int n)
+{
+	for (int i = 0; i < openings.at(n).size(); i++) {
+		if (openings.at(n).at(i) == direction::crit) {
+			return true;
+		}
+	}
+	return false;
+}
+
 void background::generatecontent()
 {
 	generateroute();
 	int i, current, e, k;
 	for (i = 0; i < 5; i++) {
-		if (openings.at(i).size() != 0) {
+		if (oncrit(i)) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
@@ -290,7 +359,7 @@ void background::generatecontent()
 		}
 	}
 	for (i = 4; i > -1; i--) {
-		if (openings.at(i).size() != 0) {
+		if (oncrit(i)) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
@@ -311,7 +380,7 @@ void background::generatecontent()
 	}
 	//row 0 done
 	for (i = 5; i < 10; i++) {
-		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+		if (oncrit(i)) {
 			current = i;
 			if (current == 5) {
 				e = rand() % 2;
@@ -385,7 +454,7 @@ void background::generatecontent()
 	}
 	//row 1 done
 	for (i = 10; i < 15; i++) {
-		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+		if (oncrit(i)) {
 			current = i;
 			if (current == 10) {
 				e = rand() % 2;
@@ -459,7 +528,7 @@ void background::generatecontent()
 	}
 	//row 2 done
 	for (i = 15; i < 20; i++) {
-		if (openings.at(i).size() == 0 || openings.at(i).size() == 1) {
+		if (oncrit(i)) {
 			current = i;
 			if (current == 15) {
 				e = rand() % 2;
@@ -533,7 +602,7 @@ void background::generatecontent()
 	}
 	//row 3 done
 	for (i = 20; i < 25; i++) {
-		if (openings.at(i).size() != 0 || openings.at(i).size() != 1) {
+		if (oncrit(i)) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
@@ -548,7 +617,7 @@ void background::generatecontent()
 		}
 	}
 	for (i = 4; i > -1; i--) {
-		if (openings.at(i).size() != 0 || openings.at(i).size() != 1) {
+		if (oncrit(i)) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;

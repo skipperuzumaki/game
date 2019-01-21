@@ -15,6 +15,7 @@ public:
 	std::vector<environment> sectors;
 	std::vector<std::vector<direction>> openings;
 	void generateroute();
+	bool oncrit(int n);
 	void generatecontent();
 	void cleanlevel();
 	int start;

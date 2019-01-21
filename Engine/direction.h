@@ -6,5 +6,6 @@ enum direction
 	east,
 	west,
 	start,
-	end
+	end,
+	crit
 };
