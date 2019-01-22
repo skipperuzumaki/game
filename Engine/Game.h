@@ -44,4 +44,9 @@ private:
 	Graphics gfx;
 	std::string savelocation;
 	sprite sp = sprite(200, 200);
+	avatar charecter;
+	int vx, vy;
+	int gravity = 10;
+	int dt;
+	background bkgr;
 };

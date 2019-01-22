@@ -4,16 +4,16 @@
 #include "Graphics.h"
 #include <string>
 #include "sprite.h"
+#include "background.h"
 
 class avatar
 {
 public:
-	pos pos;
+	pos pos = pos::pos(-1, -1);
 	int width;
 	int height;
 	rect extent;
 	std::string spritelocation;
-	sprite sprite;
-	avatar() = default;
+	sprite sprite = sprite::sprite(0, 0);
 };
 

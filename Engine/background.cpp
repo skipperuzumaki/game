@@ -4,6 +4,16 @@ background::background()
 {
 }
 
+bool background::ignoregravity(rect charecter)
+{
+	for (int i = 0; i < bases.size(); i++) {
+		if (bases.at(i).cross(charecter).area() == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
 void background::generateroute()
 {
 	//initialisation and clearing pushbacks
@@ -365,7 +375,7 @@ void background::generatecontent()
 			current++;
 			while (current < 5) {
 				openings.at(current).push_back(direction::west);
-				if (current != 0) {
+				if (current != 4) {
 					openings.at(current).push_back(direction::east);
 				}
 				e = rand() % 3;
@@ -616,12 +626,12 @@ void background::generatecontent()
 			break;
 		}
 	}
-	for (i = 4; i > -1; i--) {
+	for (i = 24; i > 20; i--) {
 		if (oncrit(i)) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
-			while (current < 5) {
+			while (current < 25) {
 				openings.at(current).push_back(direction::west);
 				if (current != 0) {
 					openings.at(current).push_back(direction::east);
@@ -672,6 +682,12 @@ void background::cleanlevel()
 			}
 		}
 	}
+}
+
+void background::generateenvironments()
+{
+	//TODO learn seavin and getting objects from file 
+	//get environments.bin
 }
 
 bool background::safe(int const srcwth, int const scrht)

@@ -9,8 +9,9 @@ class environment
 public:
 	int id;
 	sprite background = sprite(0, 0);//TODO change initialiser appropriately
-	std::vector<direction> openings[4];
+	std::vector<direction> openings;
 	std::vector<rect> enemyspawn;
 	std::vector<rect> itemspawn;
 	std::vector<rect> interactiblespawn;
+	bool hasopening(direction d);
 };

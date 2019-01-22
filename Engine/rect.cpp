@@ -35,6 +35,11 @@ bool const rect::inside(pos const &p)
 	}
 }
 
+int rect::area()
+{
+	return ((x4 - x1)*(y4 - y1));//TODO abs
+}
+
 rect rect::cross(rect &r)
 {
 	if (liesin(r)) {

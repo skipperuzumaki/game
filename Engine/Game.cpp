@@ -20,7 +20,6 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include "background.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -52,6 +51,18 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (!bkgr.ignoregravity(charecter.extent)) {
+		vx += (gravity*dt);
+	}
+
+	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
+		bkgr.loc.x -= vx;
+		bkgr.loc.y -= vy;
+	}
+	else {
+		charecter.pos.x += vx;
+		charecter.pos.y += vy;
+	}
 }
 
 void Game::load()
@@ -64,8 +75,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	background bkg;
-	bkg.cleanlevel();
+	bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(200, 200, screen, sp);
 	gfx.drawspritenonchroma(-100, -100, screen, sp);

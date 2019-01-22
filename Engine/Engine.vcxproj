@@ -158,10 +158,10 @@
     <ClInclude Include="sprite.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="avatar.cpp" />
     <ClCompile Include="background.cpp" />
     <ClCompile Include="COMInitializer.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="environment.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
