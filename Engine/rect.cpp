@@ -35,9 +35,54 @@ bool const rect::inside(pos const &p)
 	}
 }
 
+bool rect::touching(line & l)
+{
+	//assume line || to axes
+	if (l.start.x == x1) {
+		if ((l.start.y<y1 && l.end.y>y1) || (l.start.y<y3 && l.end.y>y3)) {
+			return true;
+		}
+	}
+	else if (l.start.x == x2) {
+		if ((l.start.y<y2 && l.end.y>y2) || (l.start.y<y4 && l.end.y>y4)) {
+			return true;
+		}
+	}
+	else if (l.start.y == y1) {
+		if ((l.start.x<x1 && l.end.x>x1) || (l.start.x<x3 && l.end.x>x3)) {
+			return true;
+		}
+	}
+	else if (l.start.y == y2) {
+		if ((l.start.x<x2 && l.end.x>x2) || (l.start.x<x4 && l.end.x>x4)) {
+			return true;
+		}
+	}
+	else {
+		return false;
+	}
+}
+
 int rect::area()
 {
 	return ((x4 - x1)*(y4 - y1));//TODO abs
+}
+
+void rect::offsetx(int x)
+{
+	x1 += x;
+	x2 += x;
+	x3 += x;
+	x4 += x;
+
+}
+
+void rect::offsety(int y)
+{
+	y1 == y;
+	y2 += y;
+	y3 += y;
+	y4 += y;
 }
 
 rect rect::cross(rect &r)

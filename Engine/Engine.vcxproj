@@ -148,6 +148,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="line.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="pos.h" />

@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include "avatar.h"
+#include "line.h"
 
 class background
 {
@@ -14,8 +16,9 @@ public:
 	background();
 	std::vector<environment> sectors;
 	std::vector<std::vector<direction>> openings;
-	std::vector<rect> bases;
-	bool ignoregravity(rect charecter);
+	std::vector<line> surface;
+	std::vector<line> ledge;
+	bool ignoregravity(avatar &charecter);
 	void generateroute();
 	bool oncrit(int n);
 	void generatecontent();

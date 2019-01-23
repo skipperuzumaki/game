@@ -4,14 +4,18 @@ background::background()
 {
 }
 
-bool background::ignoregravity(rect charecter)
+bool background::ignoregravity(avatar &charecter)//add keypress
 {
-	for (int i = 0; i < bases.size(); i++) {
-		if (bases.at(i).cross(charecter).area() == 0) {
-			return false;
+	for (int i = 0; i < surface.size; i++) {
+		if (charecter.extent.touching(surface.at(i))) {
+			return true;
 		}
 	}
-	return true;
+	for (int i = 0; i < ledge.size; i++) {//TODO add keypress
+		if (charecter.extent.touching(ledge.at(i))) {
+			return true;
+		}
+	}
 }
 
 void background::generateroute()

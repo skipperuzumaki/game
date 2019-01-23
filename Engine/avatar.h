@@ -4,7 +4,6 @@
 #include "Graphics.h"
 #include <string>
 #include "sprite.h"
-#include "background.h"
 
 class avatar
 {
