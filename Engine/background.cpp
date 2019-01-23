@@ -1,4 +1,5 @@
 #include "background.h"
+#include <algorithm>
 
 background::background()
 {
@@ -6,16 +7,34 @@ background::background()
 
 bool background::ignoregravity(avatar &charecter)//add keypress
 {
-	for (int i = 0; i < surface.size; i++) {
+	//update contact points to current frame
+	//charecter.updateextent();
+	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.width, charecter.pos.y + charecter.height));
+	for (int i = 0; i < surface.size(); i++) {
 		if (charecter.extent.touching(surface.at(i))) {
 			return true;
 		}
-	}
-	for (int i = 0; i < ledge.size; i++) {//TODO add keypress
-		if (charecter.extent.touching(ledge.at(i))) {
+		else if (charecter.extent.crossing(surface.at(i))) {
+			int offset = surface.at(i).start.x - charecter.extent.x4;
+			charecter.pos.x += offset;
+			charecter.extent.offsetx(offset);
 			return true;
 		}
 	}
+	for (int i = 0; i < ledge.size(); i++) {//TODO add keypress
+		if (charecter.extent.touching(ledge.at(i))) {
+			return true;
+		}
+		else if (charecter.extent.crossing(ledge.at(i))) {
+			int offset1 = ledge.at(i).start.y - charecter.extent.y4;
+			int offset2 = ledge.at(i).start.y - charecter.extent.y1;
+			int offset = std::min(offset1, offset2);
+			charecter.pos.x += offset;
+			charecter.extent.offsetx(offset);
+			return true;
+		}
+	}
+	return false;
 }
 
 void background::generateroute()

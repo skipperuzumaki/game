@@ -33,5 +33,6 @@ public:
 	sprite level = sprite(height, width);
 	bool safe(int const srcwth,int const scrht);
 	void constructlevelsprite();
+	//add sector dimensions
 };
 

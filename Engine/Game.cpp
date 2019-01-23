@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+//make sure motion is at 1 pixel per frame or slower
 
 Game::Game( MainWindow& wnd )
 	:
@@ -33,12 +34,14 @@ Game::Game( MainWindow& wnd )
 			}
 			else {
 				sp.load(x, y, Color(
-					(x - 25)*(x - 25) + (y - 25)*(y - 25),
-					(x - 25)*(x - 25) + (y - 25)*(y - 25),
-					(x - 25)*(x - 25) + (y - 25)*(y - 25)));
+					(x - 25)*(x - 25) + (y - 2)*(y - 2),
+					(x - 25)*(x - 25) + (y + 2)*(y + 2),
+					(x + 25)*(x + 25) + (y - 2)*(y - 2)));
 			}
 		}
 	}
+	line l = { pos(0,500),pos(1150,500) };
+	bkgr.surface.push_back(l);
 }
 
 void Game::Go()
@@ -51,10 +54,20 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!bkgr.ignoregravity(charecter.extent)) {
-		vx += (gravity*dt);
+	if (bkgr.ignoregravity(charecter)) {
+		gravity = 0;
+		vy = 0;
+		vx = 0;
 	}
+	else { gravity = 10; }
 
+	if (vy < 1) { //terminal vel
+		vy += gravity;
+	}
+	else { vy = 1; }//terminal vel
+	y += vy;
+	x += vx;
+	//after updating everything else
 	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
 		bkgr.loc.x -= vx;
 		bkgr.loc.y -= vy;
@@ -77,6 +90,8 @@ void Game::ComposeFrame()
 {
 	bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	gfx.drawsprite(200, 200, screen, sp);
-	gfx.drawspritenonchroma(-100, -100, screen, sp);
+	gfx.drawsprite(x, y, screen, sp);
+	for (int i = 0; i < 500; i++) {
+		gfx.PutPixel(i, 500, Color(255, 255, 255));
+	}
 }

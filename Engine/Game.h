@@ -26,6 +26,7 @@
 #include "avatar.h"
 #include "rect.h"
 #include "sprite.h"
+#include "background.h"
 
 class Game
 {
@@ -43,9 +44,9 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	std::string savelocation;
-	sprite sp = sprite(200, 200);
+	sprite sp = sprite(60, 100);
 	avatar charecter;
-	int vx, vy;
+	int vx = 1, vy = 1, x = 12, y = 12;
 	int gravity = 10;
 	int dt;
 	background bkgr;

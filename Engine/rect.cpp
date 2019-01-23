@@ -61,6 +61,22 @@ bool rect::touching(line & l)
 	else {
 		return false;
 	}
+	return false;
+}
+
+bool rect::crossing(line & l)
+{
+	if (l.start.x == l.start.y) {
+		if (x1 < l.start.x && l.start.x < x2) {
+			return true;
+		}
+	}
+	else if (l.start.y == l.end.y) {
+		if (y1 < l.start.y && l.start.y < y2) {
+			return true;
+		}
+	}
+	return false;
 }
 
 int rect::area()
@@ -79,7 +95,7 @@ void rect::offsetx(int x)
 
 void rect::offsety(int y)
 {
-	y1 == y;
+	y1 += y;
 	y2 += y;
 	y3 += y;
 	y4 += y;
@@ -133,6 +149,7 @@ rect rect::cross(rect &r)
 			}
 		}
 	}
+	return rect(pos(-1, -1), pos(-1, -1));
 }
 
 bool const rect::liesin(rect &r)

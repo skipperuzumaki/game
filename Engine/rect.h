@@ -19,6 +19,7 @@ public:
 	//rect(int x1, int y1, int x4, int y4);
 	bool const inside(pos const &p);
 	bool touching(line &l);
+	bool crossing(line &l);
 	int area();
 	void offsetx(int x);
 	void offsety(int y);
