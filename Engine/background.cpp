@@ -9,7 +9,7 @@ bool background::ignoregravity(avatar &charecter)//add keypress
 {
 	//update contact points to current frame
 	//charecter.updateextent();
-	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.width, charecter.pos.y + charecter.height));
+	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {
 		if (charecter.extent.touching(surface.at(i))) {
 			return true;

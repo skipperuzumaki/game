@@ -46,8 +46,9 @@ private:
 	std::string savelocation;
 	sprite sp = sprite(60, 100);
 	avatar charecter;
-	int vx = 1, vy = 1, x = 12, y = 12;
-	int gravity = 10;
+	int vx = 3, vy = -5;
+	int gravity = 0;
 	int dt;
 	background bkgr;
+	bool stnry = false;
 };

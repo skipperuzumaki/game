@@ -40,8 +40,11 @@ Game::Game( MainWindow& wnd )
 			}
 		}
 	}
+	charecter.sprite = sp;
 	line l = { pos(0,500),pos(1150,500) };
 	bkgr.surface.push_back(l);
+	charecter.pos.x = 13;
+	charecter.pos.y = 120;
 }
 
 void Game::Go()
@@ -54,19 +57,25 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (bkgr.ignoregravity(charecter)) {
-		gravity = 0;
-		vy = 0;
-		vx = 0;
+	if (!stnry) {
+		if (bkgr.ignoregravity(charecter)) {
+			gravity = 0;
+			vy = 0;
+			vx = 0;
+			stnry = true;
+		}
+		else { gravity = 0.1; }
 	}
-	else { gravity = 10; }
-
-	if (vy < 1) { //terminal vel
-		vy += gravity;
+	if (vy < 5) { //terminal vel
+		if (gravity == 10) {
+			vy++;
+			gravity = 0;
+		}
+		else { gravity++; }
 	}
-	else { vy = 1; }//terminal vel
-	y += vy;
-	x += vx;
+	else { vy = 5; }//terminal vel
+	charecter.pos.y += vy;
+	charecter.pos.x += vx;
 	//after updating everything else
 	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
 		bkgr.loc.x -= vx;
@@ -90,7 +99,7 @@ void Game::ComposeFrame()
 {
 	bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	gfx.drawsprite(x, y, screen, sp);
+	gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
 	for (int i = 0; i < 500; i++) {
 		gfx.PutPixel(i, 500, Color(255, 255, 255));
 	}
