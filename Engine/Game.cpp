@@ -43,14 +43,14 @@ Game::Game( MainWindow& wnd )
 	charecter.sprite = sp;
 	line l = { pos(0,500),pos(1150,500) };
 	bkgr.surface.push_back(l);
-	charecter.pos.x = 13;
+	charecter.pos.x = -13;
 	charecter.pos.y = 120;
 }
 
 void Game::Go()
 {
 	gfx.BeginFrame();	
-	UpdateModel();
+	//UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
 }
@@ -89,7 +89,4 @@ void Game::ComposeFrame()
 	//bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
-	for (int i = 0; i < 500; i++) {
-		gfx.PutPixel(i, 500, Color(255, 255, 255));
-	}
 }

@@ -314,6 +314,7 @@ void Graphics::PutPixel( int x,int y,Color c )
 	assert( y >= 0 );
 	assert( y < int( Graphics::ScreenHeight ) );
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
+	//check rect.cross for any unexplainable assert error
 }
 
 void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)

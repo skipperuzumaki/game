@@ -102,7 +102,7 @@ void rect::offsety(int y)
 }
 
 rect rect::cross(rect &r)
-{
+{//should be fine
 	if (liesin(r)) {
 		return rect(pos(x1, y1), pos(x4, y4));
 	}
@@ -117,10 +117,10 @@ rect rect::cross(rect &r)
 			return rect(pos(r.x1, r.y1), pos(r.x3, y4));
 		}
 		else if (inside(pos(r.x3, r.y3)) && inside(pos(r.x4, r.y4))) {
-			return rect(pos(r.x3, y1), pos(r.x4, r.y4));
+			return rect(pos(x1, r.y1), pos(r.x4, r.y4));
 		}
 		else if (inside(pos(r.x2, r.y2)) && inside(pos(r.x4, r.y4))) {
-			return rect(pos(x1, r.y2), pos(r.x4, r.y4));
+			return rect(pos(r.x1, y1), pos(r.x4, r.y4));
 		}
 		else if (r.inside(pos(x1, y1)) && r.inside(pos(x2, y2))) {
 			return rect(pos(x1, y1), pos(r.x3, y2));
@@ -164,7 +164,7 @@ bool const rect::liesin(rect &r)
 
 bool const rect::contains(rect const &r)
 {
-	if (inside( pos( r.x1,r.x2 )) && inside( pos( r.x4,r.y4 ))) {
+	if (inside( pos( r.x1,r.y1 )) && inside( pos( r.x4,r.y4 ))) {
 		return true;
 	}
 	else {
