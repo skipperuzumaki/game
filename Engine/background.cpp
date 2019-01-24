@@ -15,9 +15,9 @@ bool background::ignoregravity(avatar &charecter)//add keypress
 			return true;
 		}
 		else if (charecter.extent.crossing(surface.at(i))) {
-			int offset = surface.at(i).start.x - charecter.extent.x4;
-			charecter.pos.x += offset;
-			charecter.extent.offsetx(offset);
+			int offset = surface.at(i).start.y - charecter.extent.y4;
+			charecter.pos.y += offset;
+			charecter.extent.offsety(offset);
 			return true;
 		}
 	}
@@ -26,8 +26,8 @@ bool background::ignoregravity(avatar &charecter)//add keypress
 			return true;
 		}
 		else if (charecter.extent.crossing(ledge.at(i))) {
-			int offset1 = ledge.at(i).start.y - charecter.extent.y4;
-			int offset2 = ledge.at(i).start.y - charecter.extent.y1;
+			int offset1 = ledge.at(i).start.x - charecter.extent.x4;
+			int offset2 = ledge.at(i).start.y - charecter.extent.x1;
 			int offset = std::min(offset1, offset2);
 			charecter.pos.x += offset;
 			charecter.extent.offsetx(offset);
@@ -705,6 +705,8 @@ void background::cleanlevel()
 			}
 		}
 	}
+	//TODO delete temp
+	//this gives a ridiculous error
 }
 
 void background::generateenvironments()

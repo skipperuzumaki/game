@@ -9,8 +9,8 @@ class avatar
 {
 public:
 	pos pos = pos::pos(-1, -1);
-	int width = 60;
-	int height = 100;
+	//int width = 60;
+	//int height = 100;
 	rect extent;
 	//void updateextent();
 	std::string spritelocation;

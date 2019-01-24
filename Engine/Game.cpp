@@ -59,31 +59,20 @@ void Game::UpdateModel()
 {
 	if (!stnry) {
 		if (bkgr.ignoregravity(charecter)) {
-			gravity = 0;
-			vy = 0;
-			vx = 0;
+			vy = 0.0f;
+			vx = 0.0f;
 			stnry = true;
 		}
-		else { gravity = 0.1; }
+		else{ vy += 0.15; }//seems fine enough
 	}
-	if (vy < 5) { //terminal vel
-		if (gravity == 10) {
-			vy++;
-			gravity = 0;
-		}
-		else { gravity++; }
-	}
-	else { vy = 5; }//terminal vel
-	charecter.pos.y += vy;
-	charecter.pos.x += vx;
 	//after updating everything else
 	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
-		bkgr.loc.x -= vx;
-		bkgr.loc.y -= vy;
+		bkgr.loc.x -= int(vx);
+		bkgr.loc.y -= int(vy);
 	}
 	else {
-		charecter.pos.x += vx;
-		charecter.pos.y += vy;
+		charecter.pos.x += int(vx);
+		charecter.pos.y += int(vy);
 	}
 }
 
@@ -97,7 +86,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	bkgr.cleanlevel();
+	//bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
 	for (int i = 0; i < 500; i++) {
