@@ -3,12 +3,12 @@
 #include "rect.h"
 #include "Graphics.h"
 #include "sprite.h"
-#include "enivronment.h"
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
 #include "avatar.h"
 #include "line.h"
+#include "environment.h"
 
 class background
 {
@@ -18,6 +18,7 @@ public:
 	std::vector<std::vector<direction>> openings;
 	std::vector<line> surface;
 	std::vector<line> ledge;
+	void updatelines();
 	bool ignoregravity(avatar &charecter);
 	void generateroute();
 	bool oncrit(int n);

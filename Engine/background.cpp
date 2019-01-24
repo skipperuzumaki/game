@@ -5,10 +5,33 @@ background::background()
 {
 }
 
+void background::updatelines()
+{
+	surface.clear();
+	ledge.clear();
+	int const wt = sectors.at(0).background.getwidth();
+	int const ht = sectors.at(0).background.getwidth();
+	for (int i = 0; i < 25; i++) {
+		pos offset = pos(wt*(i % 5), ht*(i / 5));
+		for (int j = 0; j < sectors.at(i).surface.size(); j++) {
+			pos p1 = (sectors.at(i).surface.at(j).start + offset);
+			pos p2 = (sectors.at(i).surface.at(j).end + offset);
+			line l = line(p1, p2);
+			surface.push_back(l);
+		}
+		for (int j = 0; j < sectors.at(i).ledge.size(); j++) {
+			pos p1 = (sectors.at(i).ledge.at(j).start + offset);
+			pos p2 = (sectors.at(i).ledge.at(j).end + offset);
+			line l = line(p1, p2);
+			ledge.push_back(l);
+		}
+	}
+}
+
 bool background::ignoregravity(avatar &charecter)//add keypress
 {
-	//update contact points to current frame
-	//charecter.updateextent();
+	updatelines();
+	//updating extent and lines to current frame
 	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {
 		if (charecter.extent.touching(surface.at(i))) {
