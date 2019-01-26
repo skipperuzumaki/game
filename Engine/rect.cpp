@@ -38,42 +38,37 @@ bool const rect::inside(pos const &p)
 bool rect::touching(line & l)
 {
 	//assume line || to axes
-	if (l.start.x == x1) {
-		if ((l.start.y<y1 && l.end.y>y1) || (l.start.y<y3 && l.end.y>y3)) {
-			return true;
+	if (l.start.x == l.end.x) {
+		if (l.start.x == x4) {
+			if ((l.start.y < y1 && y1 < l.end.y) || (l.start.y < y4 && y4 < l.end.y)) {
+				return true;
+			}
 		}
 	}
-	else if (l.start.x == x2) {
-		if ((l.start.y<y2 && l.end.y>y2) || (l.start.y<y4 && l.end.y>y4)) {
-			return true;
+	if (l.start.y == l.end.y) {
+		if (l.start.y == y1 || l.start.y == y4) {
+			if ((l.start.x < x1 && x1 < l.end.x) || (l.start.x < x4 && x4 < l.end.x)) {
+				return true;
+			}
 		}
-	}
-	else if (l.start.y == y1) {
-		if ((l.start.x<x1 && l.end.x>x1) || (l.start.x<x3 && l.end.x>x3)) {
-			return true;
-		}
-	}
-	else if (l.start.y == y2) {
-		if ((l.start.x<x2 && l.end.x>x2) || (l.start.x<x4 && l.end.x>x4)) {
-			return true;
-		}
-	}
-	else {
-		return false;
 	}
 	return false;
 }
 
 bool rect::crossing(line & l)
 {
-	if (l.start.x == l.start.y) {
-		if (x1 < l.start.x && l.start.x < x2) {
-			return true;
+	if (l.start.x == l.end.x) {
+		if (x1 < l.start.x && l.start.x < x4) {
+			if ((y1 > l.start.y && l.end.y > y1) || (y4 > l.start.y && l.end.y > y4)) {
+				return true;
+			}
 		}
 	}
 	else if (l.start.y == l.end.y) {
 		if (y1 < l.start.y && l.start.y < y2) {
-			return true;
+			if ((x1 > l.start.x && l.end.x > x1) || (x4 > l.start.x && l.end.x > x4)) {
+				return true;
+			}
 		}
 	}
 	return false;
