@@ -30,7 +30,7 @@ void background::updatelines()
 
 bool background::ignoregravity(avatar &charecter)//add keypress
 {
-	updatelines();
+	//updatelines();  TODO add sector based lines
 	//updating extent and lines to current frame
 	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {
