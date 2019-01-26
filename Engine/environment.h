@@ -18,3 +18,13 @@ public:
 	std::vector<line> ledge;
 	bool hasopening(direction d);
 };
+
+bool environment::hasopening(direction d)
+{
+	for (int i = 0; i < openings.size(); i++) {
+		if (openings.at(i) == d) {
+			return true;
+		}
+	}
+	return false;
+}

@@ -20,7 +20,7 @@ public:
 	std::vector<line> surface;
 	std::vector<line> ledge;
 	void updatelines();
-	bool ignoregravity(avatar &charecter, int vx);
+	bool ignoregravity(avatar &charecter);
 	void generateroute();
 	bool oncrit(int n);
 	void generatecontent();

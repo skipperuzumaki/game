@@ -31,9 +31,9 @@ Game::Game( MainWindow& wnd )
 	for (int y = 0; y < sp.getheight(); y++) {
 		for (int x = 0; x < sp.getwidth(); x++) {
 				sp.load(x, y, Color(
-					(x - 25)*(x - 25) + (y - 2)*(y - 2),
-					(x - 25)*(x - 25) + (y + 2)*(y + 2),
-					(x + 25)*(x + 25) + (y - 2)*(y - 2)));
+					(x - 215)*(x - 25) + (y - 2)*(y - 2),
+					(x - 215)*(x - 25) + (y + 2)*(y + 2),
+					(x + 215)*(x + 25) + (y - 2)*(y - 2)));
 		}
 	}
 	charecter.sprite = sp;
@@ -87,7 +87,7 @@ void Game::UpdateModel()
 		charecter.pos.y += int(vy);
 	}
 	if (!stnry) {
-		if (bkgr.ignoregravity(charecter,int(vx))) {
+		if (bkgr.ignoregravity(charecter)) {
 			vy = 0.0f;
 			vx = 0.0f;
 			stnry = true;

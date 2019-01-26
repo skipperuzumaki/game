@@ -5,6 +5,8 @@ background::background()
 {
 }
 
+
+
 void background::updatelines()
 {
 	surface.clear();
@@ -28,7 +30,7 @@ void background::updatelines()
 	}
 }
 
-bool background::ignoregravity(avatar &charecter, int vx)//add keypress
+bool background::ignoregravity(avatar &charecter)
 {
 	//updatelines();  TODO add sector based lines
 	//updating extent and lines to current frame
@@ -36,22 +38,33 @@ bool background::ignoregravity(avatar &charecter, int vx)//add keypress
 	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {
 		if (charecter.extent.crossing(surface.at(i))) {
-			int offset = surface.at(i).start.y - charecter.extent.y4;
+			int offset1 = (surface.at(i).start.y - charecter.extent.y4);
+			int offset2 = (surface.at(i).start.y - charecter.extent.y1);
+			int offset;
+			if (std::abs(offset1) < std::abs(offset2)) {
+				offset = offset1;
+			}
+			else if (std::abs(offset2) < std::abs(offset1)) {
+				offset = offset2;
+			}
+			else {
+				offset = 0;
+			}
 			charecter.pos.y += offset;
 			charecter.extent.offsety(offset);
 			ret = true;
 		}
 	}
-	for (int i = 0; i < ledge.size(); i++) {//TODO add keypress
+	for (int i = 0; i < ledge.size(); i++) {
 		if (charecter.extent.crossing(ledge.at(i))) {
-			int offset1 = std::abs(ledge.at(i).start.x - charecter.extent.x4);
-			int offset2 = std::abs(ledge.at(i).start.x - charecter.extent.x1);
+			int offset1 = (ledge.at(i).start.x - charecter.extent.x4);
+			int offset2 = (ledge.at(i).start.x - charecter.extent.x1);
 			int offset;
-			if (vx > 0.0f) {
-				offset = -std::min(offset1, offset2);
+			if (std::abs(offset1) < std::abs(offset2)) {
+				offset = offset1;
 			}
-			else if (vx < 0.0f) {
-				offset = std::min(offset1, offset2);
+			else if (std::abs(offset2) < std::abs(offset1)) {
+				offset = offset2;
 			}
 			else {
 				offset = 0;
