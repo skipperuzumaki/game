@@ -108,6 +108,9 @@ void Game::save()
 void Game::ComposeFrame()
 {
 	//bkgr.cleanlevel();
+	//lice.loc = pos(10, 50);
+	//lice.facing = direction::east;
+	//lice.update();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
 	for (int i = 0; i < gfx.ScreenWidth; i++) {

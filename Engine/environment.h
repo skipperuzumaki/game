@@ -16,15 +16,13 @@ public:
 	std::vector<line> interactiblespawn;
 	std::vector<line> surface;
 	std::vector<line> ledge;
-	bool hasopening(direction d);
-};
-
-bool environment::hasopening(direction d)
-{
-	for (int i = 0; i < openings.size(); i++) {
-		if (openings.at(i) == d) {
-			return true;
+	bool hasopening(direction d)
+	{
+		for (int i = 0; i < openings.size(); i++) {
+			if (openings.at(i) == d) {
+				return true;
+			}
 		}
+		return false;
 	}
-	return false;
-}
+};

@@ -27,6 +27,7 @@
 #include "rect.h"
 #include "sprite.h"
 #include "background.h"
+#include "enemy.h"
 
 class Game
 {
@@ -50,4 +51,5 @@ private:
 	int dt;
 	background bkgr;
 	bool stnry = false, upmtm = false;
+	enemy police;
 };
