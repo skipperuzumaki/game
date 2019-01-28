@@ -317,6 +317,24 @@ void Graphics::PutPixel( int x,int y,Color c )
 	//check rect.cross for any unexplainable assert error
 }
 
+void Graphics::drawline(line & l, Color c)
+{
+	if (l.start.x == l.end.x) {
+		for (int i = l.start.y; i < l.end.y; i++) {
+			if (i < ScreenHeight) {
+				PutPixel(l.start.x, i, c);
+			}
+		}
+	}
+	if (l.start.y == l.end.y) {
+		for (int i = l.start.x; i < l.end.x; i++) {
+			if (i < ScreenWidth) {
+				PutPixel(i, l.start.y, c);
+			}
+		}
+	}
+}
+
 void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 {
 	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));

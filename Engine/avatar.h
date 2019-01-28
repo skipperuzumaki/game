@@ -15,6 +15,7 @@ public:
 	//void updateextent();
 	std::string spritelocation;
 	sprite sprite = sprite::sprite(0, 0);
+	bool dead = false;
 };
 /*
 void avatar::updateextent()

@@ -36,18 +36,35 @@ Game::Game( MainWindow& wnd )
 					(x + 215)*(x + 25) + (y - 2)*(y - 2)));
 		}
 	}
+	for (int y = 0; y < sp.getheight(); y++) {
+		for (int x = 0; x < sp.getwidth(); x++) {
+			ps.load(x, y, Color(
+				(x),
+				(y),
+				(x + 215)*(x + 25) + (y - 2)*(y - 2)));
+		}
+	}
 	charecter.sprite = sp;
-	line l = { pos(0,500),pos(1150,500) };
-	line l2 = { pos(300,400),pos(1150,400) };
+	line l = { pos(100,500),pos(700,500) };
+	line l2 = { pos(300,400),pos(800,400) };
 	line l1 = { pos(200,0),pos(200,11500) };
 	line l3 = { pos(600,350),pos(600,11500) };
 	bkgr.surface.push_back(l);
 	bkgr.surface.push_back(l2);
 	bkgr.ledge.push_back(l1);
 	bkgr.ledge.push_back(l3);
-	charecter.pos.x = 232;
-	charecter.pos.y = 300;
+	charecter.pos.x = 260;
+	charecter.pos.y = 30;
+	police.loc = pos(250, 400);
+	police.facing = direction::east;
+	police.base = l;
+	police.pic = ps;
+	police2.loc = pos(350, 300);
+	police2.facing = direction::west;
+	police2.base = l;
+	police2.pic = ps;
 }
+
 
 void Game::Go()
 {
@@ -59,6 +76,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (charecter.extent.crossing(police.die)) {
+		police.dead = true;
+	}
+	police.update();
+	if (charecter.extent.crossing(police2.die)) {
+		police2.dead = true;
+	}
+	police2.update();
+	if (charecter.extent.crossing(police.sight)|| charecter.extent.crossing(police2.sight)){
+		charecter.dead = true;
+	}
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
 		vx = 3.0f;
 		stnry = false;
@@ -108,21 +136,23 @@ void Game::save()
 void Game::ComposeFrame()
 {
 	//bkgr.cleanlevel();
-	//lice.loc = pos(10, 50);
-	//lice.facing = direction::east;
-	//lice.update();
+	police.update();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
-	for (int i = 0; i < gfx.ScreenWidth; i++) {
-		gfx.PutPixel(i, 500, { 255,255,255 });
+	if (!charecter.dead) {
+		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
 	}
-	for (int i = 0; i < gfx.ScreenHeight; i++) {
-		gfx.PutPixel(200, i, { 255,255,255 });
+	if (!police.dead) {
+		gfx.drawsprite(police.loc.x, police.loc.y, screen, police.pic);
+		gfx.drawline(police.sight);
 	}
-	for (int i = 300; i < gfx.ScreenWidth; i++) {
-		gfx.PutPixel(i, 400, { 255,255,255 });
+	if (!police2.dead) {
+		gfx.drawsprite(police2.loc.x, police2.loc.y, screen, police2.pic);
+		gfx.drawline(police2.sight);
 	}
-	for (int i = 350; i < gfx.ScreenHeight; i++) {
-		gfx.PutPixel(600, i, { 255,255,255 });
+	for (int i = 0; i < bkgr.surface.size(); i++) {
+		gfx.drawline(bkgr.surface.at(i));
+	}
+	for (int i = 0; i < bkgr.ledge.size(); i++) {
+		gfx.drawline(bkgr.ledge.at(i));
 	}
 }

@@ -51,5 +51,7 @@ private:
 	int dt;
 	background bkgr;
 	bool stnry = false, upmtm = false;
+	sprite ps = sprite(60, 100);
 	enemy police;
+	enemy police2;
 };
