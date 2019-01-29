@@ -22,6 +22,7 @@
 #include "Game.h"
 #include "Keyboard.h"
 #include <string>
+#include <vector>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -63,6 +64,10 @@ Game::Game( MainWindow& wnd )
 	police2.facing = direction::west;
 	police2.base = l;
 	police2.pic = ps;
+	std::vector<enemy> p;
+	p.push_back(police);
+	p.push_back(police2);
+	level = world(charecter, p, bkgr);
 }
 
 
@@ -76,53 +81,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (charecter.extent.crossing(police.die)) {
-		police.dead = true;
-	}
-	police.update();
-	if (charecter.extent.crossing(police2.die)) {
-		police2.dead = true;
-	}
-	police2.update();
-	if (charecter.extent.crossing(police.sight)|| charecter.extent.crossing(police2.sight)){
-		charecter.dead = true;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
-		vx = 3.0f;
-		stnry = false;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_UP)) {
-		if (!upmtm) {
-			vy = -6.0f;
-			upmtm = true;
-			stnry = false;
-		}
-	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
-		vx = -3.0f;
-		stnry = false;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
-		//interaction button
-	}
-	//after updating everything else
-	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
-		bkgr.loc.x -= int(vx);
-		bkgr.loc.y -= int(vy);
-	}
-	else {
-		charecter.pos.x += int(vx);
-		charecter.pos.y += int(vy);
-	}
-	if (!stnry) {
-		if (bkgr.ignoregravity(charecter)) {
-			vy = 0.0f;
-			vx = 0.0f;
-			stnry = true;
-			upmtm = false;
-		}
-		else { vy += 0.15; }//seems fine enough
-	}
+	level.update(vx, vy, stnry, upmtm, wnd.kbd, gfx);
+	level.kill();
 }
 
 void Game::load()
@@ -135,24 +95,6 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	//bkgr.cleanlevel();
-	police.update();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	if (!charecter.dead) {
-		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
-	}
-	if (!police.dead) {
-		gfx.drawsprite(police.loc.x, police.loc.y, screen, police.pic);
-		gfx.drawline(police.sight);
-	}
-	if (!police2.dead) {
-		gfx.drawsprite(police2.loc.x, police2.loc.y, screen, police2.pic);
-		gfx.drawline(police2.sight);
-	}
-	for (int i = 0; i < bkgr.surface.size(); i++) {
-		gfx.drawline(bkgr.surface.at(i));
-	}
-	for (int i = 0; i < bkgr.ledge.size(); i++) {
-		gfx.drawline(bkgr.ledge.at(i));
-	}
+	level.draw(gfx, screen);
 }

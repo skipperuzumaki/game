@@ -28,6 +28,7 @@
 #include "sprite.h"
 #include "background.h"
 #include "enemy.h"
+#include "world.h"
 
 class Game
 {
@@ -54,4 +55,5 @@ private:
 	sprite ps = sprite(60, 100);
 	enemy police;
 	enemy police2;
+	world level;
 };

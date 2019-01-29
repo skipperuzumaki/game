@@ -10,7 +10,6 @@ public:
 	sprite pic = sprite(0, 0);
 	pos loc;
 	direction facing;
-	pos center;
 	line sight;
 	line die;
 	line base;

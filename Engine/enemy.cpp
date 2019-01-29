@@ -8,14 +8,14 @@ void enemy::update()
 	else if (facing == west) {
 		loc.x--;
 	}
-	center = loc + pos(30,50);
+	pos center = loc + pos(30,5);
 	pos siend;
 	if (facing == east) {
-		siend = pos(center.x + 100, center.y);
+		siend = pos(center.x + 200, center.y);
 		sight = { center,siend };
 	}
 	else if (facing == west) {
-		siend = pos(center.x - 100, center.y);
+		siend = pos(center.x - 200, center.y);
 		sight = { siend,center };
 	}
 	siend = pos(loc.x + 60, loc.y + 100);
