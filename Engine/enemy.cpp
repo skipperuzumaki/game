@@ -18,7 +18,7 @@ void enemy::update()
 		siend = pos(center.x - 200, center.y);
 		sight = { siend,center };
 	}
-	siend = pos(loc.x + 60, loc.y + 100);
+	siend = pos(loc.x + 64, loc.y + 64);
 	extent = rect(loc, siend);
 	if (facing == east) {
 		die = { loc + pos(0,-1),pos(extent.x2 ,extent.y2 - 1) };

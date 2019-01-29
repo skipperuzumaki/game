@@ -59,17 +59,17 @@ Game::Game( MainWindow& wnd )
 	bkgr.ledge.push_back(l3);
 	charecter.pos.x = 260;
 	charecter.pos.y = 30;
-	police.loc = pos(250, 400);
+	police.loc = pos(250, 436);
 	police.facing = direction::east;
 	police.base = l;
 	police.pic = ps;
-	police2.loc = pos(350, 300);
+	police2.loc = pos(350, 336);
 	police2.facing = direction::west;
 	police2.base = l;
 	police2.pic = ps;
 	std::vector<enemy> p;
-	//p.push_back(police);
-	//p.push_back(police2);
+	p.push_back(police);
+	p.push_back(police2);
 	level = world(charecter, p, bkgr);
 }
 

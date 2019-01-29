@@ -46,13 +46,13 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	std::string savelocation;
-	sprite sp = sprite(60, 100);
+	sprite sp = sprite(64, 64);
 	avatar charecter;
 	float vx = 0.0f, vy = 0.0f;
 	int dt;
 	background bkgr;
 	bool stnry = false, upmtm = false;
-	sprite ps = sprite(60, 100);
+	sprite ps = sprite(64, 64);
 	enemy police;
 	enemy police2;
 	world level;
