@@ -745,8 +745,9 @@ void background::cleanlevel()
 			}
 		}
 	}
-	//TODO delete temp
-	//this gives a ridiculous error
+	temp.clear();
+	temp.shrink_to_fit();
+	//PS this should have deleted the vector but be sure just in case
 }
 
 void background::generateenvironments()

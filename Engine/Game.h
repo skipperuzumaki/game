@@ -56,4 +56,5 @@ private:
 	enemy police;
 	enemy police2;
 	world level;
+	std::vector<direction> tempvec;
 };

@@ -84,7 +84,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	level.update(vx, vy, stnry, upmtm, wnd.kbd, gfx);
+	tempvec = level.update(vx, vy, upmtm, wnd.kbd, gfx);
 	level.kill();
 }
 
@@ -99,5 +99,5 @@ void Game::save()
 void Game::ComposeFrame()
 {
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	level.draw(gfx, screen);
+	level.draw(gfx, screen, vx, vy, tempvec);
 }
