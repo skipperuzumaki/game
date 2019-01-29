@@ -51,8 +51,10 @@ Game::Game( MainWindow& wnd )
 	line l2 = { pos(300,400),pos(800,400) };
 	line l1 = { pos(200,0),pos(200,11500) };
 	line l3 = { pos(600,350),pos(600,11500) };
+	line l4 = { pos(300,20),pos(800,20) };
 	bkgr.surface.push_back(l);
 	bkgr.surface.push_back(l2);
+	bkgr.surface.push_back(l4);
 	bkgr.ledge.push_back(l1);
 	bkgr.ledge.push_back(l3);
 	charecter.pos.x = 260;
@@ -66,8 +68,8 @@ Game::Game( MainWindow& wnd )
 	police2.base = l;
 	police2.pic = ps;
 	std::vector<enemy> p;
-	p.push_back(police);
-	p.push_back(police2);
+	//p.push_back(police);
+	//p.push_back(police2);
 	level = world(charecter, p, bkgr);
 }
 

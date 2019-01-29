@@ -322,16 +322,16 @@ void Graphics::drawline(line & l, Color c)
 	if (l.start.x == l.end.x) {
 		for (int i = l.start.y; i < l.end.y; i++) {
 			if (i < ScreenHeight && i>0) {
-				if (!l.start.x<0 && !l.start.x>ScreenWidth) {}
-				else{ PutPixel(l.start.x, i, c); }
+				if (!(l.start.x < 0) && !(l.start.x > ScreenWidth)) { 
+					PutPixel(l.start.x, i, c); }
 			}
 		}
 	}
 	if (l.start.y == l.end.y) {
 		for (int i = l.start.x; i < l.end.x; i++) {
 			if (i < ScreenWidth && i>0) {
-				if (!l.start.y<0 && !l.start.y>ScreenHeight) {}
-				else{ PutPixel(i, l.start.y, c); }
+				if (!(l.start.y < 0) && !(l.start.y > ScreenHeight)) { 
+					PutPixel(i, l.start.y, c); }
 			}
 		}
 	}
