@@ -32,7 +32,7 @@ void world::update(float& vx, float& vy, bool& stnry, bool& upmtm, Keyboard& kbd
 		//interaction button
 	}
 	//after updating everything else
-	if (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
+	if  (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
 		bkgr.loc.x -= int(vx);
 		bkgr.loc.y -= int(vy);
 	}
@@ -55,10 +55,8 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	for (int i = 0; i < police.size(); i++) {
 		police.at(i).update();
-		if (!police.at(i).dead) {
-			gfx.drawsprite(police.at(i).loc.x, police.at(i).loc.y, screen, police.at(i).pic);
-			gfx.drawline(police.at(i).sight);
-		}
+		gfx.drawsprite(police.at(i).loc.x, police.at(i).loc.y, screen, police.at(i).pic);
+		gfx.drawline(police.at(i).sight);
 	}
 	if (!charecter.dead) {
 		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
@@ -75,7 +73,7 @@ void world::kill()
 {
 	for (int i = 0; i < police.size(); i++) {
 		if (police.at(i).dead) {
-			//TODO delete police.at(i);
+			police.erase(police.begin() + i);
 		}
 	}
 	if (charecter.dead) {

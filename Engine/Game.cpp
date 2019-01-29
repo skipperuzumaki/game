@@ -45,6 +45,7 @@ Game::Game( MainWindow& wnd )
 				(x + 215)*(x + 25) + (y - 2)*(y - 2)));
 		}
 	}
+	//TODO make all this automatic
 	charecter.sprite = sp;
 	line l = { pos(100,500),pos(700,500) };
 	line l2 = { pos(300,400),pos(800,400) };
