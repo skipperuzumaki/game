@@ -397,13 +397,14 @@ void background::generateroute()
 	//did it
 }
 
-bool background::oncrit(int n)
+bool background::hasopening(int n, direction d)
 {
 	for (int i = 0; i < openings.at(n).size(); i++) {
-		if (openings.at(n).at(i) == direction::crit) {
+		if (openings.at(n).at(i) == d) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -412,7 +413,7 @@ void background::generatecontent()
 	generateroute();
 	int i, current, e, k;
 	for (i = 0; i < 5; i++) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
@@ -432,7 +433,7 @@ void background::generatecontent()
 		}
 	}
 	for (i = 4; i > -1; i--) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
@@ -453,7 +454,7 @@ void background::generatecontent()
 	}
 	//row 0 done
 	for (i = 5; i < 10; i++) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			if (current == 5) {
 				e = rand() % 2;
@@ -527,7 +528,7 @@ void background::generatecontent()
 	}
 	//row 1 done
 	for (i = 10; i < 15; i++) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			if (current == 10) {
 				e = rand() % 2;
@@ -601,7 +602,7 @@ void background::generatecontent()
 	}
 	//row 2 done
 	for (i = 15; i < 20; i++) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			if (current == 15) {
 				e = rand() % 2;
@@ -675,7 +676,7 @@ void background::generatecontent()
 	}
 	//row 3 done
 	for (i = 20; i < 25; i++) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
@@ -690,7 +691,7 @@ void background::generatecontent()
 		}
 	}
 	for (i = 24; i > 20; i--) {
-		if (oncrit(i)) {
+		if (!(hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
@@ -757,7 +758,48 @@ void background::cleanlevel()
 void background::generateenvironments()
 {
 	//TODO learn seavin and getting objects from file 
-	//get environments.bin
+	//EDIT will probably use resources to get environment arrays
+	//still not figured it out
+	//arrays shoudl be named :- E,W,EW,NE,NW,NEW,SEW,SE,SW,NSE,NSW,NSEW ; and nothing else
+	std::string currstate;
+	for (int i = 0; i < 25; i++) {
+		if (hasopening(i, direction::east)) {
+			if (hasopening(i, direction::north)) {
+				currstate = "NE";
+			}
+			else if (hasopening(i, direction::south)) {
+				std::string currstate = "SE";
+			}
+			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				currstate = "NSE";
+			}
+		}
+		else if (hasopening(i, direction::west)) {
+			if (hasopening(i, direction::north)) {
+				currstate = "NW";
+			}
+			else if (hasopening(i, direction::south)) {
+				currstate = "SW";
+			}
+			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				currstate = "NSW";
+			}
+		}
+		else if (hasopening(i, direction::north) && hasopening(i, direction::west)) {
+			if (hasopening(i, direction::north)) {
+				currstate = "NEW";
+			}
+			else if (hasopening(i, direction::south)) {
+				currstate = "SEW";
+			}
+			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				currstate = "NSEW";
+			}
+		}
+	}
+	//std::vector<environment> curnt = acc to our currstate;
+	//std::random_shuffle(curnt.begin(),curnt.end())
+	//sectors.at(i)=curnt[0];
 }
 
 bool background::safe(int const srcwth, int const scrht)
