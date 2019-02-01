@@ -736,11 +736,15 @@ void background::cleanlevel()
 				south = true;
 			}
 			else if (temp.at(i).at(k) == direction::east && !east) {
-				openings.at(i).push_back(direction::east);
+				if (i % 5 != 0) {
+					openings.at(i).push_back(direction::east);
+				}
 				east = true;
 			}
 			else if (temp.at(i).at(k) == direction::west && !west) {
-				openings.at(i).push_back(direction::west);
+				if (i % 5 != 4) {
+					openings.at(i).push_back(direction::west);
+				}
 				west = true;
 			}
 		}

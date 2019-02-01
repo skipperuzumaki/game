@@ -47,9 +47,10 @@ std::vector<direction> world::update(float& vx, float& vy, bool& upmtm, Keyboard
 			upmtm = false;
 		}
 		else { vy += 0.15; }//seems fine enough
+		return ret;
 }
 
-void world::draw(Graphics & gfx ,rect screen, int vx, int vy, std::vector<direction> d)
+void world::draw(Graphics & gfx ,rect screen, std::vector<direction> d)
 {
 	for (int i = 0; i < police.size(); i++) {
 		police.at(i).update();

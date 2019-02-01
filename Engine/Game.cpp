@@ -98,6 +98,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
+	bkgr.cleanlevel();
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	level.draw(gfx, screen, vx, vy, tempvec);
+	level.draw(gfx, screen, tempvec);
 }
