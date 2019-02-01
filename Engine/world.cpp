@@ -2,9 +2,8 @@
 
 
 
-std::vector<direction> world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx)
+void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx)
 {
-	std::vector<direction> ret;
 	for (int i = 0; i < police.size(); i++) {
 		if (charecter.extent.crossing(police.at(i).die) && !charecter.dead) {
 			police.at(i).dead = true;
@@ -16,18 +15,15 @@ std::vector<direction> world::update(float& vx, float& vy, bool& upmtm, Keyboard
 	}
 	if (kbd.KeyIsPressed(VK_RIGHT)) {
 		vx = 3.0f;
-		ret.push_back(direction::east);
 	}
 	if (kbd.KeyIsPressed(VK_UP)) {
 		if (!upmtm) {
 			vy = -6.0f;
 			upmtm = true;
-			ret.push_back(direction::north);
 		}
 	}
 	if (kbd.KeyIsPressed(VK_LEFT)) {
 		vx = -3.0f;
-		ret.push_back(direction::west);
 	}
 	if (kbd.KeyIsPressed(VK_DOWN)) {
 		//interaction button
@@ -47,10 +43,9 @@ std::vector<direction> world::update(float& vx, float& vy, bool& upmtm, Keyboard
 			upmtm = false;
 		}
 		else { vy += 0.15; }//seems fine enough
-		return ret;
 }
 
-void world::draw(Graphics & gfx ,rect screen, std::vector<direction> d)
+void world::draw(Graphics & gfx ,rect screen)
 {
 	for (int i = 0; i < police.size(); i++) {
 		police.at(i).update();

@@ -22,7 +22,7 @@ public:
 	void updatelines();
 	bool ignoregravity(avatar &charecter);
 	void generateroute();
-	bool oncrit(int n);
+	bool hasopening(int n, direction d);
 	void generatecontent();
 	void cleanlevel();
 	void generateenvironments();

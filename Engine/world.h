@@ -13,8 +13,8 @@
 class world
 {
 public:
-	std::vector<direction> update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx);
-	void draw(Graphics& gfx, rect screen, std::vector<direction> d);
+	void draw(Graphics& gfx, rect screen);
+	void update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx);
 	void kill();
 	world(avatar & a, std::vector<enemy>& p, background & b);
 	avatar charecter;
