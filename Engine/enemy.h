@@ -7,7 +7,7 @@
 class enemy
 {
 public:
-	sprite pic = sprite(0, 0);
+	sprite pic = sprite(64, 64);
 	pos loc;
 	direction facing;
 	line sight;
