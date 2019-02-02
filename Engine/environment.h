@@ -13,7 +13,7 @@ public:
 	std::vector<direction> openings;
 	std::vector<line> enemyspawn;
 	std::vector<line> itemspawn;
-	std::vector<line> interactiblespawn;
+	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
 	bool hasopening(direction d)

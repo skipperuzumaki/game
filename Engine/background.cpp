@@ -11,8 +11,8 @@ void background::updatelines()
 {
 	surface.clear();
 	ledge.clear();
-	int const wt = sectors.at(0).background.getwidth();
-	int const ht = sectors.at(0).background.getwidth();
+	int const wt = 576;
+	int const ht = 1024;
 	for (int i = 0; i < 25; i++) {
 		pos offset = pos(wt*(i % 5), ht*(i / 5));
 		for (int j = 0; j < sectors.at(i).surface.size(); j++) {
@@ -26,6 +26,12 @@ void background::updatelines()
 			pos p2 = (sectors.at(i).ledge.at(j).end + offset);
 			line l = line(p1, p2);
 			ledge.push_back(l);
+		}
+		for (int j = 0; j < sectors.at(i).killzone.size(); j++) {
+			pos p1 = (sectors.at(i).killzone.at(j).start + offset);
+			pos p2 = (sectors.at(i).killzone.at(j).end + offset);
+			line l = line(p1, p2);
+			killzone.push_back(l);
 		}
 	}
 }
@@ -802,9 +808,17 @@ void background::generateenvironments()
 	//sectors.at(i)=curnt[0];
 }
 
+void background::move(int vx, int vy)
+{
+	loc.x -= vx;
+	loc.y -= vy;
+	//updatelines();
+}
+
 bool background::safe(int const srcwth, int const scrht)
 {
 	rect r = rect(pos(0, 0), pos(srcwth, scrht));
+	extent = rect(loc, pos(width, height));
 	return extent.contains(r);
 }
 

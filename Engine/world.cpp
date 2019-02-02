@@ -13,6 +13,11 @@ void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& g
 			charecter.dead = true;
 		}
 	}
+	for (int i = 0; i < bkgr.killzone.size(); i++) {
+		if (charecter.extent.crossing(bkgr.killzone.at(i))) {
+			charecter.dead = true;
+		}
+	}
 	if (kbd.KeyIsPressed(VK_RIGHT)) {
 		vx = 3.0f;
 	}
@@ -30,8 +35,7 @@ void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& g
 	}
 	//after updating everything else
 	if  (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
-		bkgr.loc.x -= int(vx);
-		bkgr.loc.y -= int(vy);
+		bkgr.move(int(vx), int(vy));
 	}
 	else {
 		charecter.pos.x += int(vx);
@@ -56,10 +60,13 @@ void world::draw(Graphics & gfx ,rect screen)
 		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
 	}
 	for (int i = 0; i < bkgr.surface.size(); i++) {
-		gfx.drawline(bkgr.surface.at(i));
+		gfx.drawline(bkgr.surface.at(i),Colors::Green);
 	}
 	for (int i = 0; i < bkgr.ledge.size(); i++) {
-		gfx.drawline(bkgr.ledge.at(i));
+		gfx.drawline(bkgr.ledge.at(i),Colors::Blue);
+	}
+	for (int i = 0; i < bkgr.killzone.size(); i++) {
+		gfx.drawline(bkgr.killzone.at(i));
 	}
 }
 

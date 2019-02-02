@@ -56,7 +56,7 @@ Game::Game( MainWindow& wnd )
 	bkgr.surface.push_back(l2);
 	bkgr.surface.push_back(l4);
 	bkgr.ledge.push_back(l1);
-	bkgr.ledge.push_back(l3);
+	bkgr.killzone.push_back(l3);
 	charecter.pos.x = 260;
 	charecter.pos.y = 30;
 	police.loc = pos(250, 436);

@@ -15,6 +15,7 @@ class background
 {
 public:
 	background();
+	std::vector<line> killzone;
 	std::vector<environment> sectors;
 	std::vector<std::vector<direction>> openings;
 	std::vector<line> surface;
@@ -26,10 +27,11 @@ public:
 	void generatecontent();
 	void cleanlevel();
 	void generateenvironments();
+	void move(int vx, int vy);
 	int start;
 	int end;
-	int height = 0;
-	int width = 0;
+	int height = 5120;
+	int width = 2880;
 	pos loc = pos::pos(-1, -1);
 	rect extent;
 	sprite level = sprite(height, width);
