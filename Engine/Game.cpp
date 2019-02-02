@@ -29,44 +29,22 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
-	for (int y = 0; y < sp.getheight(); y++) {
-		for (int x = 0; x < sp.getwidth(); x++) {
-				sp.load(x, y, Color(
-					(x - 215)*(x - 25) + (y - 2)*(y - 2),
-					(x - 215)*(x - 25) + (y + 2)*(y + 2),
-					(x + 215)*(x + 25) + (y - 2)*(y - 2)));
-		}
-	}
-	for (int y = 0; y < sp.getheight(); y++) {
-		for (int x = 0; x < sp.getwidth(); x++) {
-			ps.load(x, y, Color(
-				(x),
-				(y),
-				(x + 215)*(x + 25) + (y - 2)*(y - 2)));
-		}
-	}
 	//TODO make all this automatic
-	charecter.sprite = sp;
-	line l = { pos(100,500),pos(700,500) };
-	line l2 = { pos(300,400),pos(800,400) };
-	line l1 = { pos(200,0),pos(200,11500) };
-	line l3 = { pos(600,350),pos(600,11500) };
-	line l4 = { pos(300,20),pos(800,20) };
-	bkgr.surface.push_back(l);
-	bkgr.surface.push_back(l2);
-	bkgr.surface.push_back(l4);
-	bkgr.ledge.push_back(l1);
-	bkgr.killzone.push_back(l3);
-	charecter.pos.x = 260;
-	charecter.pos.y = 30;
+	enemy police;
+	enemy police2;
+	background bkgr;
+	avatar charecter;
+	bkgr.surface.push_back({ pos(100,500),pos(700,500) });
+	bkgr.surface.push_back({ pos(300,400),pos(800,400) });
+	bkgr.surface.push_back({ pos(300,20),pos(800,20) });
+	bkgr.ledge.push_back({ pos(200,0),pos(200,1024) });
+	bkgr.killzone.push_back({ pos(600,350),pos(600,1024) });
 	police.loc = pos(250, 436);
 	police.facing = direction::east;
-	police.base = l;
-	police.pic = ps;
+	police.base = { pos(100,500),pos(700,500) };
 	police2.loc = pos(350, 336);
 	police2.facing = direction::west;
-	police2.base = l;
-	police2.pic = ps;
+	police2.base = { pos(100,400),pos(700,400) };
 	std::vector<enemy> p;
 	p.push_back(police);
 	p.push_back(police2);

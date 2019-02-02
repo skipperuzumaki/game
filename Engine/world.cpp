@@ -88,6 +88,10 @@ world::world(avatar& a, std::vector<enemy>& p, background& b)
 	police = p;
 	bkgr = b;
 	bkgr.cleanlevel();
+	charecter.mksprite();
+	for (int i = 0; i < police.size(); i++) {
+		police.at(i).mksprite();
+	}
 }
 
 

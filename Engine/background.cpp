@@ -1,5 +1,7 @@
 #include "background.h"
 #include <algorithm>
+#include "codex.h"
+#include <algorithm>
 
 background::background()
 {
@@ -763,49 +765,59 @@ void background::cleanlevel()
 
 void background::generateenvironments()
 {
-	//TODO learn seavin and getting objects from file 
-	//EDIT will probably use resources to get environment arrays
-	//still not figured it out
-	//arrays shoudl be named :- E,W,EW,NE,NW,NEW,SEW,SE,SW,NSE,NSW,NSEW ; and nothing else
-	std::string currstate;
 	for (int i = 0; i < 25; i++) {
-		if (hasopening(i, direction::east)) {
-			if (hasopening(i, direction::north)) {
-				currstate = "NE";
+		if (hasopening(i, direction::east) && hasopening(i, direction::west)) {
+			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				std::random_shuffle(&NSEW[0], &NSEW[9]);
+				sectors.at(i) = NSEW[0];
+			}
+			else if (hasopening(i, direction::north)) {
+				std::random_shuffle(&NEW[0], &NEW[4]);
+				sectors.at(i) = NEW[0];
 			}
 			else if (hasopening(i, direction::south)) {
-				std::string currstate = "SE";
+				std::random_shuffle(&SEW[0], &SEW[4]);
+				sectors.at(i) = SEW[0];
 			}
-			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
-				currstate = "NSE";
+		}
+		else if (hasopening(i, direction::east)) {
+			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				std::random_shuffle(&NSE[0], &NSE[4]);
+				sectors.at(i) = NSE[0];
+			}
+			else if (hasopening(i, direction::north)) {
+				std::random_shuffle(&NE[0],&NE[4]);
+				sectors.at(i) = NE[0];
+			}
+			else if (hasopening(i, direction::south)) {
+				std::random_shuffle(&SE[0], &SE[4]);
+				sectors.at(i) = SE[0];
+			}
+			
+			else {
+				std::random_shuffle(&E[0], &E[2]);
+				sectors.at(i) = E[0];
 			}
 		}
 		else if (hasopening(i, direction::west)) {
-			if (hasopening(i, direction::north)) {
-				currstate = "NW";
+			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+				std::random_shuffle(&NSW[0], &NSW[4]);
+				sectors.at(i) = NSW[0];
+			}
+			else if (hasopening(i, direction::north)) {
+				std::random_shuffle(&NW[0], &NW[4]);
+				sectors.at(i) = NW[0];
 			}
 			else if (hasopening(i, direction::south)) {
-				currstate = "SW";
+				std::random_shuffle(&SW[0], &SW[4]);
+				sectors.at(i) = SW[0];
 			}
-			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
-				currstate = "NSW";
-			}
-		}
-		else if (hasopening(i, direction::north) && hasopening(i, direction::west)) {
-			if (hasopening(i, direction::north)) {
-				currstate = "NEW";
-			}
-			else if (hasopening(i, direction::south)) {
-				currstate = "SEW";
-			}
-			else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
-				currstate = "NSEW";
+			else {
+				std::random_shuffle(&W[0], &W[2]);
+				sectors.at(i) = W[0];
 			}
 		}
 	}
-	//std::vector<environment> curnt = acc to our currstate;
-	//std::random_shuffle(curnt.begin(),curnt.end())
-	//sectors.at(i)=curnt[0];
 }
 
 void background::move(int vx, int vy)

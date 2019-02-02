@@ -8,21 +8,10 @@
 class environment
 {
 public:
-	int id;
-	sprite background = sprite(0, 0);//TODO change initialiser appropriately
-	std::vector<direction> openings;
+	sprite background = sprite(1024, 576);
 	std::vector<line> enemyspawn;
 	std::vector<line> itemspawn;
 	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
-	bool hasopening(direction d)
-	{
-		for (int i = 0; i < openings.size(); i++) {
-			if (openings.at(i) == d) {
-				return true;
-			}
-		}
-		return false;
-	}
 };
