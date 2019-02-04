@@ -34,20 +34,16 @@ Game::Game( MainWindow& wnd )
 	enemy police2;
 	background bkgr;
 	avatar charecter;
-	bkgr.surface.push_back({ pos(100,500),pos(700,500) });
-	bkgr.surface.push_back({ pos(300,400),pos(800,400) });
-	bkgr.surface.push_back({ pos(300,20),pos(800,20) });
-	bkgr.ledge.push_back({ pos(200,0),pos(200,1024) });
-	bkgr.killzone.push_back({ pos(600,350),pos(600,1024) });
-	police.loc = pos(250, 436);
-	police.facing = direction::east;
-	police.base = { pos(100,500),pos(700,500) };
-	police2.loc = pos(350, 336);
-	police2.facing = direction::west;
-	police2.base = { pos(100,400),pos(700,400) };
+	environment temp;
 	std::vector<enemy> p;
 	p.push_back(police);
 	p.push_back(police2);
+	temp.surface.push_back({ pos(64,64),pos(960,64) });
+	temp.surface.push_back({ pos(64,512),pos(960,512) });
+	temp.ledge.push_back({ pos(64,64),pos(64,512) });
+	for (int i = 0; i < 25; i++) {
+		bkgr.sectors.push_back(temp);
+	}
 	level = world(charecter, p, bkgr);
 }
 

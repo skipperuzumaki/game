@@ -14,4 +14,5 @@ public:
 	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
+	environment() = default;
 };
