@@ -319,10 +319,11 @@ void Graphics::PutPixel( int x,int y,Color c )
 
 void Graphics::drawline(line & l, Color c)
 {
+	rect ext = rect(pos(0, 0), pos(ScreenWidth, ScreenHeight));
 	if (l.start.x == l.end.x) {
 		for (int i = l.start.y; i < l.end.y; i++) {
 			if (i < ScreenHeight && i>0) {
-				if (!(l.start.x < 0) && !(l.start.x > ScreenWidth)) { 
+				if (ext.inside(pos(l.start.x,i))) {
 					PutPixel(l.start.x, i, c); }
 			}
 		}
@@ -330,7 +331,7 @@ void Graphics::drawline(line & l, Color c)
 	if (l.start.y == l.end.y) {
 		for (int i = l.start.x; i < l.end.x; i++) {
 			if (i < ScreenWidth && i>0) {
-				if (!(l.start.y < 0) && !(l.start.y > ScreenHeight)) { 
+				if (ext.inside(pos(i,l.start.y))) { 
 					PutPixel(i, l.start.y, c); }
 			}
 		}

@@ -37,16 +37,36 @@ void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& g
 	if  (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
 		bkgr.move(int(vx), int(vy));
 	}
+	else if (bkgr.loc.x >= 0 || bkgr.loc.y >= 0) {
+		if (kbd.KeyIsPressed(VK_RIGHT)) {
+			bkgr.move(int(vx), 0);
+		}
+		else{ charecter.pos.x += int(vx); }
+		if (vy < 0) {
+			bkgr.move(0, int(vy));
+		}
+		else{ charecter.pos.y += int(vy); }
+	}
+	else if (bkgr.loc.x <= gfx.ScreenWidth && bkgr.loc.y <= gfx.ScreenHeight) {
+		if (kbd.KeyIsPressed(VK_LEFT)) {
+			bkgr.move(int(vx), 0);
+		}
+		else { charecter.pos.x += int(vx); }
+		if (vy > 0) {
+			bkgr.move(0, int(vy));
+		}
+		else { charecter.pos.y += int(vy); }
+	}
 	else {
 		charecter.pos.x += int(vx);
 		charecter.pos.y += int(vy);
 	}
-		if (bkgr.ignoregravity(charecter)) {
-			vy = 0.0f;
-			vx = 0.0f;
-			upmtm = false;
-		}
-		else { vy += 0.15; }//seems fine enough
+	if (bkgr.ignoregravity(charecter)) {
+		vy = 0.0f;
+		vx = 0.0f;
+		upmtm = false;
+	}
+	else { vy += 0.15; }//seems fine enough
 }
 
 void world::draw(Graphics & gfx ,rect screen)

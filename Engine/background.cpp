@@ -13,10 +13,10 @@ void background::updatelines()
 {
 	surface.clear();
 	ledge.clear();
-	int const wt = 576;
-	int const ht = 1024;
+	int const wt = 1024;
+	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
-		pos offset = pos(wt*(i % 5), ht*(i / 5));
+		pos offset = pos(wt*(i % 5), ht*(i / 5)) = loc;
 		for (int j = 0; j < sectors.at(i).surface.size(); j++) {
 			pos p1 = (sectors.at(i).surface.at(j).start + offset);
 			pos p2 = (sectors.at(i).surface.at(j).end + offset);
