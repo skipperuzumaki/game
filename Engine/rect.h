@@ -20,6 +20,7 @@ public:
 	bool const inside(pos const &p);
 	bool touching(line &l);
 	bool crossing(line &l);
+	bool boundrycrossing(line & l);
 	int area();
 	void offsetx(int x);
 	void offsety(int y);

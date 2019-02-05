@@ -2,7 +2,7 @@
 
 
 
-void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx)
+void world::update(Keyboard& kbd, Graphics& gfx)
 {
 	for (int i = 0; i < police.size(); i++) {
 		if (charecter.extent.crossing(police.at(i).die) && !charecter.dead) {
@@ -31,36 +31,50 @@ void world::update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& g
 		vx = -3.0f;
 	}
 	if (kbd.KeyIsPressed(VK_DOWN)) {
-		//interaction button
+		vy = 3.0f;
 	}
 	//after updating everything else
-	if  (bkgr.safe(gfx.ScreenHeight, gfx.ScreenHeight)) {
+	//movement
+	if (charecter.pos == pos(480, 256) && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
 		bkgr.move(int(vx), int(vy));
 	}
-	else if (bkgr.loc.x >= 0 || bkgr.loc.y >= 0) {
-		if (kbd.KeyIsPressed(VK_RIGHT)) {
-			bkgr.move(int(vx), 0);
-		}
-		else{ charecter.pos.x += int(vx); }
-		if (vy < 0) {
+	else if (charecter.pos.x > 480 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+		if (vx < 0.0f) {
 			bkgr.move(0, int(vy));
+			charecter.pos.x += vx;
 		}
-		else{ charecter.pos.y += int(vy); }
+		else { bkgr.move(int(vx), int(vy)); }
 	}
-	else if (bkgr.loc.x <= gfx.ScreenWidth && bkgr.loc.y <= gfx.ScreenHeight) {
-		if (kbd.KeyIsPressed(VK_LEFT)) {
-			bkgr.move(int(vx), 0);
-		}
-		else { charecter.pos.x += int(vx); }
-		if (vy > 0) {
+	else if (charecter.pos.x < 480 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+		if (vx > 0.0f) {
 			bkgr.move(0, int(vy));
+			charecter.pos.x += vx;
 		}
-		else { charecter.pos.y += int(vy); }
+		else { bkgr.move(int(vx), int(vy)); }
+	}
+	else if (charecter.pos.y > 256 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+		if (vy < 0.0f) {
+			bkgr.move(int(vx), 0);
+			charecter.pos.y += vy;
+		}
+		else { bkgr.move(int(vx), int(vy)); }
+	}
+	else if (charecter.pos.y < 256 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+		if (vy > 0.0f) {
+			bkgr.move(int(vx), 0);
+			charecter.pos.y += vy;
+		}
+		else { bkgr.move(int(vx), int(vy)); }
 	}
 	else {
-		charecter.pos.x += int(vx);
-		charecter.pos.y += int(vy);
+		bkgr.move(int(vx), int(vy));
+		if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+			bkgr.move(-int(vx), -int(vy));
+			charecter.pos.x += vx;
+			charecter.pos.y += vy;
+		}
 	}
+	//gravity keep last else inf gravity
 	if (bkgr.ignoregravity(charecter)) {
 		vy = 0.0f;
 		vx = 0.0f;

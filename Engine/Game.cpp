@@ -58,7 +58,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	level.update(vx, vy, upmtm, wnd.kbd, gfx);
+	level.update(wnd.kbd, gfx);
 	level.kill();
 }
 

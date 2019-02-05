@@ -16,7 +16,7 @@ void background::updatelines()
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
-		pos offset = pos(wt*(i % 5), ht*(i / 5)) = loc;
+		pos offset = pos(wt*(i % 5), ht*(i / 5)) + loc;
 		for (int j = 0; j < sectors.at(i).surface.size(); j++) {
 			pos p1 = (sectors.at(i).surface.at(j).start + offset);
 			pos p2 = (sectors.at(i).surface.at(j).end + offset);
@@ -40,8 +40,6 @@ void background::updatelines()
 
 bool background::ignoregravity(avatar &charecter)
 {
-	//updatelines();  TODO add sector based lines
-	//updating extent and lines to current frame
 	bool ret = false;
 	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {

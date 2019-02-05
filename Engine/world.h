@@ -14,13 +14,15 @@ class world
 {
 public:
 	void draw(Graphics& gfx, rect screen);
-	void update(float& vx, float& vy, bool& upmtm, Keyboard& kbd, Graphics& gfx);
+	void update(Keyboard& kbd, Graphics& gfx);
 	void kill();
 	world(avatar & a, std::vector<enemy>& p, background & b);
 	avatar charecter;
 	std::vector<enemy> police;
 	background bkgr;
 	world() = default;
+	float vx = 0.0f, vy = 0.0f;
+	bool upmtm = false;
 	~world();
 };
 

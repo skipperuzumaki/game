@@ -46,8 +46,6 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	std::string savelocation;
-	float vx = 0.0f, vy = 0.0f;
 	int dt;
-	bool stnry = false, upmtm = false;
 	world level;
 };
