@@ -828,7 +828,7 @@ void background::move(int vx, int vy)
 bool background::safe(int const srcwth, int const scrht)
 {
 	rect r = rect(pos(0, 0), pos(srcwth, scrht));
-	extent = rect(loc, pos(width, height));
+	extent = rect(loc, loc + pos(width, height));
 	return extent.contains(r);
 }
 

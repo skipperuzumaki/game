@@ -33,46 +33,28 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 	if (kbd.KeyIsPressed(VK_DOWN)) {
 		vy = 3.0f;
 	}
-	//after updating everything else
-	//movement
-	if (charecter.pos == pos(480, 256) && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-		bkgr.move(int(vx), int(vy));
+	//movements
+	bkgr.move(int(vx), int(vy));
+	if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
+		bkgr.move(-int(vx), -int(vy));
+		charecter.pos.x += vx;
+		charecter.pos.y += vy;
 	}
-	else if (charecter.pos.x > 480 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-		if (vx < 0.0f) {
-			bkgr.move(0, int(vy));
-			charecter.pos.x += vx;
-		}
-		else { bkgr.move(int(vx), int(vy)); }
+	if (charecter.pos.x > 480 && bkgr.extent.x4 > gfx.ScreenWidth) {
+		charecter.pos.x -= 1;
+		bkgr.move(1, 0);
 	}
-	else if (charecter.pos.x < 480 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-		if (vx > 0.0f) {
-			bkgr.move(0, int(vy));
-			charecter.pos.x += vx;
-		}
-		else { bkgr.move(int(vx), int(vy)); }
+	else if (charecter.pos.x < 480 && bkgr.loc.x < 0) {
+		charecter.pos.x += 1;
+		bkgr.move(-1, 0);
 	}
-	else if (charecter.pos.y > 256 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-		if (vy < 0.0f) {
-			bkgr.move(int(vx), 0);
-			charecter.pos.y += vy;
-		}
-		else { bkgr.move(int(vx), int(vy)); }
+	if (charecter.pos.y > 256 && bkgr.extent.y4 > gfx.ScreenHeight) {
+		charecter.pos.y -= 1;
+		bkgr.move(0, 1);
 	}
-	else if (charecter.pos.y < 256 && bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-		if (vy > 0.0f) {
-			bkgr.move(int(vx), 0);
-			charecter.pos.y += vy;
-		}
-		else { bkgr.move(int(vx), int(vy)); }
-	}
-	else {
-		bkgr.move(int(vx), int(vy));
-		if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
-			bkgr.move(-int(vx), -int(vy));
-			charecter.pos.x += vx;
-			charecter.pos.y += vy;
-		}
+	else if (charecter.pos.y < 256 && bkgr.loc.y < 0) {
+		charecter.pos.y += 1;
+		bkgr.move(0, -1);
 	}
 	//gravity keep last else inf gravity
 	if (bkgr.ignoregravity(charecter)) {
