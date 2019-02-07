@@ -13,28 +13,39 @@ void background::updatelines()
 {
 	surface.clear();
 	ledge.clear();
+	killzone.clear();
+	police.clear();
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
-		pos offset = pos(wt*(i % 5), ht*(i / 5)) + loc;
+		pos offset = pos(wt*(i % 5), ht*(i / 5));
 		for (int j = 0; j < sectors.at(i).surface.size(); j++) {
-			pos p1 = (sectors.at(i).surface.at(j).start + offset);
-			pos p2 = (sectors.at(i).surface.at(j).end + offset);
+			pos p1 = (sectors.at(i).surface.at(j).start + offset) + loc;
+			pos p2 = (sectors.at(i).surface.at(j).end + offset) + loc;
 			line l = line(p1, p2);
 			surface.push_back(l);
 		}
 		for (int j = 0; j < sectors.at(i).ledge.size(); j++) {
-			pos p1 = (sectors.at(i).ledge.at(j).start + offset);
-			pos p2 = (sectors.at(i).ledge.at(j).end + offset);
+			pos p1 = (sectors.at(i).ledge.at(j).start + offset) + loc;
+			pos p2 = (sectors.at(i).ledge.at(j).end + offset) + loc;
 			line l = line(p1, p2);
 			ledge.push_back(l);
 		}
 		for (int j = 0; j < sectors.at(i).killzone.size(); j++) {
-			pos p1 = (sectors.at(i).killzone.at(j).start + offset);
-			pos p2 = (sectors.at(i).killzone.at(j).end + offset);
+			pos p1 = (sectors.at(i).killzone.at(j).start + offset) + loc;
+			pos p2 = (sectors.at(i).killzone.at(j).end + offset) + loc;
 			line l = line(p1, p2);
 			killzone.push_back(l);
 		}
+	}
+	for (int j = 0; j < policebackup.size(); j++) {
+		enemy temp;
+		temp = policebackup.at(j);
+		temp.base = line((policebackup.at(j).base.start + loc), (policebackup.at(j).base.end + loc));
+		temp.loc = (policebackup.at(j).loc + loc);
+		temp.sight = line(policebackup.at(j).sight.start + loc, policebackup.at(j).sight.end + loc);
+		temp.die= line(policebackup.at(j).die.start + loc, policebackup.at(j).die.end + loc);
+		police.push_back(temp);
 	}
 }
 
@@ -839,6 +850,22 @@ void background::constructlevelsprite()
 			int h = x / sectors.at(1).background.getwidth();
 			int k = y / sectors.at(1).background.getheight();
 			level.load(x, y, sectors.at(((k * 5) + h)).background.fetch((x - h), (y - k)));
+		}
+	}
+}
+
+void background::polbkup()
+{
+	int const wt = 1024;
+	int const ht = 576;
+	for (int i = 0; i < 25; i++) {
+		pos offset = pos(wt*(i % 5), ht*(i / 5));
+		for (int j = 0; j < sectors.at(i).police.size(); j++) {
+			enemy temp;
+			temp = sectors.at(i).police.at(j);
+			temp.base = line((sectors.at(i).police.at(j).base.start + offset), (sectors.at(i).police.at(j).base.end + offset));
+			temp.loc = (sectors.at(i).police.at(j).loc + offset);
+			policebackup.push_back(temp);
 		}
 	}
 }

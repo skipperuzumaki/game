@@ -159,6 +159,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="sprite.h" />
+    <ClInclude Include="spritecodex.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>

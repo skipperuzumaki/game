@@ -16,9 +16,8 @@ public:
 	void draw(Graphics& gfx, rect screen);
 	void update(Keyboard& kbd, Graphics& gfx);
 	void kill();
-	world(avatar & a, std::vector<enemy>& p, background & b);
+	world(avatar & a, background & b);
 	avatar charecter;
-	std::vector<enemy> police;
 	background bkgr;
 	world() = default;
 	float vx = 0.0f, vy = 0.0f;

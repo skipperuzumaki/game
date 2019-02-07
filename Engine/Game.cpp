@@ -31,20 +31,23 @@ Game::Game( MainWindow& wnd )
 {
 	//TODO make all this automatic
 	enemy police;
-	enemy police2;
+	police.loc = pos(64, 448);
+	police.base = line(pos(64, 512), pos(500, 512));
+	police.facing = direction::west;
 	background bkgr;
 	avatar charecter;
 	environment temp;
-	std::vector<enemy> p;
-	p.push_back(police);
-	p.push_back(police2);
+	environment temp2;
 	temp.surface.push_back({ pos(64,64),pos(960,64) });
 	temp.surface.push_back({ pos(64,512),pos(960,512) });
 	temp.ledge.push_back({ pos(64,64),pos(64,512) });
-	for (int i = 0; i < 25; i++) {
+	temp2 = temp;
+	temp2.police.push_back(police);
+	bkgr.sectors.push_back(temp2);
+	for (int i = 0; i < 24; i++) {
 		bkgr.sectors.push_back(temp);
 	}
-	level = world(charecter, p, bkgr);
+	level = world(charecter, bkgr);
 }
 
 

@@ -20,6 +20,8 @@ public:
 	std::vector<std::vector<direction>> openings;
 	std::vector<line> surface;
 	std::vector<line> ledge;
+	std::vector<enemy> police;
+	std::vector<enemy> policebackup;
 	void updatelines();
 	bool ignoregravity(avatar &charecter);
 	void generateroute();
@@ -37,6 +39,7 @@ public:
 	sprite level = sprite(height, width);
 	bool safe(int const srcwth,int const scrht);
 	void constructlevelsprite();
+	void polbkup();
 	//add sector dimensions
 };
 

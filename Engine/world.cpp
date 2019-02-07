@@ -1,15 +1,14 @@
 #include "world.h"
-
-
+#include "spritecodex.h"
 
 void world::update(Keyboard& kbd, Graphics& gfx)
 {
-	for (int i = 0; i < police.size(); i++) {
-		if (charecter.extent.crossing(police.at(i).die) && !charecter.dead) {
-			police.at(i).dead = true;
+	for (int i = 0; i < bkgr.police.size(); i++) {
+		if (charecter.extent.crossing(bkgr.police.at(i).die) && !charecter.dead) {
+			bkgr.police.at(i).dead = true;
 		}
-		else { police.at(i).update(); }
-		if (charecter.extent.crossing(police.at(i).sight) && !police.at(i).dead) {
+		else { bkgr.policebackup.at(i).update(); }
+		if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead) {
 			charecter.dead = true;
 		}
 	}
@@ -37,8 +36,8 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 	bkgr.move(int(vx), int(vy));
 	if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
 		bkgr.move(-int(vx), -int(vy));
-		charecter.pos.x += vx;
-		charecter.pos.y += vy;
+		charecter.pos.x += int(vx);
+		charecter.pos.y += int(vy);
 	}
 	if (charecter.pos.x > 480 && bkgr.extent.x4 > gfx.ScreenWidth) {
 		charecter.pos.x -= 1;
@@ -67,10 +66,9 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 
 void world::draw(Graphics & gfx ,rect screen)
 {
-	for (int i = 0; i < police.size(); i++) {
-		police.at(i).update();
-		gfx.drawsprite(police.at(i).loc.x, police.at(i).loc.y, screen, police.at(i).pic);
-		gfx.drawline(police.at(i).sight);
+	for (int i = 0; i < bkgr.policebackup.size(); i++) {
+		gfx.drawsprite(bkgr.police.at(i).loc.x, bkgr.police.at(i).loc.y, screen, police::police());
+		gfx.drawline(bkgr.police.at(i).sight);
 	}
 	if (!charecter.dead) {
 		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
@@ -88,9 +86,9 @@ void world::draw(Graphics & gfx ,rect screen)
 
 void world::kill()
 {
-	for (int i = 0; i < police.size(); i++) {
-		if (police.at(i).dead) {
-			police.erase(police.begin() + i);
+	for (int i = 0; i < bkgr.police.size(); i++) {
+		if (bkgr.police.at(i).dead) {
+			bkgr.police.erase(bkgr.police.begin() + i);
 		}
 	}
 	if (charecter.dead) {
@@ -98,16 +96,13 @@ void world::kill()
 	}
 }
 
-world::world(avatar& a, std::vector<enemy>& p, background& b)
+world::world(avatar& a, background& b)
 {
 	charecter = a;
-	police = p;
 	bkgr = b;
 	bkgr.cleanlevel();
 	charecter.mksprite();
-	for (int i = 0; i < police.size(); i++) {
-		police.at(i).mksprite();
-	}
+	bkgr.polbkup();
 }
 
 
