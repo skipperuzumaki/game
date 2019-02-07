@@ -5,7 +5,7 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 {
 	for (int i = 0; i < bkgr.police.size(); i++) {
 		if (charecter.extent.crossing(bkgr.police.at(i).die) && !charecter.dead) {
-			bkgr.police.at(i).dead = true;
+			bkgr.policebackup.at(i).dead = true;
 		}
 		else { bkgr.policebackup.at(i).update(); }
 		if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead) {
@@ -66,9 +66,12 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 
 void world::draw(Graphics & gfx ,rect screen)
 {
-	for (int i = 0; i < bkgr.policebackup.size(); i++) {
-		gfx.drawsprite(bkgr.police.at(i).loc.x, bkgr.police.at(i).loc.y, screen, police::police());
-		gfx.drawline(bkgr.police.at(i).sight);
+	for (int i = 0; i < bkgr.police.size(); i++) {
+		if (!bkgr.police.at(i).dead) {
+			gfx.drawsprite(bkgr.police.at(i).loc.x, bkgr.police.at(i).loc.y, screen, police::police());
+			gfx.drawline(bkgr.police.at(i).sight);
+			gfx.drawline(bkgr.police.at(i).die);
+		}
 	}
 	if (!charecter.dead) {
 		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
@@ -86,14 +89,6 @@ void world::draw(Graphics & gfx ,rect screen)
 
 void world::kill()
 {
-	for (int i = 0; i < bkgr.police.size(); i++) {
-		if (bkgr.police.at(i).dead) {
-			bkgr.police.erase(bkgr.police.begin() + i);
-		}
-	}
-	if (charecter.dead) {
-		//TODO game over screen
-	}
 }
 
 world::world(avatar& a, background& b)

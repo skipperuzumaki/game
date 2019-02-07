@@ -43,8 +43,10 @@ Game::Game( MainWindow& wnd )
 	temp.ledge.push_back({ pos(64,64),pos(64,512) });
 	temp2 = temp;
 	temp2.police.push_back(police);
-	bkgr.sectors.push_back(temp2);
-	for (int i = 0; i < 24; i++) {
+	for (int i = 0; i < 5; i++) {
+		bkgr.sectors.push_back(temp2);
+	}
+	for (int i = 0; i < 20; i++) {
 		bkgr.sectors.push_back(temp);
 	}
 	level = world(charecter, bkgr);
