@@ -30,10 +30,13 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd )
 {
 	//TODO make all this automatic
-	enemy police;
+	enemy police, police2;
 	police.loc = pos(64, 448);
 	police.base = line(pos(64, 512), pos(500, 512));
 	police.facing = direction::west;
+	police2.loc = pos(128, 448);
+	police2.base = line(pos(64, 512), pos(500, 512));
+	police2.facing = direction::west;
 	background bkgr;
 	avatar charecter;
 	environment temp;
@@ -43,10 +46,11 @@ Game::Game( MainWindow& wnd )
 	temp.ledge.push_back({ pos(64,64),pos(64,512) });
 	temp2 = temp;
 	temp2.police.push_back(police);
-	for (int i = 0; i < 0; i++) {
+	temp2.police.push_back(police2);
+	for (int i = 0; i < 25; i++) {
 		bkgr.sectors.push_back(temp2);
 	}
-	for (int i = 0; i < 25; i++) {
+	for (int i = 0; i < 0; i++) {
 		bkgr.sectors.push_back(temp);
 	}
 	level = world(charecter, bkgr);

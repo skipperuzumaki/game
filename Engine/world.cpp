@@ -68,7 +68,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	for (int i = 0; i < bkgr.police.size(); i++) {
 		if (!bkgr.police.at(i).dead) {
-			gfx.drawsprite(bkgr.police.at(i).loc.x, bkgr.police.at(i).loc.y, screen, police::police());
+			gfx.drawsprite(bkgr.police.at(i).loc.x, bkgr.police.at(i).loc.y, screen, sprites::police);
 			gfx.drawline(bkgr.police.at(i).sight);
 			gfx.drawline(bkgr.police.at(i).die);
 		}
