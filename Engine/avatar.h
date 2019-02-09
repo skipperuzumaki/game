@@ -9,6 +9,7 @@ class avatar
 {
 public:
 	pos pos = pos::pos(480, 256);
+	int points = 0;
 	rect extent;
 	sprite sprite = sprite::sprite(64, 64);
 	void mksprite() {

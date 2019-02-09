@@ -17,4 +17,5 @@ sprite mkpolice() {
 namespace sprites
 {
 	sprite police = mkpolice();
+	sprite gameover = sprite(1024, 576);
 }

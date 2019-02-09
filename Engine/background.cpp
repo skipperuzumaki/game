@@ -15,6 +15,7 @@ void background::updatelines()
 	ledge.clear();
 	killzone.clear();
 	police.clear();
+	interactibles.clear();
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
@@ -46,6 +47,10 @@ void background::updatelines()
 		temp.sight = line(policebackup.at(j).sight.start + loc, policebackup.at(j).sight.end + loc);
 		temp.die= line(policebackup.at(j).die.start + loc, policebackup.at(j).die.end + loc);
 		police.push_back(temp);
+	}
+	for (int j = 0; j < interactiblesbackup.size(); j++) {
+		line l = line((interactiblesbackup.at(j).start + loc), (interactiblesbackup.at(j).end + loc));
+		interactibles.push_back(l);
 	}
 }
 
@@ -866,6 +871,10 @@ void background::polbkup()
 			temp.base = line((sectors.at(i).police.at(j).base.start + offset), (sectors.at(i).police.at(j).base.end + offset));
 			temp.loc = (sectors.at(i).police.at(j).loc + offset);
 			policebackup.push_back(temp);
+		}
+		for (int j = 0; j < sectors.at(i).interactibles.size(); j++) {
+			line l = { sectors.at(i).interactibles.at(j).start + offset,sectors.at(i).interactibles.at(j).end + offset };
+			interactiblesbackup.push_back(l);
 		}
 	}
 }

@@ -20,6 +20,8 @@ public:
 	std::vector<std::vector<direction>> openings;
 	std::vector<line> surface;
 	std::vector<line> ledge;
+	std::vector<line> interactibles;
+	std::vector<line> interactiblesbackup;
 	std::vector<enemy> police;
 	std::vector<enemy> policebackup;
 	void updatelines();
@@ -34,7 +36,7 @@ public:
 	int end;
 	int height = 2880;
 	int width = 5120;
-	pos loc = pos::pos(-1, -1);
+	pos loc = pos::pos(0, 0);
 	rect extent;
 	sprite level = sprite(height, width);
 	bool safe(int const srcwth,int const scrht);

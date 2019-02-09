@@ -17,6 +17,12 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 			charecter.dead = true;
 		}
 	}
+	for (int i = 0; i < bkgr.interactibles.size(); i++) {
+		if (charecter.extent.crossing(bkgr.interactibles.at(i))) {
+			charecter.points++;
+			bkgr.interactiblesbackup.erase(bkgr.interactiblesbackup.begin() + i);
+		}
+	}
 	if (kbd.KeyIsPressed(VK_RIGHT)) {
 		vx = 3.0f;
 	}
@@ -82,6 +88,9 @@ void world::draw(Graphics & gfx ,rect screen)
 	for (int i = 0; i < bkgr.ledge.size(); i++) {
 		gfx.drawline(bkgr.ledge.at(i),Colors::Blue);
 	}
+	for (int i = 0; i < bkgr.interactibles.size(); i++) {
+		gfx.drawline(bkgr.interactibles.at(i), Colors::Gray);
+	}
 	for (int i = 0; i < bkgr.killzone.size(); i++) {
 		gfx.drawline(bkgr.killzone.at(i));
 	}
@@ -89,6 +98,29 @@ void world::draw(Graphics & gfx ,rect screen)
 
 void world::kill()
 {
+	if (charecter.dead) {
+		charecter.dead = false;
+		bkgr.loc = pos(0, 0);
+		bkgr.height = 576;
+		bkgr.width = 1024;
+		bkgr.level = sprite(bkgr.width, bkgr.height);
+		bkgr.level = sprites::gameover;
+		charecter.pos = pos(480, 256);
+		bkgr.killzone.clear();
+		bkgr.ledge.clear();
+		bkgr.policebackup.clear();
+		bkgr.police.clear();
+		bkgr.surface.clear();
+		bkgr.sectors.clear();
+		environment temp;
+		temp.surface.push_back({ pos(64,64),pos(960,64) });
+		temp.surface.push_back({ pos(64,512),pos(960,512) });
+		temp.ledge.push_back({ pos(64,64),pos(64,512) });
+		temp.ledge.push_back({ pos(960,64),pos(960,512) });
+		for (int i = 0; i < 25; i++) {
+			bkgr.sectors.push_back(temp);
+		}
+	}
 }
 
 world::world(avatar& a, background& b)

@@ -11,7 +11,7 @@ class environment
 public:
 	sprite background = sprite(1024, 576);
 	std::vector<enemy> police;
-	std::vector<line> itemspawn;
+	std::vector<line> interactibles;
 	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
