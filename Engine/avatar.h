@@ -23,4 +23,5 @@ public:
 		}
 	}
 	bool dead = false;
+	bool won = false;
 };

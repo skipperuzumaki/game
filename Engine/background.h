@@ -24,6 +24,8 @@ public:
 	std::vector<line> interactiblesbackup;
 	std::vector<enemy> police;
 	std::vector<enemy> policebackup;
+	line endpoint;
+	line epbkup;
 	void updatelines();
 	bool ignoregravity(avatar &charecter);
 	void generateroute();
@@ -42,6 +44,7 @@ public:
 	bool safe(int const srcwth,int const scrht);
 	void constructlevelsprite();
 	void polbkup();
+	void calcstend();
 	//add sector dimensions
 };
 

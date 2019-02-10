@@ -52,6 +52,8 @@ void background::updatelines()
 		line l = line((interactiblesbackup.at(j).start + loc), (interactiblesbackup.at(j).end + loc));
 		interactibles.push_back(l);
 	}
+	endpoint.start = epbkup.start + loc;
+	endpoint.end = epbkup.end + loc;
 }
 
 bool background::ignoregravity(avatar &charecter)
@@ -435,7 +437,7 @@ void background::generatecontent()
 	generateroute();
 	int i, current, e, k;
 	for (i = 0; i < 5; i++) {
-		if (!(hasopening(i, direction::crit))) {
+		if ((hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
@@ -455,7 +457,7 @@ void background::generatecontent()
 		}
 	}
 	for (i = 4; i > -1; i--) {
-		if (!(hasopening(i, direction::crit))) {
+		if ((hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
@@ -698,13 +700,13 @@ void background::generatecontent()
 	}
 	//row 3 done
 	for (i = 20; i < 25; i++) {
-		if (!(hasopening(i, direction::crit))) {
+		if ((hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::west);
 			current--;
-			while (current > -1) {
+			while (current > 19) {
 				openings.at(current).push_back(direction::east);
-				if (current != 0) {
+				if (current != 20) {
 					openings.at(current).push_back(direction::west);
 				}
 				current--;
@@ -713,13 +715,13 @@ void background::generatecontent()
 		}
 	}
 	for (i = 24; i > 20; i--) {
-		if (!(hasopening(i, direction::crit))) {
+		if ((hasopening(i, direction::crit))) {
 			current = i;
 			openings.at(current).push_back(direction::east);
 			current++;
 			while (current < 25) {
 				openings.at(current).push_back(direction::west);
-				if (current != 0) {
+				if (current != 24) {
 					openings.at(current).push_back(direction::east);
 				}
 				current++;
@@ -779,6 +781,10 @@ void background::cleanlevel()
 
 void background::generateenvironments()
 {
+	environment temp;
+	for (int i = 0; i < 25; i++) {
+		sectors.push_back(temp);
+	}
 	for (int i = 0; i < 25; i++) {
 		if (hasopening(i, direction::east) && hasopening(i, direction::west)) {
 			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
@@ -792,6 +798,10 @@ void background::generateenvironments()
 			else if (hasopening(i, direction::south)) {
 				std::random_shuffle(&c.SEW[0], &c.SEW[4]);
 				sectors.at(i) = c.SEW[0];
+			}
+			else {
+				std::random_shuffle(&c.EW[0], &c.EW[2]);
+				sectors.at(i) = c.EW[0];
 			}
 		}
 		else if (hasopening(i, direction::east)) {
@@ -830,6 +840,14 @@ void background::generateenvironments()
 				std::random_shuffle(&c.W[0], &c.W[2]);
 				sectors.at(i) = c.W[0];
 			}
+		}
+		else if (hasopening(i, direction::north)) {
+			std::random_shuffle(&c.N[0], &c.N[2]);
+			sectors.at(i) = c.N[0];
+		}
+		else if (hasopening(i, direction::south)) {
+			std::random_shuffle(&c.S[0], &c.S[2]);
+			sectors.at(i) = c.S[0];
 		}
 	}
 }
@@ -877,4 +895,18 @@ void background::polbkup()
 			interactiblesbackup.push_back(l);
 		}
 	}
+}
+
+void background::calcstend()
+{
+	for (int i = 0; i < 25; i++) {
+		if (hasopening(i, direction::start)) {
+			start = i;
+		}
+		else if (hasopening(i, direction::end)) {
+			end = i;
+		}
+	}
+	loc = pos(-(start * 1024), 0);
+	epbkup = line(pos((((end - 20) * 1024) + 512), 2752), pos((((end - 20) * 1024) + 512), 2880));
 }

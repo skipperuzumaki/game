@@ -23,6 +23,10 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 			bkgr.interactiblesbackup.erase(bkgr.interactiblesbackup.begin() + i);
 		}
 	}
+	if (charecter.extent.crossing(bkgr.endpoint)) {
+		charecter.points += 10;
+		charecter.won = true;
+	}
 	if (kbd.KeyIsPressed(VK_RIGHT)) {
 		vx = 3.0f;
 	}
@@ -94,6 +98,7 @@ void world::draw(Graphics & gfx ,rect screen)
 	for (int i = 0; i < bkgr.killzone.size(); i++) {
 		gfx.drawline(bkgr.killzone.at(i));
 	}
+	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }
 
 void world::kill()
@@ -101,9 +106,6 @@ void world::kill()
 	if (charecter.dead) {
 		charecter.dead = false;
 		bkgr.loc = pos(0, 0);
-		bkgr.height = 576;
-		bkgr.width = 1024;
-		bkgr.level = sprite(bkgr.width, bkgr.height);
 		bkgr.level = sprites::gameover;
 		charecter.pos = pos(480, 256);
 		bkgr.killzone.clear();
@@ -112,14 +114,33 @@ void world::kill()
 		bkgr.police.clear();
 		bkgr.surface.clear();
 		bkgr.sectors.clear();
-		environment temp;
+		bkgr.interactiblesbackup.clear();
+		environment temp, temp2;
 		temp.surface.push_back({ pos(64,64),pos(960,64) });
 		temp.surface.push_back({ pos(64,512),pos(960,512) });
 		temp.ledge.push_back({ pos(64,64),pos(64,512) });
 		temp.ledge.push_back({ pos(960,64),pos(960,512) });
-		for (int i = 0; i < 25; i++) {
-			bkgr.sectors.push_back(temp);
+		bkgr.epbkup = line(pos(128, 448), pos(128, 576));
+		bkgr.sectors.push_back(temp);
+		for (int i = 0; i < 24; i++) {
+			bkgr.sectors.push_back(temp2);
 		}
+	}
+	else if (charecter.won) {
+		charecter.pos = pos(480, 256);
+		bkgr.loc = pos(0, 0);
+		charecter.won = false;
+		bkgr.killzone.clear();
+		bkgr.ledge.clear();
+		bkgr.policebackup.clear();
+		bkgr.interactiblesbackup.clear();
+		bkgr.police.clear();
+		bkgr.surface.clear();
+		bkgr.sectors.clear();
+		bkgr.cleanlevel();
+		bkgr.generateenvironments();
+		bkgr.polbkup();
+		bkgr.calcstend();
 	}
 }
 
@@ -129,7 +150,9 @@ world::world(avatar& a, background& b)
 	bkgr = b;
 	bkgr.cleanlevel();
 	charecter.mksprite();
+	bkgr.generateenvironments();
 	bkgr.polbkup();
+	bkgr.calcstend();
 }
 
 
