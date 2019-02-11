@@ -125,6 +125,8 @@ void world::kill()
 		for (int i = 0; i < 24; i++) {
 			bkgr.sectors.push_back(temp2);
 		}
+		//charecter.points.display();
+		charecter.points=0;
 	}
 	else if (charecter.won) {
 		charecter.pos = pos(480, 256);

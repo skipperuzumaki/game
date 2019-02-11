@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "codex.h"
 #include <algorithm>
+#include <assert.h>
 
 background::background()
 {
@@ -11,6 +12,7 @@ background::background()
 
 void background::updatelines()
 {
+	assert(sectors.size() == 25);
 	surface.clear();
 	ledge.clear();
 	killzone.clear();
@@ -58,6 +60,7 @@ void background::updatelines()
 
 bool background::ignoregravity(avatar &charecter)
 {
+	assert(sectors.size() == 25);
 	bool ret = false;
 	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
 	for (int i = 0; i < surface.size(); i++) {
@@ -868,6 +871,7 @@ bool background::safe(int const srcwth, int const scrht)
 
 void background::constructlevelsprite()
 {
+	assert(sectors.size() == 25);
 	for (int y = 0; y < level.getheight(); y++) {
 		for (int x = 0; x < level.getwidth(); x++) {
 			int h = x / sectors.at(1).background.getwidth();
@@ -879,6 +883,7 @@ void background::constructlevelsprite()
 
 void background::polbkup()
 {
+	assert(sectors.size() == 25);
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
@@ -899,6 +904,7 @@ void background::polbkup()
 
 void background::calcstend()
 {
+	assert(sectors.size() == 25);
 	for (int i = 0; i < 25; i++) {
 		if (hasopening(i, direction::start)) {
 			start = i;
