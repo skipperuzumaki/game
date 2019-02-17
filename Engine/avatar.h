@@ -11,17 +11,6 @@ public:
 	pos pos = pos::pos(480, 256);
 	int points = 0;
 	rect extent;
-	sprite sprite = sprite::sprite(64, 64);
-	void mksprite() {
-		for (int y = 0; y < sprite.getheight(); y++) {
-			for (int x = 0; x < sprite.getwidth(); x++) {
-				sprite.load(x, y, Color(
-					(x - 215)*(x - 25) + (y - 2)*(y - 2),
-					(x - 215)*(x - 25) + (y + 2)*(y + 2),
-					(x + 215)*(x + 25) + (y - 2)*(y - 2)));
-			}
-		}
-	}
 	bool dead = false;
 	bool won = false;
 };

@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 		}
 	}
 	if (!charecter.dead) {
-		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, charecter.sprite);
+		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter);
 	}
 	for (int i = 0; i < bkgr.surface.size(); i++) {
 		gfx.drawline(bkgr.surface.at(i),Colors::Green);
@@ -151,7 +151,6 @@ world::world(avatar& a, background& b)
 	charecter = a;
 	bkgr = b;
 	bkgr.cleanlevel();
-	charecter.mksprite();
 	bkgr.generateenvironments();
 	bkgr.polbkup();
 	bkgr.calcstend();

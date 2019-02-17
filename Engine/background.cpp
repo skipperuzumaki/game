@@ -62,7 +62,7 @@ bool background::ignoregravity(avatar &charecter)
 {
 	assert(sectors.size() == 25);
 	bool ret = false;
-	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + charecter.sprite.getwidth(), charecter.pos.y + charecter.sprite.getheight()));
+	charecter.extent = rect(charecter.pos, pos(charecter.pos.x + 64, charecter.pos.y + 64));
 	for (int i = 0; i < surface.size(); i++) {
 		if (charecter.extent.crossing(surface.at(i))) {
 			int offset1 = (surface.at(i).start.y - charecter.extent.y4);
