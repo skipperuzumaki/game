@@ -69,8 +69,8 @@ codex::codex()
 	NW[1] = temp;
 	NW[2] = temp;
 	NW[0] = temp;
-	NW[1] = temp;
-	NW[2] = temp;
+	NW[3] = temp;
+	NW[4] = temp;
 
 	NEW[1] = temp;
 	NEW[2] = temp;
