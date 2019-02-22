@@ -1,6 +1,7 @@
 #pragma once
 #include "sprite.h"
 #include <vector>
+#include <string>
 
 class animation
 {
@@ -14,12 +15,13 @@ public:
 	void loadframe(sprite sp);
 	void extendanimation(animation an);
 	int size() const;
+	int getcurrent() const;
 	void setdelay(int i);
 	~animation();
 private:
 	std::vector<sprite> frames;
 	int current;
-	int delay = 60;
+	int delay = 10;
 	int curdly = 0;
 };
 

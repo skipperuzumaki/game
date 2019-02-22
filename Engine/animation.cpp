@@ -2,6 +2,7 @@
 #include "ChiliWin.h"
 #include <fstream>
 #include <cassert>
+#include <math.h>
 
 
 animation::animation(const animation & rhs)
@@ -24,18 +25,16 @@ animation::animation(const std::string filename, int framewidth, int frameheight
 	file.read(reinterpret_cast<char*>(&bminfo), sizeof(bminfo));
 	assert(bminfo.biBitCount == 24);
 	assert(bminfo.biCompression == BI_RGB);
-	int rows = bminfo.biWidth / framewidth;
-	int columns = bminfo.biHeight / frameheight;
-	const int padding = (4 - (bminfo.biWidth * 3) % 4) % 4;
-	file.seekg(bmhead.bfOffBits);
-	for (int x = 0; x < rows; x++) {
-		for (int y = 0; y < columns; y++) {
+	int rows = std::abs(bminfo.biWidth / framewidth);
+	int columns = std::abs(bminfo.biHeight / frameheight);
+	sprite temp1 = sprite(filename);
+	for (int r = 0; r < rows; r++) {
+		for (int c = 0; c < columns; c++) {
 			sprite temp = sprite(framewidth, frameheight);
-			for (int y = frameheight - 1; y >= 0; y--) {
-				for (int x = 0; x < framewidth; x++) {
-					temp.load(x, y, Color(file.get(), file.get(), file.get()));
+			for (int x = 0; x < framewidth; x++) {
+				for (int y = 0; y < frameheight; y++) {
+					temp.load(x, y, temp1.fetch((framewidth*r) + x, (frameheight*c) + y));
 				}
-				file.seekg(padding, std::ios::cur);
 			}
 			frames.push_back(temp);
 		}
@@ -72,6 +71,7 @@ sprite animation::frameat(int i) const
 void animation::reset()
 {
 	current = 0;
+	curdly = 0;
 }
 
 void animation::loadframe(sprite sp)
@@ -88,7 +88,12 @@ void animation::extendanimation(animation an)
 
 int animation::size() const
 {
-	return frames.size();
+	return int(frames.size());
+}
+
+int animation::getcurrent() const
+{
+	return current;
 }
 
 void animation::setdelay(int i)

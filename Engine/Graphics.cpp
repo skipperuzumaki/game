@@ -25,6 +25,7 @@
 #include <assert.h>
 #include <string>
 #include <array>
+#include <math.h>
 
 // Ignore the intellisense error "cannot open source file" for .shh files.
 // They will be created during the build sequence before the preprocessor runs.
@@ -343,10 +344,10 @@ void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
 	int kx = 0, ky = 0, kz = 0;
 	if (drawloc.x1 == r.x1) {
-		int kx = r.x1 - x;//TODO abs()
+		int kx = std::abs(r.x1 - x);
 	}
 	if (drawloc.y1 == r.y1) {
-		int kz = r.y1 - y;//TODO abs()
+		int kz = std::abs(r.y1 - y);
 	}
 	else { int kz = 0; }
 	for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {
@@ -364,10 +365,10 @@ void Graphics::drawsprite(int x, int y, rect r, sprite & s, Color chroma)
 	rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
 	int kx = 0, ky = 0, kz = 0;
 	if (drawloc.x1 == r.x1) {
-		int kx = r.x1 - x;//TODO abs()
+		int kx = std::abs(r.x1 - x);
 	}
 	if (drawloc.y1 == r.y1) {
-		int kz = r.y1 - y;//TODO abs()
+		int kz = std::abs(r.y1 - y);
 	}
 	else { int kz = 0; }
 	for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {

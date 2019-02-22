@@ -89,3 +89,14 @@ int sprite::getheight()
 {
 	return height;
 }
+
+sprite sprite::fliphorizontal() const
+{
+	sprite temp = sprite(width,height);
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			temp.load(x, y, fetch(width - x, y));
+		}
+	}
+	return temp;
+}

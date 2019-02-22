@@ -1,19 +1,7 @@
 #pragma once
 #include "sprite.h"
 #include "animation.h"
-
-sprite mkpolice() {
-	sprite police = sprite(64, 64);
-	for (int y = 0; y < police.getheight(); y++) {
-		for (int x = 0; x < police.getwidth(); x++) {
-			police.load(x, y, Color(
-				x,
-				y,
-				(x + 215)*(x + 25) + (y - 2)*(y - 2)));
-		}
-	}
-	return police;
-}
+#include <string>
 
 sprite mkchr() {
 	sprite sprite = sprite::sprite(64, 64);
@@ -48,7 +36,8 @@ animation mkchrani() {
 
 namespace sprites
 {
-	sprite police = mkpolice();
+	animation police = animation(std::string("enemy.bmp"), 64, 64);
+	animation policeatk = animation(std::string("enemy_atk.bmp"), 128, 64);
 	animation charecter = mkchrani();
 	sprite gameover = sprite(1024, 576);
 }

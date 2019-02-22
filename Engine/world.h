@@ -22,6 +22,8 @@ public:
 	world() = default;
 	float vx = 0.0f, vy = 0.0f;
 	bool upmtm = false;
+	bool paused = false;
+	int killer = -1;
 	~world();
 };
 

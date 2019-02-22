@@ -14,6 +14,7 @@ public:
 	Color fetch(int x, int y) const;
 	int getwidth();
 	int getheight();
+	sprite fliphorizontal() const;
 private:
 	int width;
 	int height;
