@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="animation.h" />
     <ClInclude Include="avatar.h" />
     <ClInclude Include="background.h" />
     <ClInclude Include="ChiliException.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="world.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="animation.cpp" />
     <ClCompile Include="background.cpp" />
     <ClCompile Include="codex.cpp" />
     <ClCompile Include="COMInitializer.cpp" />

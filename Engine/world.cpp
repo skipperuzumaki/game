@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 		}
 	}
 	if (!charecter.dead) {
-		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter);
+		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter.getframe());
 	}
 	for (int i = 0; i < bkgr.surface.size(); i++) {
 		gfx.drawline(bkgr.surface.at(i),Colors::Green);
@@ -104,6 +104,8 @@ void world::draw(Graphics & gfx ,rect screen)
 void world::kill()
 {
 	if (charecter.dead) {
+		vx = 0.0f;
+		vy = 0.0f;
 		charecter.dead = false;
 		bkgr.loc = pos(0, 0);
 		bkgr.level = sprites::gameover;
@@ -129,6 +131,8 @@ void world::kill()
 		charecter.points=0;
 	}
 	else if (charecter.won) {
+		vx = 0.0f;
+		vy = 0.0f;
 		charecter.pos = pos(480, 256);
 		bkgr.loc = pos(0, 0);
 		charecter.won = false;
@@ -150,10 +154,30 @@ world::world(avatar& a, background& b)
 {
 	charecter = a;
 	bkgr = b;
-	bkgr.cleanlevel();
-	bkgr.generateenvironments();
-	bkgr.polbkup();
-	bkgr.calcstend();
+	vx = 0.0f;
+	vy = 0.0f;
+	charecter.dead = false;
+	bkgr.loc = pos(0, 0);
+	bkgr.level = sprites::gameover;
+	charecter.pos = pos(480, 256);
+	bkgr.killzone.clear();
+	bkgr.ledge.clear();
+	bkgr.policebackup.clear();
+	bkgr.police.clear();
+	bkgr.surface.clear();
+	bkgr.sectors.clear();
+	bkgr.interactiblesbackup.clear();
+	environment temp, temp2;
+	temp.surface.push_back({ pos(64,64),pos(960,64) });
+	temp.surface.push_back({ pos(64,512),pos(960,512) });
+	temp.ledge.push_back({ pos(64,64),pos(64,512) });
+	temp.ledge.push_back({ pos(960,64),pos(960,512) });
+	bkgr.epbkup = line(pos(128, 448), pos(128, 576));
+	bkgr.sectors.push_back(temp);
+	for (int i = 0; i < 24; i++) {
+		bkgr.sectors.push_back(temp2);
+	}
+	charecter.points = 0;
 }
 
 
