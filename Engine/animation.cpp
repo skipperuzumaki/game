@@ -19,6 +19,7 @@ animation::animation(const std::string filename, int framewidth, int frameheight
 	frames.clear();
 	current = 0;
 	std::ifstream file(filename, std::ios::binary);
+	assert(file);
 	BITMAPFILEHEADER bmhead;
 	file.read(reinterpret_cast<char*>(&bmhead), sizeof(bmhead));
 	BITMAPINFOHEADER bminfo;

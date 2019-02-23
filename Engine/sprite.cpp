@@ -7,6 +7,7 @@
 sprite::sprite(const std::string filename)
 {
 	std::ifstream file(filename, std::ios::binary);
+	assert(file);
 	BITMAPFILEHEADER bmhead;
 	file.read(reinterpret_cast<char*>(&bmhead), sizeof(bmhead));
 	BITMAPINFOHEADER bminfo;

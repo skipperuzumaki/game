@@ -27,20 +27,16 @@ codex::codex()
 {
 	environment temp;
 	//E start;
-	enemy police, police2;
+	enemy police;
 	police.loc = pos(64, 448);
 	police.base = line(pos(64, 512), pos(500, 512));
 	police.facing = direction::west;
-	police2.facing = direction::east;
-	police2.loc = pos(128, 448);
-	police2.base = line(pos(64, 512), pos(500, 512));
 	temp.surface.push_back({ pos(64,64),pos(960,64) });
 	temp.surface.push_back({ pos(64,512),pos(960,512) });
 	temp.ledge.push_back({ pos(64,64),pos(64,512) });
 	temp.killzone.push_back({ pos(64,64),pos(64,128) });
 	temp.interactibles.push_back({ pos(128,64),pos(128,400) });
 	temp.police.push_back(police);
-	temp.police.push_back(police2);
 	E[0] = temp;
 	E[1] = temp;
 	E[2] = temp;

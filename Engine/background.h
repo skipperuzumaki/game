@@ -40,7 +40,7 @@ public:
 	int width = 5120;
 	pos loc = pos::pos(0, 0);
 	rect extent;
-	sprite level = sprite(height, width);
+	sprite level = sprite(width, height);
 	bool safe(int const srcwth,int const scrht);
 	void constructlevelsprite();
 	void polbkup();

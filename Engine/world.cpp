@@ -81,6 +81,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
+	gfx.drawsprite(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter.getframe());
 	}
@@ -179,6 +180,7 @@ void world::kill()
 		bkgr.generateenvironments();
 		bkgr.polbkup();
 		bkgr.calcstend();
+		bkgr.constructlevelsprite();
 	}
 }
 
