@@ -24,6 +24,8 @@ public:
 	bool upmtm = false;
 	bool paused = false;
 	int killer = -1;
+	int dying = -1;
+	direction chfac = direction::west;
 	~world();
 };
 

@@ -5,11 +5,12 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 {
 	if (!paused) {
 		for (int i = 0; i < bkgr.police.size(); i++) {
-			if (charecter.extent.crossing(bkgr.police.at(i).die) && !charecter.dead) {
-				bkgr.policebackup.at(i).dead = true;
+			if (charecter.extent.crossing(bkgr.police.at(i).die) && !charecter.dead && !bkgr.police.at(i).dead) {
+				paused = true;
+				dying = i;
 			}
 			else { bkgr.policebackup.at(i).update(); }
-			if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead) {
+			if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead && !charecter.dead) {
 				paused = true;
 				killer = i;
 			}
@@ -31,6 +32,7 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 		}
 		if (kbd.KeyIsPressed(VK_RIGHT)) {
 			vx = 3.0f;
+			chfac = direction::west;
 		}
 		if (kbd.KeyIsPressed(VK_UP)) {
 			if (!upmtm) {
@@ -40,6 +42,7 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 		}
 		if (kbd.KeyIsPressed(VK_LEFT)) {
 			vx = -3.0f;
+			chfac = direction::east;
 		}
 		if (kbd.KeyIsPressed(VK_DOWN)) {
 			vy = 3.0f;
@@ -81,9 +84,34 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	gfx.drawsprite(0, 0, sprites::castle_bg);
+	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
-		gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter.getframe());
+		if (dying < 0) {
+			if (chfac == direction::east) {
+				gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter.getframe());
+			}
+			else {
+				gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecter.getframe().fliphorizontal());
+			}
+		}
+		else if (dying >= 0) {
+			if (chfac == direction::east) {
+				gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecteratk.getframe());
+				if (sprites::charecteratk.getcurrent() >= sprites::charecteratk.size() - 1) {
+					paused = false;
+					bkgr.policebackup.at(dying).dead = true;
+					dying = -1;
+				}
+			}
+			else {
+				gfx.drawsprite(charecter.pos.x, charecter.pos.y, screen, sprites::charecteratk.getframe().fliphorizontal());
+				if (sprites::charecteratk.getcurrent() >= sprites::charecteratk.size() - 1) {
+					paused = false;
+					bkgr.policebackup.at(dying).dead = true;
+					dying = -1;
+				}
+			}
+		}
 	}
 	for (int i = 0; i < bkgr.police.size(); i++) {
 		if (!bkgr.police.at(i).dead) {
@@ -101,6 +129,7 @@ void world::draw(Graphics & gfx ,rect screen)
 					if (sprites::policeatk.getcurrent() >= sprites::policeatk.size() - 1) {
 						paused = false;
 						charecter.dead = true;
+						killer = -1;
 					}
 				}
 				else {
@@ -108,6 +137,7 @@ void world::draw(Graphics & gfx ,rect screen)
 					if (sprites::policeatk.getcurrent() >= sprites::policeatk.size() - 1) {
 						paused = false;
 						charecter.dead = true;
+						killer = -1;
 					}
 				}
 			}
