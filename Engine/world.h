@@ -14,7 +14,7 @@ class world
 {
 public:
 	void draw(Graphics& gfx, rect screen);
-	void update(Keyboard& kbd, Graphics& gfx);
+	void update(Keyboard& kbd, Graphics& gfx, float dt);
 	void reconfigure();
 	void configure();
 	world(avatar & a, background & b);

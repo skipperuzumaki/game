@@ -1,12 +1,12 @@
 #include "enemy.h"
 
-void enemy::update()
+void enemy::update(float dt)
 {
 	if (facing == east) {
-		loc.x++;
+		loc.x += int(90.0f*dt);
 	}
 	else if (facing == west) {
-		loc.x--;
+		loc.x -= int(90.0f*dt);
 	}
 	pos center = loc + pos(30,5);
 	pos siend;

@@ -38,16 +38,20 @@ Game::Game( MainWindow& wnd )
 
 void Game::Go()
 {
+	std::chrono::system_clock::time_point bgn = std::chrono::system_clock::now();
 	gfx.BeginFrame();	
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
+	std::chrono::system_clock::time_point nd = std::chrono::system_clock::now();
+	std::chrono::duration<float> dt = nd - bgn;
+	frameduration = dt.count();
 }
 
 void Game::UpdateModel()
 {
 	if (started) {
-		level.update(wnd.kbd, gfx);
+		level.update(wnd.kbd, gfx, frameduration);
 		if (level.charecter.dead) {
 			level.charecter.points = 0;
 			level.reconfigure();

@@ -14,7 +14,7 @@ public:
 	line base;
 	rect extent;
 	bool dead = false;
-	void update();
+	void update(float dt);
 	bool needtoturn();
 };
 

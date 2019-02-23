@@ -1,7 +1,7 @@
 #include "world.h"
 #include "spritecodex.h"
 
-void world::update(Keyboard& kbd, Graphics& gfx)
+void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 {
 	if (!paused) {
 		for (int i = 0; i < bkgr.police.size(); i++) {
@@ -9,7 +9,7 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 				paused = true;
 				dying = i;
 			}
-			else { bkgr.policebackup.at(i).update(); }
+			else { bkgr.policebackup.at(i).update(dt); }
 			if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead && !charecter.dead) {
 				paused = true;
 				killer = i;
@@ -31,21 +31,21 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 			charecter.won = true;
 		}
 		if (kbd.KeyIsPressed(VK_RIGHT)) {
-			vx = 3.0f;
+			vx = 180.0f * dt;
 			chfac = direction::west;
 		}
 		if (kbd.KeyIsPressed(VK_UP)) {
 			if (!upmtm) {
-				vy = -6.0f;
+				vy = -360.0f * dt;
 				upmtm = true;
 			}
 		}
 		if (kbd.KeyIsPressed(VK_LEFT)) {
-			vx = -3.0f;
+			vx = -180.0f * dt;
 			chfac = direction::east;
 		}
 		if (kbd.KeyIsPressed(VK_DOWN)) {
-			vy = 3.0f;
+			vy = 180.0f *dt;
 		}
 		//movements
 		bkgr.move(int(vx), int(vy));
@@ -55,20 +55,20 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 			charecter.pos.y += int(vy);
 		}
 		if (charecter.pos.x > 480 && bkgr.extent.x4 > gfx.ScreenWidth) {
-			charecter.pos.x -= 1;
-			bkgr.move(1, 0);
+			charecter.pos.x -= int(90.0f * dt);
+			bkgr.move(int(90.0f * dt), 0);
 		}
 		else if (charecter.pos.x < 480 && bkgr.loc.x < 0) {
-			charecter.pos.x += 1;
-			bkgr.move(-1, 0);
+			charecter.pos.x += int(90.0f * dt);
+			bkgr.move(-int(90.0f * dt), 0);
 		}
 		if (charecter.pos.y > 256 && bkgr.extent.y4 > gfx.ScreenHeight) {
-			charecter.pos.y -= 1;
-			bkgr.move(0, 1);
+			charecter.pos.y -= int(60.0f * dt);
+			bkgr.move(0, int(90.0f * dt));
 		}
 		else if (charecter.pos.y < 256 && bkgr.loc.y < 0) {
-			charecter.pos.y += 1;
-			bkgr.move(0, -1);
+			charecter.pos.y += int(90.0f * dt);
+			bkgr.move(0, -int(90.0f * dt));
 		}
 		//gravity keep last else inf gravity
 		if (bkgr.ignoregravity(charecter)) {
@@ -76,7 +76,7 @@ void world::update(Keyboard& kbd, Graphics& gfx)
 			vx = 0.0f;
 			upmtm = false;
 		}
-		else { vy += 0.15; }//seems fine enough
+		else { vy += (9.0f * dt); }//seems fine enough
 	}
 }
 
@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {

@@ -45,6 +45,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	float frameduration = -1.0f;
 	std::string savelocation;
 	bool started = false;
 	bool winstate = false;
