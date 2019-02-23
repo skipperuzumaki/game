@@ -916,3 +916,16 @@ void background::calcstend()
 	loc = pos(-(start * 1024), 0);
 	epbkup = line(pos((((end - 20) * 1024) + 512), 2752), pos((((end - 20) * 1024) + 512), 2880));
 }
+
+void background::reset()
+{
+	loc = pos(0, 0);
+	killzone.clear();
+	ledge.clear();
+	policebackup.clear();
+	police.clear();
+	surface.clear();
+	sectors.clear();
+	interactiblesbackup.clear();
+	interactibles.clear();
+}

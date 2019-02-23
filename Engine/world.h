@@ -15,7 +15,8 @@ class world
 public:
 	void draw(Graphics& gfx, rect screen);
 	void update(Keyboard& kbd, Graphics& gfx);
-	void kill();
+	void reconfigure();
+	void configure();
 	world(avatar & a, background & b);
 	avatar charecter;
 	background bkgr;
@@ -26,6 +27,7 @@ public:
 	int killer = -1;
 	int dying = -1;
 	direction chfac = direction::west;
+	void reset();
 	~world();
 };
 

@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include <string>
 #include <vector>
+#include <chrono>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -45,8 +46,33 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	level.update(wnd.kbd, gfx);
-	level.kill();
+	if (started) {
+		level.update(wnd.kbd, gfx);
+		if (level.charecter.dead) {
+			level.charecter.points = 0;
+			level.reconfigure();
+			started = false;
+		}
+		if (level.charecter.won) {
+			started = false;
+			level.charecter.won = false;
+			winstate = true;
+		}
+	}
+	else if (!winstate) {
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
+			started = true;
+			//TODO add loading screen
+		}
+	}
+	else {
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
+			started = true;
+			winstate = false;
+			//TODO add loading screen
+			level.reconfigure();
+		}
+	}
 }
 
 void Game::load()
@@ -59,6 +85,13 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
-	level.draw(gfx, screen);
+	if (started) {
+		level.draw(gfx, screen);
+	}
+	else if (!winstate) {
+		gfx.drawspritenonchroma(0, 0, titlescreen);
+	}
+	else {
+		gfx.drawspritenonchroma(0, 0, winscreen);
+	}
 }

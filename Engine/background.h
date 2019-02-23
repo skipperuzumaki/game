@@ -45,6 +45,6 @@ public:
 	void constructlevelsprite();
 	void polbkup();
 	void calcstend();
-	//add sector dimensions
+	void reset();
 };
 

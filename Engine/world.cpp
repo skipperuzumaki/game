@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {
@@ -101,6 +101,7 @@ void world::draw(Graphics & gfx ,rect screen)
 					paused = false;
 					bkgr.policebackup.at(dying).dead = true;
 					dying = -1;
+					sprites::charecteratk.reset();
 				}
 			}
 			else {
@@ -109,6 +110,7 @@ void world::draw(Graphics & gfx ,rect screen)
 					paused = false;
 					bkgr.policebackup.at(dying).dead = true;
 					dying = -1;
+					sprites::charecteratk.reset();
 				}
 			}
 		}
@@ -160,90 +162,46 @@ void world::draw(Graphics & gfx ,rect screen)
 	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }
 
-void world::kill()
+void world::reconfigure()
 {
-	if (charecter.dead) {
-		paused = false;
-		sprites::charecter.reset();
-		sprites::police.reset();
-		sprites::policeatk.reset();
-		vx = 0.0f;
-		vy = 0.0f;
-		charecter.dead = false;
-		bkgr.loc = pos(0, 0);
-		bkgr.level = sprites::gameover;
-		charecter.pos = pos(480, 256);
-		bkgr.killzone.clear();
-		bkgr.ledge.clear();
-		bkgr.policebackup.clear();
-		bkgr.police.clear();
-		bkgr.surface.clear();
-		bkgr.sectors.clear();
-		bkgr.interactiblesbackup.clear();
-		environment temp, temp2;
-		temp.surface.push_back({ pos(64,64),pos(960,64) });
-		temp.surface.push_back({ pos(64,512),pos(960,512) });
-		temp.ledge.push_back({ pos(64,64),pos(64,512) });
-		temp.ledge.push_back({ pos(960,64),pos(960,512) });
-		bkgr.epbkup = line(pos(128, 448), pos(128, 576));
-		bkgr.sectors.push_back(temp);
-		for (int i = 0; i < 24; i++) {
-			bkgr.sectors.push_back(temp2);
-		}
-		//charecter.points.display();
-		charecter.points=0;
-	}
-	else if (charecter.won) {
-		vx = 0.0f;
-		vy = 0.0f;
-		charecter.pos = pos(480, 256);
-		bkgr.loc = pos(0, 0);
-		charecter.won = false;
-		bkgr.killzone.clear();
-		bkgr.ledge.clear();
-		bkgr.policebackup.clear();
-		bkgr.interactiblesbackup.clear();
-		bkgr.police.clear();
-		bkgr.surface.clear();
-		bkgr.sectors.clear();
-		bkgr.cleanlevel();
-		bkgr.generateenvironments();
-		bkgr.polbkup();
-		bkgr.calcstend();
-		bkgr.constructlevelsprite();
-	}
+	reset();
+	configure();
+}
+
+void world::configure()
+{
+	bkgr.cleanlevel();
+	bkgr.generateenvironments();
+	bkgr.polbkup();
+	bkgr.calcstend();
+	//bkgr.constructlevelsprite();
 }
 
 world::world(avatar& a, background& b)
 {
 	charecter = a;
 	bkgr = b;
+	bkgr.cleanlevel();
+	bkgr.generateenvironments();
+	bkgr.polbkup();
+	bkgr.calcstend();
+	//bkgr.constructlevelsprite();
+}
+
+
+void world::reset()
+{
 	vx = 0.0f;
 	vy = 0.0f;
 	charecter.dead = false;
-	bkgr.loc = pos(0, 0);
-	bkgr.level = sprites::gameover;
 	charecter.pos = pos(480, 256);
-	bkgr.killzone.clear();
-	bkgr.ledge.clear();
-	bkgr.policebackup.clear();
-	bkgr.police.clear();
-	bkgr.surface.clear();
-	bkgr.sectors.clear();
-	bkgr.interactiblesbackup.clear();
-	environment temp, temp2;
-	temp.surface.push_back({ pos(64,64),pos(960,64) });
-	temp.surface.push_back({ pos(64,512),pos(960,512) });
-	temp.ledge.push_back({ pos(64,64),pos(64,512) });
-	temp.ledge.push_back({ pos(960,64),pos(960,512) });
-	bkgr.epbkup = line(pos(128, 448), pos(128, 576));
-	bkgr.sectors.push_back(temp);
-	for (int i = 0; i < 24; i++) {
-		bkgr.sectors.push_back(temp2);
-	}
-	charecter.points = 0;
+	paused = false;
+	sprites::charecter.reset();
+	sprites::charecteratk.reset();
+	sprites::police.reset();
+	sprites::policeatk.reset();
+	bkgr.reset();
 }
-
 
 world::~world()
 {
