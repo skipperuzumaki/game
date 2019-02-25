@@ -31,21 +31,21 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			charecter.won = true;
 		}
 		if (kbd.KeyIsPressed(VK_RIGHT)) {
-			vx = 180.0f * dt;
+			vx = 3.0f;
 			chfac = direction::west;
 		}
 		if (kbd.KeyIsPressed(VK_UP)) {
 			if (!upmtm) {
-				vy = -360.0f * dt;
+				vy = -6.0f;
 				upmtm = true;
 			}
 		}
 		if (kbd.KeyIsPressed(VK_LEFT)) {
-			vx = -180.0f * dt;
+			vx = -3.0f;
 			chfac = direction::east;
 		}
 		if (kbd.KeyIsPressed(VK_DOWN)) {
-			vy = 180.0f *dt;
+			vy = 3.0f;
 		}
 		//movements
 		bkgr.move(int(vx), int(vy));
@@ -55,20 +55,20 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			charecter.pos.y += int(vy);
 		}
 		if (charecter.pos.x > 480 && bkgr.extent.x4 > gfx.ScreenWidth) {
-			charecter.pos.x -= int(90.0f * dt);
-			bkgr.move(int(90.0f * dt), 0);
+			charecter.pos.x -= int(1);
+			bkgr.move(int(1), 0);
 		}
 		else if (charecter.pos.x < 480 && bkgr.loc.x < 0) {
-			charecter.pos.x += int(90.0f * dt);
-			bkgr.move(-int(90.0f * dt), 0);
+			charecter.pos.x += int(1);
+			bkgr.move(-int(1), 0);
 		}
 		if (charecter.pos.y > 256 && bkgr.extent.y4 > gfx.ScreenHeight) {
-			charecter.pos.y -= int(60.0f * dt);
-			bkgr.move(0, int(90.0f * dt));
+			charecter.pos.y -= int(1);
+			bkgr.move(0, int(1));
 		}
 		else if (charecter.pos.y < 256 && bkgr.loc.y < 0) {
-			charecter.pos.y += int(90.0f * dt);
-			bkgr.move(0, -int(90.0f * dt));
+			charecter.pos.y += int(1);
+			bkgr.move(0, -int(1));
 		}
 		//gravity keep last else inf gravity
 		if (bkgr.ignoregravity(charecter)) {
@@ -76,7 +76,7 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			vx = 0.0f;
 			upmtm = false;
 		}
-		else { vy += (9.0f * dt); }//seems fine enough
+		else { vy += 0.15f; }//seems fine enough
 	}
 }
 
@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {

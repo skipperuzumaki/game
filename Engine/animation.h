@@ -21,7 +21,7 @@ public:
 private:
 	std::vector<sprite> frames;
 	int current;
-	int delay = 10;
+	int delay = 5;
 	int curdly = 0;
 };
 

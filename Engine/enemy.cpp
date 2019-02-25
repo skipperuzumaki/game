@@ -3,10 +3,10 @@
 void enemy::update(float dt)
 {
 	if (facing == east) {
-		loc.x += int(90.0f*dt);
+		loc.x += int(1);
 	}
 	else if (facing == west) {
-		loc.x -= int(90.0f*dt);
+		loc.x -= int(1);
 	}
 	pos center = loc + pos(30,5);
 	pos siend;
