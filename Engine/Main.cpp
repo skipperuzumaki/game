@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "ChiliException.h"
+#include "Sound.h"
 
 int WINAPI wWinMain( HINSTANCE hInst,HINSTANCE,LPWSTR pArgs,INT )
 {
@@ -29,6 +30,8 @@ int WINAPI wWinMain( HINSTANCE hInst,HINSTANCE,LPWSTR pArgs,INT )
 		MainWindow wnd( hInst,pArgs );		
 		try
 		{
+			Sound bkgrloop(L"bkgr_loop.wav",0.0f,105.0f);
+			bkgrloop.Play();
 			Game theGame( wnd );
 			while( wnd.ProcessMessage() )
 			{
