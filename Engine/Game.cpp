@@ -28,7 +28,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	bkgrloop(L"bkgr_loop.wav")
 {
 	background bkgr;
 	avatar charecter;
@@ -50,6 +51,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	bkgrloop.Play();
 	if (started) {
 		level.update(wnd.kbd, gfx, frameduration);
 		if (level.charecter.dead) {
@@ -89,6 +91,7 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
+	bkgrloop.Play();
 	if (started) {
 		level.draw(gfx, screen);
 	}

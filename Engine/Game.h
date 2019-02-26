@@ -29,6 +29,7 @@
 #include "background.h"
 #include "enemy.h"
 #include "world.h"
+#include "Sound.h"
 
 class Game
 {
@@ -53,4 +54,5 @@ private:
 	sprite titlescreen = sprite(std::string("castle_bg.bmp"));//temporarily
 	sprite winscreen = sprite(std::string("castle_bg.bmp"));//trmporarily
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
+	Sound bkgrloop;
 };
