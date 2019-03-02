@@ -15,6 +15,7 @@ public:
 	int getwidth();
 	int getheight();
 	sprite fliphorizontal() const;
+	sprite get_center(int x, int y);
 private:
 	int width;
 	int height;

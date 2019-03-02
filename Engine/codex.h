@@ -1,5 +1,6 @@
 #pragma once
 #include "environment.h"
+#include <string>
 
 class codex
 {
@@ -23,26 +24,59 @@ public:
 
 codex c;
 
+/*
+Legend
+
+s = left + right
+h = top + bottom
+m = left + right + top
+u = left + right + bottom
+a = left + top
+g = right + top
+d = left + bottom
+f = right + bottom
+e = empty space
+r = spike right
+l = spike left
+b = spike bottom
+t = spike top
+z = top + bottom + right
+x = top + bottom + left
+o = full sqare
+
+*/
+
 codex::codex()
 {
+	enemy p;
+	//E
+	E[0] = environment(std::string("ehhhhhhhhhhhhhheseesleeersleeeesszeseeeeeseeeeeuseesermlesermeeeseeseeseeseeseeeseruleseruleseeeseeeeeseeeeeseemsleeersleeeeseesehhhhhhhhhhhhhhe"));
+	E[1] = environment(std::string("ehhhhhhhhhhhhhheseeseeseeseeseesseeseeseeseeseeuseeseeseeseeseeeseeteeteeteeteeeseeeeeeeeeeeeeeeseeeeeeeeeeeeeahsgbbbbbbbbbbbbseehhhhhhhhhhhhhhe"));
+	E[2] = environment(std::string("ehhhhhhhhhhhhhhesttttttttttttttsseeeeeeeeeeeeeeuseeeeeeeeeeeeeeesleoeeeoeeeeeeeeseeeeeeeeeoeeoeeseeeeeeeeeeeeeemsgbbbbbbbbbbbbbsehhhhhhhhhhhhhhe"));
+	//NE
+	NE[0] = environment(std::string("ehhhhhheehhhhhhestttteeeeeettttsseeeeeeeeeeeeeeuseogeeeeeeeeaoeeseeseeeeeeeeseeeseeseeeeeeeeseeeseedoeeeeeeofeemseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
+	p.base = line(pos(64, 512), pos(960, 256));
+	NE[1].police.push_back(p);
+	NE[1] = environment(std::string("ehhhhhfeedhhhhheseeeeeeeeeeeeeesehhhhoeeeeeeeeeuseeeeeeeeeeeeeeeehhoeeeohhhhhoeeseeeeeeeeeeeeeeeehhhhoeeeeeeeeemseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
+	p.base = line(pos(64,128), pos(384,128));
+	NE[1].police.push_back(p);
+	p.base = line(pos(64,256), pos(256,256));
+	NE[1].police.push_back(p);
+	p.base = line(pos(64,384), pos(384,384));
+	NE[1].police.push_back(p);
+	NE[2] = environment(std::string("ehhhhhseeseeeeeeseseeeseeseeeeeesesemeseedhhhhhoseseseseeeeeeeeeseseseseeeeeeeeeseseseseeeeeeeeeseueseueeahhhhhoseeeseeeeseeeeeeehhhehhhhheeeeee"));
+	//W
+	W[0] = environment(std::string("ehhhhhhhhhhhhhheseeeersleeerseesueeeeeseeeeesexseeemlesermleseeseeeseeseeseeseeseeeseruleserulesmeeseeeeeseeeeesseeseeeersleeersehhhhhhhhhhhhhhe"));
+	W[1] = environment(std::string("ehhhhhhhhhhhhhheseeseeseeseeseesueeseeseeseeseeseeeseeseeseeseeseeeteeteeteeteeseeeeeeeeeeeeeeeshgeeeeeeeeeeeeesesbbbbbbbbbbbbasehhhhhhhhhhhhhhe"));
+	W[2] = environment(std::string("ehhhhhhhhhhhhhhesttttttttttttttsueeeeeeeeeeeeeeseeeeeeeeeeeeeeeseeeeeeeeoeeeoerseeoeeoeeeeeeeeesmeeeeeeeeeeeeeessbbbbbbbbbbbbbasehhhhhhhhhhhhhhe"));
+	//NW
+	NW[0] = environment(std::string("ehhhhhheehhhhhhestttteeeeeettttsueeeeeeeeeeeeeeseeogeeeeeeeeaoeseeeseeeeeeeeseeseeeseeeeeeeeseesmeedoeeeeeeofeesseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
+	NW[1] = environment(std::string("ehhhhhfeedhhhhheseeeeeeeeeeeeeesueeeeeeeeeohhhheeeeeeeeeeeeeeeeseeohhhhhoeeeohheeeeeeeeeeeeeeeesmeeeeeeeeeohhhheseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
+	NW[2] = environment(std::string("eeeeeeseeshhhhheeeeeeeseeseeesesohhhhhfeesemeseseeeeeeeeeseseseseeeeeeeeeseseseseeeeeeeeesesesesohhhhhgeeueseueseeeeeeseeeeseeeseeeeeehhhhhehhhe"));
+
 	environment temp;
-	//E start;
-	enemy police;
-	police.loc = pos(64, 448);
-	police.base = line(pos(64, 512), pos(500, 512));
-	police.facing = direction::west;
-	temp.surface.push_back({ pos(64,64),pos(960,64) });
-	temp.surface.push_back({ pos(64,512),pos(960,512) });
-	temp.ledge.push_back({ pos(64,64),pos(64,512) });
-	temp.killzone.push_back({ pos(64,64),pos(64,128) });
-	temp.interactibles.push_back({ pos(128,64),pos(128,400) });
-	temp.police.push_back(police);
-	E[0] = temp;
-	E[1] = temp;
-	E[2] = temp;
-	W[0] = temp;
-	W[1] = temp;
-	W[2] = temp;
+	temp.surface.push_back(line(pos(64, 500), pos(960, 500)));
+
 	N[0] = temp;
 	N[1] = temp;
 	N[2] = temp;
@@ -56,15 +90,9 @@ codex::codex()
 	EW[4] = temp;
 	EW[0] = temp;
 
-	NE[1] = temp;
-	NE[2] = temp;
 	NE[3] = temp;
 	NE[4] = temp;
-	NE[0] = temp;
 
-	NW[1] = temp;
-	NW[2] = temp;
-	NW[0] = temp;
 	NW[3] = temp;
 	NW[4] = temp;
 
@@ -115,3 +143,26 @@ codex::codex()
 	NSEW[8] = temp;
 	NSEW[9] = temp;
 }
+
+/*
+
+Legend
+s = left + right
+h = top + bottom
+m = left + right + top
+u = left + right + bottom
+a = left + top
+g = right + top
+d = left + bottom
+f = right + bottom
+e = empty space
+r = spike right
+l = spike left
+b = spike bottom
+t = spike top
+z = top + bottom + right
+x = top + bottom + left
+o = full sqare
+
+
+*/

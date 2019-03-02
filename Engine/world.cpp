@@ -5,23 +5,23 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 {
 	if (!paused) {
 		for (int i = 0; i < bkgr.police.size(); i++) {
-			if (charecter.extent.crossing(bkgr.police.at(i).die) && !charecter.dead && !bkgr.police.at(i).dead) {
+			if (charecter.extent.boundrycrossing(bkgr.police.at(i).die) && !charecter.dead && !bkgr.police.at(i).dead) {
 				paused = true;
 				dying = i;
 			}
 			else { bkgr.policebackup.at(i).update(dt); }
-			if (charecter.extent.crossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead && !charecter.dead) {
+			if (charecter.extent.boundrycrossing(bkgr.police.at(i).sight) && !bkgr.police.at(i).dead && !charecter.dead) {
 				paused = true;
 				killer = i;
 			}
 		}
 		for (int i = 0; i < bkgr.killzone.size(); i++) {
-			if (charecter.extent.crossing(bkgr.killzone.at(i))) {
+			if (charecter.extent.boundrycrossing(bkgr.killzone.at(i))) {
 				charecter.dead = true;
 			}
 		}
 		for (int i = 0; i < bkgr.interactibles.size(); i++) {
-			if (charecter.extent.crossing(bkgr.interactibles.at(i))) {
+			if (charecter.extent.boundrycrossing(bkgr.interactibles.at(i))) {
 				charecter.points++;
 				bkgr.interactiblesbackup.erase(bkgr.interactiblesbackup.begin() + i);
 			}

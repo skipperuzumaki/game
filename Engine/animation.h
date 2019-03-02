@@ -8,6 +8,7 @@ class animation
 public:
 	animation(const animation&rhs);
 	animation(const std::string filename, int framewidth, int farmeheight);
+	animation(const std::string filename, int framewidth, int farmeheight, int spritewidth, int spriteheight);
 	animation();
 	sprite getframe();
 	sprite frameat(int i) const;

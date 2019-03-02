@@ -42,6 +42,34 @@ animation::animation(const std::string filename, int framewidth, int frameheight
 	}
 }
 
+animation::animation(const std::string filename, int framewidth, int frameheight, int spritewidth, int spriteheight)
+{
+	frames.clear();
+	current = 0;
+	std::ifstream file(filename, std::ios::binary);
+	assert(file);
+	BITMAPFILEHEADER bmhead;
+	file.read(reinterpret_cast<char*>(&bmhead), sizeof(bmhead));
+	BITMAPINFOHEADER bminfo;
+	file.read(reinterpret_cast<char*>(&bminfo), sizeof(bminfo));
+	assert(bminfo.biBitCount == 24);
+	assert(bminfo.biCompression == BI_RGB);
+	int rows = std::abs(bminfo.biWidth / framewidth);
+	int columns = std::abs(bminfo.biHeight / frameheight);
+	sprite temp1 = sprite(filename);
+	for (int r = 0; r < rows; r++) {
+		for (int c = 0; c < columns; c++) {
+			sprite temp = sprite(framewidth, frameheight);
+			for (int x = 0; x < framewidth; x++) {
+				for (int y = 0; y < frameheight; y++) {
+					temp.load(x, y, temp1.fetch((framewidth*r) + x, (frameheight*c) + y));
+				}
+			}
+			frames.push_back(temp.get_center(spritewidth,spriteheight));
+		}
+	}
+}
+
 animation::animation()
 {
 	frames.clear();

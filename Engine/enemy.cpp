@@ -8,7 +8,7 @@ void enemy::update(float dt)
 	else if (facing == west) {
 		loc.x -= int(1);
 	}
-	pos center = loc + pos(30,5);
+	pos center = loc + pos(30,15);
 	pos siend;
 	if (facing == east) {
 		siend = pos(center.x + 200, center.y);

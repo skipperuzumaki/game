@@ -101,3 +101,16 @@ sprite sprite::fliphorizontal() const
 	}
 	return temp;
 }
+
+sprite sprite::get_center(int x, int y)
+{
+	int xoffset = (width - x) / 2;
+	int yoffset = (height - y) / 2;
+	sprite retval(x, y);
+	for (int x1 = xoffset; x1 < (width - xoffset); x1++) {
+		for (int y1 = yoffset; y1 < (height - yoffset); y1++) {
+			retval.load((x1 - xoffset), (y1 - yoffset), fetch(x1, y1));
+		}
+	}
+	return retval;
+}

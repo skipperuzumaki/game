@@ -5,6 +5,8 @@
 #include "direction.h"
 #include "line.h"
 #include "enemy.h"
+#include <string>
+#include <cassert>
 
 class environment
 {
@@ -16,4 +18,100 @@ public:
 	std::vector<line> surface;
 	std::vector<line> ledge;
 	environment() = default;
+	~environment() = default;
+	environment(std::string layout) {
+		assert(layout.length() == 144);
+		for (int x = 0; x < 16; x++) {
+			for (int y = 0; y < 9; y++) {
+				char k = layout.at((16 * y) + x);
+				if (k == char(101)) {//e
+					//pass
+				}
+				else if (k == char(111)) {//o
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(122)) {//z
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(120)) {//x
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(115)) {//s
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(104)) {//h
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(109)) {//m
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(117)) {//u
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(97)) {//a
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+				}
+				else if (k == char(103)) {//g
+					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(100)) {//d
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+				}
+				else if (k == char(102)) {//f
+					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+				}
+				else if (k == char(114)) {//r
+					killzone.push_back(line(pos((x * 64) + 64, (y * 64) + 2), pos((x * 64) + 64, (y * 64) + 62)));
+				}
+				else if (k == char(108)) {//l
+					killzone.push_back(line(pos(x * 64, (y * 64) + 2), pos(x * 64, (y * 64) + 62)));
+				}
+				else if (k == char(98)) {//b
+					killzone.push_back(line(pos((x * 64) + 2, (y * 64) + 64), pos((x * 64) + 62, (y * 64) + 64)));
+				}
+				else if (k == char(116)) {//t
+					killzone.push_back(line(pos((x * 64) + 2, y * 64), pos((x * 64) + 62, y * 64)));
+				}
+			}
+		}
+	}
 };
+
+/*
+Legend
+
+s = left + right
+h = top + bottom
+m = left + right + top
+u = left + right + bottom
+a = left + top
+g = right + top
+d = left + bottom
+f = right + bottom
+e = empty space
+r = spike right
+l = spike left
+b = spike bottom
+t = spike top
+z = top + bottom + right
+x = top + bottom + left
+o = full sqare
+
+*/

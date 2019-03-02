@@ -77,15 +77,15 @@ bool rect::crossing(line & l)
 bool rect::boundrycrossing(line & l)
 {
 	if (l.start.x == l.end.x) {
-		if (x1 < l.start.x && l.start.x < x4) {
-			if ((y1 > l.start.y && l.end.y > y1) || (y4 > l.start.y && l.end.y > y4)) {
+		if (x1 <= l.start.x && l.start.x <= x4) {
+			if ((y1 >= l.start.y && l.end.y >= y1) || (y4 >= l.start.y && l.end.y >= y4)) {
 				return true;
 			}
 		}
 	}
 	else if (l.start.y == l.end.y) {
-		if (y1 < l.start.y && l.start.y < y2) {
-			if ((x1 > l.start.x && l.end.x > x1) || (x4 > l.start.x && l.end.x > x4)) {
+		if (y1 <= l.start.y && l.start.y <= y2) {
+			if ((x1 >= l.start.x && l.end.x >= x1) || (x4 >= l.start.x && l.end.x >= x4)) {
 				return true;
 			}
 		}
