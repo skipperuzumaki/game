@@ -19,8 +19,13 @@ public:
 	std::vector<line> ledge;
 	environment() = default;
 	~environment() = default;
-	environment(std::string layout) {
+	void redefine(std::string layout) {
 		assert(layout.length() == 144);
+		surface.clear();
+		ledge.clear();
+		police.clear();
+		killzone.clear();
+		interactibles.clear();
 		for (int x = 0; x < 16; x++) {
 			for (int y = 0; y < 9; y++) {
 				char k = layout.at((16 * y) + x);
@@ -91,6 +96,13 @@ public:
 				}
 			}
 		}
+	}
+	void clear() {
+		surface.clear();
+		ledge.clear();
+		police.clear();
+		killzone.clear();
+		interactibles.clear();
 	}
 };
 

@@ -16,5 +16,6 @@ public:
 	bool dead = false;
 	void update(float dt);
 	bool needtoturn();
+	void activate(line bse);
 };
 

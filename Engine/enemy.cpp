@@ -50,3 +50,11 @@ bool enemy::needtoturn()
 	}
 	return false;
 }
+
+void enemy::activate(line bse)
+{
+	base = bse;
+	loc = base.start + pos(0, -64);
+	facing = direction::east;
+	update(0.14);
+}
