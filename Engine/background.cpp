@@ -795,11 +795,11 @@ void background::generateenvironments()
 				sectors.at(i) = c.NSEW[0];
 			}
 			else if (hasopening(i, direction::north)) {
-				std::random_shuffle(&c.NEW[0], &c.NEW[4]);
+				std::random_shuffle(&c.NEW[0], &c.NEW[9]);
 				sectors.at(i) = c.NEW[0];
 			}
 			else if (hasopening(i, direction::south)) {
-				std::random_shuffle(&c.SEW[0], &c.SEW[4]);
+				std::random_shuffle(&c.SEW[0], &c.SEW[9]);
 				sectors.at(i) = c.SEW[0];
 			}
 			else {
