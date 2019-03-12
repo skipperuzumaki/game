@@ -20,7 +20,7 @@ public:
 	environment SW[5];
 	environment NSE[5];
 	environment NSW[5];
-	environment NSEW[5];
+	environment NSEW[3];
 	codex();
 };
 

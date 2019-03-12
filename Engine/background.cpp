@@ -936,7 +936,7 @@ void background::calcstend()
 		}
 	}
 	loc = pos(-(start * 1024), 0);
-	epbkup = line(pos((((end - 20) * 1024) + 512), 2752), pos((((end - 20) * 1024) + 512), 2880));
+	epbkup = line(pos((((end - 20) * 1024) + 512), 2698), pos((((end - 20) * 1024) + 512), 2752));
 }
 
 void background::reset()
