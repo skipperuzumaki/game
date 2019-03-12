@@ -791,7 +791,7 @@ void background::generateenvironments()
 	for (int i = 0; i < 25; i++) {
 		if (hasopening(i, direction::east) && hasopening(i, direction::west)) {
 			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
-				std::random_shuffle(&c.NSEW[0], &c.NSEW[9]);
+				std::random_shuffle(&c.NSEW[0], &c.NSEW[4]);
 				sectors.at(i) = c.NSEW[0];
 			}
 			else if (hasopening(i, direction::north)) {
@@ -803,7 +803,7 @@ void background::generateenvironments()
 				sectors.at(i) = c.SEW[0];
 			}
 			else {
-				std::random_shuffle(&c.EW[0], &c.EW[2]);
+				std::random_shuffle(&c.EW[0], &c.EW[4]);
 				sectors.at(i) = c.EW[0];
 			}
 		}
