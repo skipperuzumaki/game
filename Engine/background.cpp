@@ -789,68 +789,90 @@ void background::generateenvironments()
 		sectors.push_back(temp);
 	}
 	for (int i = 0; i < 25; i++) {
+		if (hasopening(i, direction::start)) {
+			sectors.at(i) = c.starting;
+			continue;
+		}
+		else if (hasopening(i, direction::end)) {
+			sectors.at(i) = c.ending;
+			continue;
+		}
 		if (hasopening(i, direction::east) && hasopening(i, direction::west)) {
 			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
-				std::random_shuffle(&c.NSEW[0], &c.NSEW[4]);
+				std::random_shuffle(&c.NSEW[0], &c.NSEW[2]);
 				sectors.at(i) = c.NSEW[0];
+				continue;
 			}
 			else if (hasopening(i, direction::north)) {
 				std::random_shuffle(&c.NEW[0], &c.NEW[9]);
 				sectors.at(i) = c.NEW[0];
+				continue;
 			}
 			else if (hasopening(i, direction::south)) {
 				std::random_shuffle(&c.SEW[0], &c.SEW[9]);
 				sectors.at(i) = c.SEW[0];
+				continue;
 			}
 			else {
 				std::random_shuffle(&c.EW[0], &c.EW[4]);
 				sectors.at(i) = c.EW[0];
+				continue;
 			}
 		}
 		else if (hasopening(i, direction::east)) {
 			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
 				std::random_shuffle(&c.NSE[0], &c.NSE[4]);
 				sectors.at(i) = c.NSE[0];
+				continue;
 			}
 			else if (hasopening(i, direction::north)) {
 				std::random_shuffle(&c.NE[0],&c.NE[4]);
 				sectors.at(i) = c.NE[0];
+				continue;
 			}
 			else if (hasopening(i, direction::south)) {
 				std::random_shuffle(&c.SE[0], &c.SE[4]);
 				sectors.at(i) = c.SE[0];
+				continue;
 			}
 			
 			else {
 				std::random_shuffle(&c.E[0], &c.E[2]);
 				sectors.at(i) = c.E[0];
+				continue;
 			}
 		}
 		else if (hasopening(i, direction::west)) {
 			if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
 				std::random_shuffle(&c.NSW[0], &c.NSW[4]);
 				sectors.at(i) = c.NSW[0];
+				continue;
 			}
 			else if (hasopening(i, direction::north)) {
 				std::random_shuffle(&c.NW[0], &c.NW[4]);
 				sectors.at(i) = c.NW[0];
+				continue;
 			}
 			else if (hasopening(i, direction::south)) {
 				std::random_shuffle(&c.SW[0], &c.SW[4]);
 				sectors.at(i) = c.SW[0];
+				continue;
 			}
 			else {
 				std::random_shuffle(&c.W[0], &c.W[2]);
 				sectors.at(i) = c.W[0];
+				continue;
 			}
 		}
 		else if (hasopening(i, direction::north)) {
 			std::random_shuffle(&c.N[0], &c.N[2]);
 			sectors.at(i) = c.N[0];
+			continue;
 		}
 		else if (hasopening(i, direction::south)) {
 			std::random_shuffle(&c.S[0], &c.S[2]);
 			sectors.at(i) = c.S[0];
+			continue;
 		}
 	}
 }

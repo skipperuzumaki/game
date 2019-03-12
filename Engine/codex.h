@@ -249,29 +249,39 @@ codex::codex()
 	SW[3] = temp;
 	temp.redefine(std::string("ehhhhhehhhhehhheseeeeeseeeeseeesuhmemeseemesemeseeseseseeseseseseeseseseeseseseseeseseseesesesesmeueseueeseueuheseeeseeeeseeeeesehhhhhoeeohhhhhe"));
 	SW[4] = temp;
-
-
-	temp.clear();
-	temp.surface.push_back(line(pos(64, 500), pos(960, 500)));
-	temp.ledge.push_back(line(pos(64, 64), pos(64, 500)));
-	
+	//NSE
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesuhhhhhhhhhhhhoeuseeeeeeeeeeeeeeeseeohhhhhhhhoeeeseeeeeesseeeeeeeseohhhhhhhhhhhhmseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	NSE[0] = temp;
+	temp.redefine(std::string("ehehhhoeeohhhhheelseeeeeeeeeeeeselsemeeeeeemeeeuelueuhhhhhhueeeeeleeeeesseeeeoeeelmemhhhhhhmeeeeelseueeeeeeueeemelseeeeeeeeeeeesehehhhoeeohhhhhe"));
 	NSE[1] = temp;
+	temp.redefine(std::string("eeeeeeoeeohhhhhestttttseeeeeeeesseeeeeuhhhhhhmeuseeeeeeeeuheeseesembmeeeeeeutueeseseehmeeeeeeeeeseuhhhhhhoeeeeemseeeeeeeesbbbbbsehhhhhoeeueeeeee"));
 	NSE[2] = temp;
+	temp.redefine(std::string("eeeeeeoeeohehhheeeeeeseeeeeteeesehhhhueeeeemeeeuseeeeeeeeeeseeeeehhoeoeohhhehoeeseeeeeeeeeeseeeeehhhhmeeeeeueeemeeeeeseeeeeteeeseeeeeeoeeohhhhhe"));
 	NSE[3] = temp;
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesseeeeeeeeeeeeeeuseoloeeeeeeoloeesebeteeooeebeteeseoroeeeeeeoroeeseeeeeeeeeeeeeemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	NSE[4] = temp;
-
+	//NSW
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesueohhhhhhhhhhhhueeeeeeeeeeeeeeeseeeohhhhhhhhoeeseeeeeeesseeeeeesmhhhhhhhhhhhhoesseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	NSW[0] = temp;
+	temp.redefine(std::string("ehhhhhoeeohhheheseeeeeeeeeeeesreueeemeeeeeemesreeeeeuhhhhhhueureeeoeeeesseeeeereeeeemhhhhhhmemremeeeueeeeeeuesreseeeeeeeeeeeesreehhhhhoeeohhhehe"));
 	NSW[1] = temp;
+	temp.redefine(std::string("ehhhhhoeeoeeeeeeseeeeeeeestttttsuemhhhhhhueeeeeseeseehueeeeeeeeseeutueeeeeembmeseeeeeeeeemheesesmeeeeeohhhhhhuessbbbbbseeeeeeeeseeeeeeueeohhhhhe"));
 	NSW[2] = temp;
+	temp.redefine(std::string("ehhhehoeeoeeeeeeseeeteeeeeseeeeeueeemeeeeeuhhhheeeeeseeeeeeeeeeseeohehhhoeoeohheeeeeseeeeeeeeeesmeeeueeeeemhhhheseeeteeeeeseeeeeehhhhhoeeoeeeeee"));
 	NSW[3] = temp;
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesueeeeeeeeeeeeeeseeoroeeeeeeoroeseetebeeooeetebeseeoloeeeeeeoloesmeeeeeeeeeeeeeesseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	NSW[4] = temp;
-
+	//NSEW
+	temp.redefine(std::string("ehhehhoeeohhhhheseeseeeeeeeeeeesueeuhhhhhhhhemhueeeeseeeeseeeseeeemeulmlrurmeueeeeseeeseeeeseeeemhueohhhhhhhmeemseeeeeeeeeeeseesehhhhhoeeohhhhhe"));
 	NSEW[0] = temp;
+	temp.redefine(std::string("ehhhhhoeeoeeeeeeseeeeeeeeetueeeeuobeeeohobeetueueueobeetuembeeteeetuembeetuembeeebeetuembeetuhmemembeetuhoeeeeumeeeembeeeeeeeeeseeeeeeoeeohhhhhe"));
 	NSEW[1] = temp;
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesuemeeeeeeeeeemeueeshhhhhhhhhhseeeeuttutuututtueeeeeeeeeeeeeeeeeemeeeeeeeeeeeeeemseebbbeeeebbbeesehheeeoeeoeeehhe"));
 	NSEW[2] = temp;
-	NSEW[3] = temp;
-	NSEW[4] = temp;
+	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesueeemeeeeeemeeeueeememeeeememeeeeeoeeehhhheeeoeeeeeueueeeeueueeemeeeueeeeeeueeemseeeeeemmeeeeeesehhhhhheehhhhhhe"));
+	ending = temp;
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeeeeeeeeeesueeeeeeeeeeeeeeueeemeeeeeeeemeeeeeeseeeeeeeeseeeeeeseeeeeeeeseeemeeohhhhhhhhoeemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
+	starting = temp;
 	
 }
 
