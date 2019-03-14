@@ -108,7 +108,7 @@ codex::codex()
 	p.activate(line(pos(640, 384), pos(960, 384)));
 	temp.police.push_back(p);
 	NW[1] = temp;
-	temp.redefine(std::string("eeeeeeseeshhhhheeeeeeeseeseeesesohhhhhfeesemeseseeeeeeeeeseseseseeeeeeeeeseseseseeeeeeeeesesesesohhhhhgeeueseueseeeeeeseeeeseeeseeeeeehhhhhehhhe"));
+	temp.redefine(std::string("ehhhhhoeeshhhhheeeeeeeseeseeesesohhhhhfeesemeseseeeeeeeeeseseseseeeeeeeeeseseseseeeeeeeeesesesesohhhhhgeeueseueseeeeeeseeeeseeeseeeeeehhhhhehhhe"));
 	NW[2] = temp;
 	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeueeueeeeesdzermeeeeeemlexeeeerseeeeeesleeseeershzlrxhsleeseeerueeeeeeuleesozerueeeeeeuleoeseeeeemeemeeeeesehhhhhhhhhhhhhhe"));
 	p.activate(line(pos(64, 512), pos(384, 512)));
@@ -116,7 +116,7 @@ codex::codex()
 	p.activate(line(pos(640, 512), pos(960, 512)));
 	temp.police.push_back(p);
 	NW[3] = temp;
-	temp.redefine(std::string("ehehhhoeeohhhhheseseeeeeeeeeeeesueseeeexzeeeeeeseeseeeeeeeeeeeeseeseexhhhhzeeeeseeseeeeeeeeeeeesmedhhhhhhhhhzeesseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
+	temp.redefine(std::string("ehhhhhoeeohhhhheseseeeeeeeeeeeesueseeeexzeeeeeeseeseeeeeeeeeeeeseeseexhhhhzeeeeseeseeeeeeeeeeeesmedhhhhhhhhhzeesseeeeeeeeeeeeeesehhhhhhhhhhhhhhe"));
 	p.activate(line(pos(320, 256), pos(704, 256)));
 	temp.police.push_back(p);
 	p.activate(line(pos(192, 384), pos(832, 384)));
@@ -127,11 +127,11 @@ codex::codex()
 	//EW
 	temp.redefine(std::string("eehhhhhhhhhhhheeeoeeeeoeeoeeeeoeueemmeeuueemmeeueemeemeeeemeemeeexeeeezeexeeeezeeeueeueeeeueeueemeeuueemmeeuueemeoeeeeoeeoeeeeoeeehhhhhhhhhhhhee"));
 	EW[0] = temp;
-	temp.redefine(std::string("eeeeeeeeeeeeeeeesttttttttttttttsueahhhhhhhhhhgeueeutuutuutuutueeeetettettetteteeeeeeeeeeeeeeeeeemeeeeeeeeeeeeeemegbmbbmbbmbbmbaeeeeeeeeeeeeeeeee"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhhesttttttttttttttsueahhhhhhhhhhgeueeutuutuutuutueeeetettettetteteeeeeeeeeeeeeeeeeemeeeeeeeeeeeeeemegbmbbmbbmbbmbaeeeeeeeeeeeeeeeee"));
 	EW[1] = temp;
 	temp.redefine(std::string("ehhhhhhhhhhhhhheseeooeeooeeooeesooeeooeeooeeooeueooeeooeeooeeoeeeeooeeooeeooeeeeeeeooeeooeeooeeeooeeoeeeoeeeoeemeeoeeeeeeeeeeeeseeehhhhhhhhhhhhe"));
 	EW[2] = temp;
-	temp.redefine(std::string("eeeeeeeeeeeeeeeeststuttttttutstsueueeemeemeeeueueeeeeeseeseeeeeeeeeeeeueeueeeeeeeeeemeeeeeemeeeemeeeueeeeeeueeemsbmbbbbbbbbbbmbseeeeeeeeeeeeeeee"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheststuttttttutstsueueeemeemeeeueueeeeeeseeseeeeeeeeeeeeueeueeeeeeeeeemeeeeeemeeeemeeeueeeeeeueeemsbmbbbbbbbbbbmbseeeeeeeeeeeeeeee"));
 	EW[3] = temp;
 	temp.redefine(std::string("ehhhhhhhhhhhhhhesersleeersleeeesueeseeeeeseeeeeueeesermlesermleeeeeseeseeseeseeeeeruleseruleseeemeeeeeseeeeeseemseeeersleeerslesehhhhhhhhhhhhhhe"));
 	EW[4] = temp;
@@ -181,9 +181,9 @@ codex::codex()
 	//SEW
 	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeeeeeeeeeesuemlxhhzlahormeueeseeeseeseeeseeeeshhhsrxehhhseeeeseeeseeseeeseemeulxhezlshzruemseeeeeseeseeeeesehhhhhoeeohhhhhe"));
 	SEW[0] = temp;
-	temp.redefine(std::string("eeeeeehhhheeeeeesttttteeeetttttsueeeeeemmeeeeeeueeeeeeesseeeeeeeeembbmbssbmbbmeeeeshhhhhhhhhhseemeueeeeeeeeeeuemseeebbbeebbbeeesehhheeseeseehhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhhesttttteeeetttttsueeeeeemmeeeeeeueeeeeeesseeeeeeeeembbmbssbmbbmeeeeshhhhhhhhhhseemeueeeeeeeeeeuemseeebbbeebbbeeesehhheeseeseehhhe"));
 	SEW[1] = temp;
-	temp.redefine(std::string("ehhehhhhhhhhehheseeueeeeeeeeueesueeeeeeeeeeeeeeueeexhhhhhhhhzeeeeeeeeeeeeeeeeeeeeeeahhhhhhhhgeeemeeueeeeeeeeueemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhehheseeueeeeeeeeueesueeeeeeeeeeeeeeueeexhhhhhhhhzeeeeeeeeeeeeeeeeeeeeeeahhhhhhhhgeeemeeueeeeeeeeueemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	p.activate(line(pos(64, 512), pos(448, 512)));
 	temp.police.push_back(p);
 	p.activate(line(pos(576, 512), pos(960, 512)));
@@ -193,9 +193,9 @@ codex::codex()
 	p.activate(line(pos(192, 320), pos(832, 320)));
 	temp.police.push_back(p);
 	SEW[2] = temp;
-	temp.redefine(std::string("eeeeeeeeeeeeeeeesttttttttttttttsueahhhzlrxhhhgeueeueeeeeeeeeeueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeembbbbbbeebbbbbbmeeeeeeseeseeeeeeeeeeeeseeseeeeee"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhhesttttttttttttttsueahhhzlrxhhhgeueeueeeeeeeeeeueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeembbbbbbeebbbbbbmeeeeeeseeseeeeeeeeeeeeseeseeeeee"));
 	SEW[3] = temp;
-	temp.redefine(std::string("ehhhhhehhehhhhheseeeeeseeseeeeesdhgeahfeedhgeahfeeueueueeueueueeeeeeeeeeeeeeeeeeeemememeemememeeahfedhseeshfedhgseeeeeseeseeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeseeseeeeesdhgeahfeedhgeahfeeueueueeueueueeeeeeeeeeeeeeeeeeeemememeemememeeahfedhseeshfedhgseeeeeseeseeeeesehhhhhoeeohhhhhe"));
 	SEW[4] = temp;
 	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeeeeeeeeeesuhhhhhhhhhhhoeeueeeeeeeeeeeeeeeeeeohhhhhhhhhhoeeeeeeeeeeeeeeeomeohhhhhhhhhhoeesmseeeeeeeeeeeeeseehhhhhoeeohhhhhe"));
 	p.activate(line(pos(64, 512), pos(448, 512)));
@@ -221,40 +221,40 @@ codex::codex()
 	p.activate(line(pos(256, 384), pos(768, 384)));
 	temp.police.push_back(p);
 	SEW[6] = temp;
-	temp.redefine(std::string("ehhehhehhehhehheseeseeseeseeseesueoeolsroeolseeueeeseeseeseeseeeeeeuroholurohoeeeeeeeeeeeeeeeeeeohhhhoeeeeohhhhosbbbbeeeeetttttseeeeehoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeseeseeseeseesueoeolsroeolseeueeeseeseeseeseeeeeeuroholurohoeeeeeeeeeeeeeeeeeeohhhhoeeeeohhhhosbbbbeeeeetttttseeeeehoeeohhhhhe"));
 	SEW[7] = temp;
-	temp.redefine(std::string("eeeeehhhhhheeeeeeeeeoeeeeeeoeeeeohhoeeeeeeeeohhoeeesrooeeoolseeeeeeseeseeseeseeeeeeoolseesrooeeemeeeeeseeseeeeemehhhhhseeshhhhheeeeeeeoeeoeeeeee"));
+	temp.redefine(std::string("ehhhhhhhhhheeeeeeeeeoeeeeeeoeeeeohhoeeeeeeeeohhoeeesrooeeoolseeeeeeseeseeseeseeeeeeoolseesrooeeemeeeeeseeseeeeemehhhhhseeshhhhheeeeeeeoeeoeeeeee"));
 	SEW[8] = temp;
-	temp.redefine(std::string("eheehhhhhhhheeheseoseeeeeeeesoesueeuoeeeeeeoueeoeeeeeeeeeeeeeeeeeooerooeeooleooeeruoeruhhuleoulemeruoeruuleoulememeeseeeeeeseemeeehhehoeeohehhee"));
+	temp.redefine(std::string("ehhhhhhhhhhheeheseoseeeeeeeesoesueeuoeeeeeeoueeoeeeeeeeeeeeeeeeeeooerooeeooleooeeruoeruhhuleoulemeruoeruuleoulememeeseeeeeeseemeeehhehoeeohehhee"));
 	SEW[9] = temp;
 	//SE
-	temp.redefine(std::string("ehhhhhhehhhhehheseeeeeeseeeeslessermeeeseooeeeeuseruhmeseeeomleeseeeeseuhoeesleesermeseeeeeesleeserseuhhhhhhmlemserseeeeeeeeeeesehhehhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeeseeeeslessermeeeseooeeeeuseruhmeseeeomleeseeeeseuhoeesleesermeseeeeeesleeserseuhhhhhhmlemserseeeeeeeeeeesehhehhoeeohhhhhe"));
 	SE[0] = temp;
-	temp.redefine(std::string("ehhheeeeeeeeehheseeettttttttulessrmeeemememeeeeusruhmesesesemleeseeeseueueuesleesrmesbbbbbbbsleesrseuhhhhhhhulemsrseeeeeeeeeeeesehehhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeettttttttulessrmeeemememeeeeusruhmesesesemleeseeeseueueuesleesrmesbbbbbbbsleesrseuhhhhhhhulemsrseeeeeeeeeeeesehehhhoeeohhhhhe"));
 	SE[1] = temp;
-	temp.redefine(std::string("ehhhhhhhhhhhheeeseeeeeeeeeeeeseeseuhhhhhhhhoeshuseseeeeeeeeeeseeseseohhhhhhhhueeseseeeeeeeeeeeeeseuhhhhhhmeeeeemseeeeeeeeseeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeeeeeeeeseeseuhhhhhhhhoeshuseseeeeeeeeeeseeseseohhhhhhhhueeseseeeeeeeeeeeeeseuhhhhhhmeeeeemseeeeeeeeseeeeesehhhhhoeeohhhhhe"));
 	SE[2] = temp;
-	temp.redefine(std::string("ehheeeeeeeeeehheseeutsttttstueesseeeeueeeeueeeeuseeeeeemmeeeeeeeseembbbssbbbmeeeseeuhhhhhhhhueeeseeeeeeeeeeeeeemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeutsttttstueesseeeeueeeeueeeeuseeeeeemmeeeeeeeseembbbssbbbmeeeseeuhhhhhhhhueeeseeeeeeeeeeeeeemseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	SE[3] = temp;
-	temp.redefine(std::string("ehhhehhhhehhhhheseeeseeeeseeeeessemesemeesememhuseseseseeseseseeseseseseeseseseeseseseseeseseseeehueueseeueseuemseeeeeseeeeseeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeseeeeseeeeessemesemeesememhuseseseseeseseseeseseseseeseseseeseseseseeseseseeehueueseeueseuemseeeeeseeeeseeesehhhhhoeeohhhhhe"));
 	SE[4] = temp;
 	//SW
-	temp.redefine(std::string("ehhehhhhehhhhhheserseeeeseeeeeesueeeeooeseeemleseermoeeesemhuleseerseeohueseeeeseerseeeeeesemlesmermhhhhhhueslesseeeeeeeeeeeslesehhhhhoeeohhehhe"));
+	temp.redefine(std::string("ehhehhhhhhhhhhheserseeeeseeeeeesueeeeooeseeemleseermoeeesemhuleseerseeohueseeeeseerseeeeeesemlesmermhhhhhhueslesseeeeeeeeeeeslesehhhhhoeeohhehhe"));
 	SW[0] = temp;
-	temp.redefine(std::string("ehheeeeeeeeehhheserutttttttteeesueeeemememeeemlseermesesesemhulseerseueueueseeeseersbbbbbbbsemlsmeruhhhhhhhueslsseeeeeeeeeeeeslsehhhhhoeeohhhehe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheserutttttttteeesueeeemememeeemlseermesesesemhulseerseueueueseeeseersbbbbbbbsemlsmeruhhhhhhhueslsseeeeeeeeeeeeslsehhhhhoeeohhhehe"));
 	SW[1] = temp;
-	temp.redefine(std::string("eeehhhhhhhhhhhheeeseeeeeeeeeeeesuhseohhhhhhhhueseeseeeeeeeeeeseseeuhhhhhhhhoeseseeeeeeeeeeeeesesmeeeeemhhhhhhuesseeeeeseeeeeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheeeseeeeeeeeeeeesuhseohhhhhhhhueseeseeeeeeeeeeseseeuhhhhhhhhoeseseeeeeeeeeeeeesesmeeeeemhhhhhhuesseeeeeseeeeeeeesehhhhhoeeohhhhhe"));
 	SW[2] = temp;
-	temp.redefine(std::string("ehheeeeeeeeeehheseeutsttttstueesueeeeueeeeueeeeseeeeeeemmeeeeeeseeembbbssbbbmeeseeeuhhhhhhhhueesmeeeeeeeeeeeeeesseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeutsttttstueesueeeeueeeeueeeeseeeeeeemmeeeeeeseeembbbssbbbmeeseeeuhhhhhhhhueesmeeeeeeeeeeeeeesseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	SW[3] = temp;
-	temp.redefine(std::string("ehhhhhehhhhehhheseeeeeseeeeseeesuhmemeseemesemeseeseseseeseseseseeseseseeseseseseeseseseesesesesmeueseueeseueuheseeeseeeeseeeeesehhhhhoeeohhhhhe"));
+	temp.redefine(std::string("ehhhhhhhhhhhhhheseeeeeseeeeseeesuhmemeseemesemeseeseseseeseseseseeseseseeseseseseeseseseesesesesmeueseueeseueuheseeeseeeeseeeeesehhhhhoeeohhhhhe"));
 	SW[4] = temp;
 	//NSE
 	temp.redefine(std::string("ehhhhhoeeohhhhheseeeeeeeeeeeeeesuhhhhhhhhhhhhoeuseeeeeeeeeeeeeeeseeohhhhhhhhoeeeseeeeeesseeeeeeeseohhhhhhhhhhhhmseeeeeeeeeeeeeesehhhhhoeeohhhhhe"));
 	NSE[0] = temp;
 	temp.redefine(std::string("ehehhhoeeohhhhheelseeeeeeeeeeeeselsemeeeeeemeeeuelueuhhhhhhueeeeeleeeeesseeeeoeeelmemhhhhhhmeeeeelseueeeeeeueeemelseeeeeeeeeeeesehehhhoeeohhhhhe"));
 	NSE[1] = temp;
-	temp.redefine(std::string("eeeeeeoeeohhhhhestttttseeeeeeeesseeeeeuhhhhhhmeuseeeeeeeeuheeseesembmeeeeeeutueeseseehmeeeeeeeeeseuhhhhhhoeeeeemseeeeeeeesbbbbbsehhhhhoeeueeeeee"));
+	temp.redefine(std::string("ehhhhhoeeohhhhhestttttseeeeeeeesseeeeeuhhhhhhmeuseeeeeeeeuheeseesembmeeeeeeutueeseseehmeeeeeeeeeseuhhhhhhoeeeeemseeeeeeeesbbbbbsehhhhhoeeueeeeee"));
 	NSE[2] = temp;
 	temp.redefine(std::string("eeeeeeoeeohehhheeeeeeseeeeeteeesehhhhueeeeemeeeuseeeeeeeeeeseeeeehhoeoeohhhehoeeseeeeeeeeeeseeeeehhhhmeeeeeueeemeeeeeseeeeeteeeseeeeeeoeeohhhhhe"));
 	NSE[3] = temp;

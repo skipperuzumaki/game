@@ -6,6 +6,10 @@
 
 background::background()
 {
+	surface.push_back(line(pos(0, 0), pos(5120, 0)));
+	surface.push_back(line(pos(0, 2880), pos(5120, 2880)));
+	ledge.push_back(line(pos(0, 0), pos(0, 2880)));
+	ledge.push_back(line(pos(5120, 0), pos(5120, 2880)));
 }
 
 
@@ -18,6 +22,10 @@ void background::updatelines()
 	killzone.clear();
 	police.clear();
 	interactibles.clear();
+	surface.push_back(line(pos(0, 0), pos(5120, 0)));
+	surface.push_back(line(pos(0, 2880), pos(5120, 2880)));
+	ledge.push_back(line(pos(0, 0), pos(0, 2880)));
+	ledge.push_back(line(pos(5120, 0), pos(5120, 2880)));
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {

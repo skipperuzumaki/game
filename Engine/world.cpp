@@ -84,7 +84,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {
