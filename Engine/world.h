@@ -29,5 +29,6 @@ public:
 	direction chfac = direction::west;
 	void reset();
 	~world();
+	rect screen = rect(pos(0, 0), pos(1024, 576));
 };
 

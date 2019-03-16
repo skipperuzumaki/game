@@ -344,45 +344,25 @@ void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 	if (r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight()))).area() == 0) {
 		return;
 	}
-	if (x < ScreenWidth / 2) {
-		int kx = x, ky = y, sy = 0;
-		int zx = x + s.getwidth(), zy = y + s.getheight();
-		if (r.x1 > x) {
-			kx = kx - x;
-		}
-		if (zx > r.x4) {
-			zx = zx - r.x4;
-		}
-		if (r.y1 > y) {
-			ky = ky - y;
-		}
-		if (zy > r.y4) {
-			zy = zy - r.y4;
-		}
-		for (; kx < zx; kx++) {
-			sy = ky;
-			for (; sy < zy; sy++) {
-				PutPixel(kx, sy, s.fetch(kx - x, sy - y));
-			}
-		}
+	int xstart = x;
+	int xend = x + s.getwidth();
+	int ystart = y;
+	int yend = y + s.getheight();
+	if (x < r.x1) {
+		xstart = r.x1;
 	}
-	else if (x > ScreenWidth / 2) {
-		rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
-		int kx = 0, ky = 0, kz = 0;
-		if (r.x1 > x) {
-			int kx = std::abs(r.x1 - x);
-		}
-		if (r.y1 > y) {
-			int kz = std::abs(r.y1 - y);
-		}
-		for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {
-			ky = kz;
-			for (int sy = drawloc.y1; sy < drawloc.y4; sy++) {
-				auto j = s.fetch(kx, ky);
-				PutPixel(sx, sy, j);
-				ky++;
-			}
-			kx++;
+	if (y < r.y1) {
+		ystart = r.y1;
+	}
+	if (xend > r.x4) {
+		xend = r.x4;
+	}
+	if (yend > r.y4) {
+		yend = r.y4;
+	}
+	for (int sx = xstart; sx < xend; sx++) {
+		for (int sy = ystart; sy < yend; sy++) {
+			PutPixel(sx, sy, s.fetch(sx - x, sy - y));
 		}
 	}
 }
@@ -392,50 +372,28 @@ void Graphics::drawsprite(int x, int y, rect r, sprite & s, Color chroma)
 	if (r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight()))).area() == 0) {
 		return;
 	}
-	if (x < ScreenWidth / 2) {
-		int kx = x, ky = y, sy = 0;
-		int zx = x + s.getwidth(), zy = y + s.getheight();
-		if (r.x1 > x) {
-			kx = kx - x;
-		}
-		if (zx > r.x4) {
-			zx = zx - r.x4;
-		}
-		if (r.y1 > y) {
-			ky = ky - y;
-		}
-		if (zy > r.y4) {
-			zy = zy - r.y4;
-		}
-		for (; kx < zx; kx++) {
-			sy = ky;
-			for (; sy < zy; sy++) {
-				auto j = s.fetch(kx - x, sy - y);
-				if (j != chroma) {
-					PutPixel(kx, sy, j);
-				}
-			}
-		}
+	int xstart = x;
+	int xend = x + s.getwidth();
+	int ystart = y;
+	int yend = y + s.getheight();
+	if (x < r.x1) {
+		xstart = r.x1;
 	}
-	else if (x > ScreenWidth / 2) {
-		rect drawloc = r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight())));
-		int kx = 0, ky = 0, kz = 0;
-		if (r.x1 > x) {
-			int kx = std::abs(r.x1 - x);
-		}
-		if (r.y1 > y) {
-			int kz = std::abs(r.y1 - y);
-		}
-		for (int sx = drawloc.x1; sx < drawloc.x4; sx++) {
-			ky = kz;
-			for (int sy = drawloc.y1; sy < drawloc.y4; sy++) {
-				auto j = s.fetch(kx, ky);
-				if (j != chroma) {
-					PutPixel(sx, sy, j);
-				}
-				ky++;
+	if (y < r.y1) {
+		ystart = r.y1;
+	}
+	if (xend > r.x4) {
+		xend = r.x4;
+	}
+	if (yend > r.y4) {
+		yend = r.y4;
+	}
+	for (int sx = xstart; sx < xend; sx++) {
+		for (int sy = ystart; sy < yend; sy++) {
+			auto k = s.fetch(sx - x, sy - y);
+			if (k != chroma) {
+				PutPixel(sx, sy, k);
 			}
-			kx++;
 		}
 	}
 }

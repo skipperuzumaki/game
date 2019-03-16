@@ -34,6 +34,7 @@ public:
 	void cleanlevel();
 	void generateenvironments();
 	void move(int vx, int vy);
+	void moveto(pos p);
 	int start;
 	int end;
 	int height = 2880;

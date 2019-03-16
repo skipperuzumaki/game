@@ -6,10 +6,6 @@
 
 background::background()
 {
-	surface.push_back(line(pos(0, 0), pos(5120, 0)));
-	surface.push_back(line(pos(0, 2880), pos(5120, 2880)));
-	ledge.push_back(line(pos(0, 0), pos(0, 2880)));
-	ledge.push_back(line(pos(5120, 0), pos(5120, 2880)));
 }
 
 
@@ -889,6 +885,13 @@ void background::move(int vx, int vy)
 {
 	loc.x -= vx;
 	loc.y -= vy;
+	updatelines();
+}
+
+void background::moveto(pos p)
+{
+	loc.x = p.x;
+	loc.y = p.y;
 	updatelines();
 }
 

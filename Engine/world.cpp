@@ -47,7 +47,12 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 		if (kbd.KeyIsPressed(VK_DOWN)) {
 			vy = 3.0f;
 		}
+		if (!screen.inside(charecter.pos + pos(41, 55)) || !screen.inside(charecter.pos + pos(-1, -1))) {
+			vx = 0;
+			vy = 0;
+		}
 		//movements
+		pos temp = bkgr.loc;
 		bkgr.move(int(vx), int(vy));
 		if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
 			bkgr.move(-int(vx), -int(vy));
@@ -84,7 +89,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {
