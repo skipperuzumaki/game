@@ -89,7 +89,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
+	gfx.drawsprite(bkgr.loc.x, bkgr.loc.y, screen, bkgr.level);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {
@@ -148,15 +148,7 @@ void world::draw(Graphics & gfx ,rect screen)
 					}
 				}
 			}
-			//gfx.drawline(bkgr.police.at(i).sight);
-			//gfx.drawline(bkgr.police.at(i).die);
 		}
-	}
-	for (int i = 0; i < bkgr.surface.size(); i++) {
-		gfx.drawline(bkgr.surface.at(i),Colors::Green);
-	}
-	for (int i = 0; i < bkgr.ledge.size(); i++) {
-		gfx.drawline(bkgr.ledge.at(i),Colors::Blue);
 	}
 	for (int i = 0; i < bkgr.interactibles.size(); i++) {
 		gfx.drawline(bkgr.interactibles.at(i), Colors::Gray);
@@ -179,7 +171,7 @@ void world::configure()
 	bkgr.generateenvironments();
 	bkgr.polbkup();
 	bkgr.calcstend();
-	//bkgr.constructlevelsprite();
+	bkgr.constructlevelsprite();
 }
 
 world::world(avatar& a, background& b)
@@ -190,7 +182,7 @@ world::world(avatar& a, background& b)
 	bkgr.generateenvironments();
 	bkgr.polbkup();
 	bkgr.calcstend();
-	//bkgr.constructlevelsprite();
+	bkgr.constructlevelsprite();
 }
 
 

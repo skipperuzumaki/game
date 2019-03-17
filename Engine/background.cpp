@@ -909,7 +909,7 @@ void background::constructlevelsprite()
 		for (int x = 0; x < level.getwidth(); x++) {
 			int h = x / sectors.at(1).background.getwidth();
 			int k = y / sectors.at(1).background.getheight();
-			level.load(x, y, sectors.at(((k * 5) + h)).background.fetch((x - h), (y - k)));
+			level.load(x, y, sectors.at(((k * 5) + h)).background.fetch((x - (h * 1024)), (y - (k * 576))));
 		}
 	}
 }

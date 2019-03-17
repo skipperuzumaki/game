@@ -17,15 +17,18 @@ public:
 	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
+	void addtile(int x, int y,sprite &s) {
+		for (int sx = 0; sx < 64; sx++) {
+			for (int sy = 0; sy < 64; sy++) {
+				background.load(x + sx, y + sy, s.fetch(sx, sy));
+			}
+		}
+	}
 	environment() = default;
 	~environment() = default;
 	void redefine(std::string layout) {
 		assert(layout.length() == 144);
-		surface.clear();
-		ledge.clear();
-		police.clear();
-		killzone.clear();
-		interactibles.clear();
+		clear();
 		for (int x = 0; x < 16; x++) {
 			for (int y = 0; y < 9; y++) {
 				char k = layout.at((16 * y) + x);
@@ -37,50 +40,61 @@ public:
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(122)) {//z
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(120)) {//x
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(115)) {//s
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(104)) {//h
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(109)) {//m
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(117)) {//u
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(97)) {//a
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(103)) {//g
 					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(100)) {//d
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
 					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(102)) {//f
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
 					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
 				else if (k == char(114)) {//r
 					killzone.push_back(line(pos((x * 64) + 64, (y * 64) + 2), pos((x * 64) + 64, (y * 64) + 62)));
@@ -98,6 +112,7 @@ public:
 		}
 	}
 	void clear() {
+		background.solidcolor(Colors::Magenta);
 		surface.clear();
 		ledge.clear();
 		police.clear();

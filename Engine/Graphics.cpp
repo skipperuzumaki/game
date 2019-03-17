@@ -341,9 +341,6 @@ void Graphics::drawline(line & l, Color c)
 
 void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 {
-	if (r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight()))).area() == 0) {
-		return;
-	}
 	int xstart = x;
 	int xend = x + s.getwidth();
 	int ystart = y;
@@ -369,9 +366,6 @@ void Graphics::drawspritenonchroma(int x, int y, rect r, sprite & s)
 
 void Graphics::drawsprite(int x, int y, rect r, sprite & s, Color chroma)
 {
-	if (r.cross(rect(pos(x, y), pos(x + s.getwidth(), y + s.getheight()))).area() == 0) {
-		return;
-	}
 	int xstart = x;
 	int xend = x + s.getwidth();
 	int ystart = y;

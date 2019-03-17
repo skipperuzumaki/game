@@ -148,6 +148,7 @@
     <ClInclude Include="DXErr.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="environment.h" />
+    <ClInclude Include="environment_elements.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />

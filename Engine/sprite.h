@@ -14,6 +14,7 @@ public:
 	Color fetch(int x, int y) const;
 	int getwidth();
 	int getheight();
+	void solidcolor(Color c);
 	sprite fliphorizontal() const;
 	sprite get_center(int x, int y);
 private:

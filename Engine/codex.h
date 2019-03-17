@@ -52,6 +52,7 @@ codex::codex()
 {
 	enemy p;
 	environment temp;
+	temp.clear();
 	//E
 	temp.redefine(std::string("ehhhhhhhhhhhhhheseesleeersleeeesszeseeeeeseeeeeuseesermlesermeeeseeseeseeseeseeeseruleseruleseeeseeeeeseeeeeseemsleeersleeeeseesehhhhhhhhhhhhhhe"));
 	E[0] = temp;

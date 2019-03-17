@@ -91,6 +91,15 @@ int sprite::getheight()
 	return height;
 }
 
+void sprite::solidcolor(Color c)
+{
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			load(x, y, c);
+		}
+	}
+}
+
 sprite sprite::fliphorizontal() const
 {
 	sprite temp = sprite(width,height);
