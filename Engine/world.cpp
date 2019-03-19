@@ -31,21 +31,21 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			charecter.won = true;
 		}
 		if (kbd.KeyIsPressed(VK_RIGHT)) {
-			vx = 3.0f;
+			vx = 3.0f*60.0f*dt;
 			chfac = direction::west;
 		}
 		if (kbd.KeyIsPressed(VK_UP)) {
 			if (!upmtm) {
-				vy = -6.0f;
+				vy = -4.0f*60.0f*dt;
 				upmtm = true;
 			}
 		}
 		if (kbd.KeyIsPressed(VK_LEFT)) {
-			vx = -3.0f;
+			vx = -3.0f*60.0f*dt;
 			chfac = direction::east;
 		}
 		if (kbd.KeyIsPressed(VK_DOWN)) {
-			vy = 3.0f;
+			vy = 3.0f*60.0f*dt;
 		}
 		if (!screen.inside(charecter.pos + pos(41, 55)) || !screen.inside(charecter.pos + pos(-1, -1))) {
 			vx = 0;
@@ -81,7 +81,7 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			vx = 0.0f;
 			upmtm = false;
 		}
-		else { vy += 0.15f; }//seems fine enough
+		else { vy += 0.15f*60.0f*dt; }//seems fine enough
 	}
 }
 

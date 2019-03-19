@@ -7,6 +7,7 @@ class codex
 public:
 	environment starting;
 	environment ending;
+	environment NS;
 	environment N[3];
 	environment S[3];
 	environment E[3];
@@ -311,7 +312,8 @@ codex::codex()
 	ending = temp;
 	temp.redefine(std::string("oooooooooooooooooeeeeeeeeeeeeeeooeeeeeeeeeeeeeeoeeeoeeeeeeeeoeeeeeeoeeeeeeeeoeeeeeeoeeeeeeeeoeeeoeeooooooooooeeooeeeeeeeeeeeeeeooooooooeeooooooo"));
 	starting = temp;
-	
+	temp.redefine(std::string("oooooooeeooooooooeeeeeoeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeeeeeeeooeeooooooooooeeooeeeeeeeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeoeeeeeooooooooeeooooooo"));
+	NS = temp;
 }
 
 /*

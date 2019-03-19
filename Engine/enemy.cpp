@@ -3,19 +3,19 @@
 void enemy::update(float dt)
 {
 	if (facing == east) {
-		loc.x += int(1);
+		loc.x += int(1*60.0f*dt);
 	}
 	else if (facing == west) {
-		loc.x -= int(1);
+		loc.x -= int(1 * 60.0f*dt);
 	}
 	pos center = loc + pos(32,15);
 	pos siend;
 	if (facing == east) {
-		siend = pos(center.x + 160, center.y);
+		siend = pos(center.x + 96, center.y);
 		sight = { center,siend };
 	}
 	else if (facing == west) {
-		siend = pos(center.x - 160, center.y);
+		siend = pos(center.x - 96, center.y);
 		sight = { siend,center };
 	}
 	siend = pos(loc.x + 64, loc.y + 64);

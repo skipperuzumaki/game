@@ -868,6 +868,10 @@ void background::generateenvironments()
 				continue;
 			}
 		}
+		else if (hasopening(i, direction::north) && hasopening(i, direction::south)) {
+			sectors.at(i) = c.NS;
+			continue;
+		}
 		else if (hasopening(i, direction::north)) {
 			std::random_shuffle(&c.N[0], &c.N[2]);
 			sectors.at(i) = c.N[0];
