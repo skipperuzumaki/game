@@ -98,15 +98,19 @@ public:
 				}
 				else if (k == char(114)) {//r
 					killzone.push_back(line(pos((x * 64) + 64, (y * 64) + 2), pos((x * 64) + 64, (y * 64) + 62)));
+					addtile(x * 64, y * 64, sprite("spike_right.bmp"));
 				}
 				else if (k == char(108)) {//l
 					killzone.push_back(line(pos(x * 64, (y * 64) + 2), pos(x * 64, (y * 64) + 62)));
+					addtile(x * 64, y * 64, sprite("spike_left.bmp"));
 				}
 				else if (k == char(98)) {//b
 					killzone.push_back(line(pos((x * 64) + 2, (y * 64) + 64), pos((x * 64) + 62, (y * 64) + 64)));
+					addtile(x * 64, y * 64, sprite("spike_down.bmp"));
 				}
 				else if (k == char(116)) {//t
 					killzone.push_back(line(pos((x * 64) + 2, y * 64), pos((x * 64) + 62, y * 64)));
+					addtile(x * 64, y * 64, sprite("spike_top.bmp"));
 				}
 			}
 		}

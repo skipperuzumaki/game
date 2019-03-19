@@ -873,13 +873,11 @@ void background::generateenvironments()
 			continue;
 		}
 		else if (hasopening(i, direction::north)) {
-			std::random_shuffle(&c.N[0], &c.N[2]);
-			sectors.at(i) = c.N[0];
+			sectors.at(i) = c.N;
 			continue;
 		}
 		else if (hasopening(i, direction::south)) {
-			std::random_shuffle(&c.S[0], &c.S[2]);
-			sectors.at(i) = c.S[0];
+			sectors.at(i) = c.S;
 			continue;
 		}
 	}

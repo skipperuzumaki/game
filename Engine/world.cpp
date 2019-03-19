@@ -89,6 +89,7 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
+	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	gfx.drawsprite(bkgr.loc.x, bkgr.loc.y, screen, bkgr.level);
 	if (!charecter.dead) {
 		if (dying < 0) {
@@ -152,9 +153,6 @@ void world::draw(Graphics & gfx ,rect screen)
 	}
 	for (int i = 0; i < bkgr.interactibles.size(); i++) {
 		gfx.drawline(bkgr.interactibles.at(i), Colors::Gray);
-	}
-	for (int i = 0; i < bkgr.killzone.size(); i++) {
-		gfx.drawline(bkgr.killzone.at(i));
 	}
 	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }

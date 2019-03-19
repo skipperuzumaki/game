@@ -8,8 +8,8 @@ public:
 	environment starting;
 	environment ending;
 	environment NS;
-	environment N[3];
-	environment S[3];
+	environment N;
+	environment S;
 	environment E[3];
 	environment W[3];
 	environment EW[5];
@@ -55,7 +55,7 @@ codex::codex()
 	environment temp;
 	temp.clear();
 	//E
-	temp.redefine(std::string("oooooooooooooooooeeoleeeroleeeeoooeoeeeeeoeeeeeooeeoeroleorroeeeoeeoeeoeeoeeoeeeoeroleoeroleoeeeoeeeeeoeeeeeoeeoeleeeroleeeeoeeooooooooooooooooo"));
+	temp.redefine(std::string("oooooooooooooooooeeoleeeroleeeeoooeoeeeeeoeeeeeooeeoeroleoeroeeeoeeoeeoeeoeeoeeeoeroleoeroleoeeeoeeeeeoeeeeeoeeooleeeroleeeeoeeooooooooooooooooo"));
 	E[0] = temp;
 	temp.redefine(std::string("oooooooooooooooooeeoeeoeeoeeoeeooeeoeeoeeoeeoeeooeeoeeoeeoeeoeeeoeeteeteeteeteeeoeeeeeeeeeeeeeeeoeeeeeeeeeeeeeoooobbbbbbbbbbbboooooooooooooooooo"));
 	E[1] = temp;
@@ -91,7 +91,7 @@ codex::codex()
 	temp.police.push_back(p);
 	NE[4] = temp;
 	//W
-	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeolloeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeereoooooooooooooooo"));
+	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeoeloeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeerooooooooooooooooo"));
 	W[0] = temp;
 	temp.redefine(std::string("oooooooooooooooooeeoeeoeeoeeoeeooeeoeeoeeoeeoeeoeeeoeeoeeoeeoeeoeeeteeteeteeteeoeeeeeeeeeeeeeeeoooeeeeeeeeeeeeeooobbbbbbbbbbbboooooooooooooooooo"));
 	W[1] = temp;
@@ -314,6 +314,10 @@ codex::codex()
 	starting = temp;
 	temp.redefine(std::string("oooooooeeooooooooeeeeeoeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeeeeeeeooeeooooooooooeeooeeeeeeeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeoeeeeeooooooooeeooooooo"));
 	NS = temp;
+	temp.redefine(std::string("oooooooooooooooooeeeeeoeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeeeeeeeooeeooooooooooeeooeeeeeeeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeoeeeeeooooooooeeooooooo"));
+	S = temp;
+	temp.redefine(std::string("oooooooeeooooooooeeeeeoeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeeeeeeeooeeooooooooooeeooeeeeeeeeeeeoeeooeeoeeooooeeoeeooeeoeeeeeoeeeeeooooooooooooooooo")); \
+	N = temp;
 }
 
 /*
