@@ -20,7 +20,10 @@ public:
 	void addtile(int x, int y,sprite &s) {
 		for (int sx = 0; sx < 64; sx++) {
 			for (int sy = 0; sy < 64; sy++) {
-				background.load(x + sx, y + sy, s.fetch(sx, sy));
+				auto k = s.fetch(sx, sy);
+				if (k != Colors::Magenta) {
+					background.load(x + sx, y + sy, k);
+				}
 			}
 		}
 	}
@@ -116,7 +119,7 @@ public:
 		}
 	}
 	void clear() {
-		background.solidcolor(Colors::Magenta);
+		background = sprite("castle_bg.bmp");
 		surface.clear();
 		ledge.clear();
 		police.clear();

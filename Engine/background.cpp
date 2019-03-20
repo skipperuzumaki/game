@@ -119,7 +119,7 @@ void background::generateroute()
 	//this does the job
 	srand(int(time(NULL)));
 	int q, w, e, current;
-	q = rand() % 5;
+	q = (rand() % 3) + 1;
 	current = q;
 	openings.at(current).push_back(direction::start);
 	openings.at(current).push_back(direction::crit);
@@ -392,7 +392,7 @@ void background::generateroute()
 	if (w == 0) {
 		while (true) {
 			e = rand() % 2;
-			if (e == 0 || current == 24) {
+			if (e == 0 || current == 23) {
 				openings.at(current).push_back(direction::end);
 				openings.at(current).push_back(direction::crit);
 				break;
@@ -410,7 +410,7 @@ void background::generateroute()
 	else if (w == 1) {
 		while (true) {
 			e = rand() % 2;
-			if (e == 0 || current == 20) {
+			if (e == 0 || current == 21) {
 				openings.at(current).push_back(direction::end);
 				openings.at(current).push_back(direction::crit);
 				break;
