@@ -20,8 +20,8 @@ public:
 	std::vector<std::vector<direction>> openings;
 	std::vector<line> surface;
 	std::vector<line> ledge;
-	std::vector<line> interactibles;
-	std::vector<line> interactiblesbackup;
+	std::vector<pos> interactibles;
+	std::vector<pos> interactiblesbackup;
 	std::vector<enemy> police;
 	std::vector<enemy> policebackup;
 	line endpoint;

@@ -21,7 +21,7 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			}
 		}
 		for (int i = 0; i < bkgr.interactibles.size(); i++) {
-			if (charecter.extent.boundrycrossing(bkgr.interactibles.at(i))) {
+			if (charecter.extent.inside(bkgr.interactibles.at(i))) {
 				charecter.points++;
 				bkgr.interactiblesbackup.erase(bkgr.interactiblesbackup.begin() + i);
 			}
@@ -36,7 +36,7 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 		}
 		if (kbd.KeyIsPressed(VK_UP)) {
 			if (!upmtm) {
-				vy = -4.0f*60.0f*dt;
+				vy = -4.5f*60.0f*dt;
 				upmtm = true;
 			}
 		}
@@ -81,7 +81,7 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			vx = 0.0f;
 			upmtm = false;
 		}
-		else { vy += 0.15f*60.0f*dt; }//seems fine enough
+		else { vy += 0.30f*60.0f*dt; }//seems fine enough
 	}
 }
 
@@ -150,9 +150,6 @@ void world::draw(Graphics & gfx ,rect screen)
 				}
 			}
 		}
-	}
-	for (int i = 0; i < bkgr.interactibles.size(); i++) {
-		gfx.drawline(bkgr.interactibles.at(i), Colors::Gray);
 	}
 	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }

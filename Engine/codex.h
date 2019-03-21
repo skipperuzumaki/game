@@ -62,7 +62,7 @@ codex::codex()
 	temp.redefine(std::string("ooooooooooooooooottttttttttttttooeeeeeeeeeeeeeeooeeeeeeeeeeeeeeeoleoeeeoeeeeeeeeoeeeeeeeeeoeeoeeoeeeeeeeeeeeeeeooobbbbbbbbbbbbbooooooooooooooooo"));
 	E[2] = temp;
 	//NE
-	temp.redefine(std::string("oooooooeeooooooootttteeeeeettttooeeeeeeeeeeeeeeooeooeeeeeeeeooeeoeeoeeeooeeeoeeeoeeoeeeeeeeeoeeeoeeooeeeeeeooeeooeeeeeeeeeeeeeeooooooooooooooooo"));
+	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeoleoeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeerooooooooooooooooo"));
 	p.activate(line(pos(64, 512), pos(960, 512)));
 	temp.police.push_back(p);
 	NE[0] = temp;
@@ -91,7 +91,7 @@ codex::codex()
 	temp.police.push_back(p);
 	NE[4] = temp;
 	//W
-	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeoeloeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeerooooooooooooooooo"));
+	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeoleoeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeerooooooooooooooooo"));
 	W[0] = temp;
 	temp.redefine(std::string("oooooooooooooooooeeoeeoeeoeeoeeooeeoeeoeeoeeoeeoeeeoeeoeeoeeoeeoeeeteeteeteeteeoeeeeeeeeeeeeeeeoooeeeeeeeeeeeeeooobbbbbbbbbbbboooooooooooooooooo"));
 	W[1] = temp;

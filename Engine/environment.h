@@ -13,7 +13,7 @@ class environment
 public:
 	sprite background = sprite(1024, 576);
 	std::vector<enemy> police;
-	std::vector<line> interactibles;
+	std::vector<pos> interactibles;
 	std::vector<line> killzone;
 	std::vector<line> surface;
 	std::vector<line> ledge;
@@ -24,6 +24,15 @@ public:
 				if (k != Colors::Magenta) {
 					background.load(x + sx, y + sy, k);
 				}
+			}
+		}
+	}
+	void addinteract(std::vector<std::pair<int,int>> vec) {
+		for (int i = 0; i < vec.size(); i++) {
+			int x = vec.at(i).first / 16;
+			int y = vec.at(i).first % 16;
+			for (int j = 0; j < vec.at(i).second; j++) {
+				interactibles.push_back(pos((x * 64) + 32, (y * 64) + 32));
 			}
 		}
 	}

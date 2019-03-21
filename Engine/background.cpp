@@ -18,10 +18,6 @@ void background::updatelines()
 	killzone.clear();
 	police.clear();
 	interactibles.clear();
-	surface.push_back(line(pos(0, 0), pos(5120, 0)));
-	surface.push_back(line(pos(0, 2880), pos(5120, 2880)));
-	ledge.push_back(line(pos(0, 0), pos(0, 2880)));
-	ledge.push_back(line(pos(5120, 0), pos(5120, 2880)));
 	int const wt = 1024;
 	int const ht = 576;
 	for (int i = 0; i < 25; i++) {
@@ -55,8 +51,7 @@ void background::updatelines()
 		police.push_back(temp);
 	}
 	for (int j = 0; j < interactiblesbackup.size(); j++) {
-		line l = line((interactiblesbackup.at(j).start + loc), (interactiblesbackup.at(j).end + loc));
-		interactibles.push_back(l);
+		interactibles.push_back(interactiblesbackup.at(j) + loc);
 	}
 	endpoint.start = epbkup.start + loc;
 	endpoint.end = epbkup.end + loc;
@@ -931,8 +926,7 @@ void background::polbkup()
 			policebackup.push_back(temp);
 		}
 		for (int j = 0; j < sectors.at(i).interactibles.size(); j++) {
-			line l = { sectors.at(i).interactibles.at(j).start + offset,sectors.at(i).interactibles.at(j).end + offset };
-			interactiblesbackup.push_back(l);
+			interactiblesbackup.push_back(sectors.at(i).interactibles.at(j) + offset);
 		}
 	}
 }
