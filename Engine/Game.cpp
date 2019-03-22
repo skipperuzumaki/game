@@ -53,6 +53,7 @@ void Game::UpdateModel()
 	if (started) {
 		level.update(wnd.kbd, gfx, frameduration);
 		if (level.charecter.dead) {
+			disp_points = level.charecter.points;
 			level.charecter.points = 0;
 			level.reconfigure();
 			started = false;
@@ -68,12 +69,17 @@ void Game::UpdateModel()
 			started = true;
 			//TODO add loading screen
 		}
+		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
+			cred = true;
+		}
+		else {
+			cred = false;
+		}
 	}
 	else {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			started = true;
 			winstate = false;
-			//TODO add loading screen
 			level.reconfigure();
 		}
 	}
@@ -91,6 +97,9 @@ void Game::ComposeFrame()
 {
 	if (started) {
 		level.draw(gfx, screen);
+	}
+	else if (cred) {
+		gfx.drawspritenonchroma(0, 0, credits);
 	}
 	else if (!winstate) {
 		gfx.drawspritenonchroma(0, 0, titlescreen);

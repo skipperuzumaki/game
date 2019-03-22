@@ -151,6 +151,12 @@ void world::draw(Graphics & gfx ,rect screen)
 			}
 		}
 	}
+	for (int i = 0; i < bkgr.interactibles.size(); i++) {
+		auto k = bkgr.interactibles.at(i);
+		if (screen.inside(k)) {
+			gfx.drawline(line(k, k + pos(10, 0)), Colors::White);
+		}//temp fix
+	}
 	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }
 

@@ -27,15 +27,6 @@ public:
 			}
 		}
 	}
-	void addinteract(std::vector<std::pair<int,int>> vec) {
-		for (int i = 0; i < vec.size(); i++) {
-			int x = vec.at(i).first / 16;
-			int y = vec.at(i).first % 16;
-			for (int j = 0; j < vec.at(i).second; j++) {
-				interactibles.push_back(pos((x * 64) + 32, (y * 64) + 32));
-			}
-		}
-	}
 	environment() = default;
 	~environment() = default;
 	void redefine(std::string layout) {
@@ -54,59 +45,15 @@ public:
 					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
 					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
 				}
-				else if (k == char(122)) {//z
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
+				else if (k == 'i') {
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
 				}
-				else if (k == char(120)) {//x
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(115)) {//s
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(104)) {//h
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(109)) {//m
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(117)) {//u
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(97)) {//a
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(103)) {//g
-					surface.push_back(line(pos(x * 64, y * 64), pos((x * 64) + 64, y * 64)));
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(100)) {//d
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					ledge.push_back(line(pos(x * 64, y * 64), pos(x * 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
-				}
-				else if (k == char(102)) {//f
-					surface.push_back(line(pos(x * 64, (y * 64) + 64), pos((x * 64) + 64, (y * 64) + 64)));
-					ledge.push_back(line(pos((x * 64) + 64, y * 64), pos((x * 64) + 64, (y * 64) + 64)));
-					addtile(x * 64, y * 64, sprite("full_sq_tile.bmp"));
+				else if (k == 'c') {
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
+					interactibles.push_back((pos((x * 64) + 32, (y * 64) + 32)));
 				}
 				else if (k == char(114)) {//r
 					killzone.push_back(line(pos((x * 64) + 64, (y * 64) + 2), pos((x * 64) + 64, (y * 64) + 62)));

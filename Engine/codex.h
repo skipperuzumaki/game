@@ -64,7 +64,6 @@ codex::codex()
 	//NE
 	temp.redefine(std::string("oooooooooooooooooeeeeroleeeroeeooeeeeeoeeeeeoeooeeeoleoeroleoeeoeeeoeeoeeoeeoeeoeeeoeroleoeroleooeeoeeeeeoeeeeeooeeoeeeeroleeerooooooooooooooooo"));
 	p.activate(line(pos(64, 512), pos(960, 512)));
-	temp.police.push_back(p);
 	NE[0] = temp;
 	temp.redefine(std::string("oooooooeeooooooooeeeeeeeeeeeeeeoooooooeeeeeeeeeooeeeeeeeeeeeeeeeooooeeeoooooooeeoeeeeeeeeeeeeeeeooooooeeeeeeeeeooeeeeeeeeeeeeeeooooooooooooooooo"));
 	p.activate(line(pos(64, 128), pos(384, 128)));
