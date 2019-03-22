@@ -49,12 +49,12 @@ private:
 	float frameduration = -1.0f;
 	std::string savelocation;
 	bool started = false;
-	bool winstate = false;
+	bool pointstate = false;
 	bool cred = false;
 	int disp_points = -1;
 	world level;
 	sprite titlescreen = sprite(std::string("castle_bg.bmp"));//temporarily
-	sprite winscreen = sprite(std::string("castle_bg.bmp"));//temporarily
+	sprite pointscreen = sprite(std::string("castle_bg.bmp"));//temporarily
 	sprite credits = sprite(std::string("game_credits.bmp"));
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 };

@@ -57,17 +57,18 @@ void Game::UpdateModel()
 			level.charecter.points = 0;
 			level.reconfigure();
 			started = false;
+			pointstate = true;
 		}
 		if (level.charecter.won) {
-			started = false;
 			level.charecter.won = false;
-			winstate = true;
+			started = true;
+			level.reconfigure();
 		}
 	}
-	else if (!winstate) {
+	else if (!pointstate) {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			started = true;
-			//TODO add loading screen
+			disp_points = -1;
 		}
 		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
 			cred = true;
@@ -78,9 +79,8 @@ void Game::UpdateModel()
 	}
 	else {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
-			started = true;
-			winstate = false;
-			level.reconfigure();
+			pointstate = false;
+			disp_points = -1;
 		}
 	}
 }
@@ -101,10 +101,24 @@ void Game::ComposeFrame()
 	else if (cred) {
 		gfx.drawspritenonchroma(0, 0, credits);
 	}
-	else if (!winstate) {
+	else if (!pointstate) {
 		gfx.drawspritenonchroma(0, 0, titlescreen);
 	}
 	else {
-		gfx.drawspritenonchroma(0, 0, winscreen);
+		if (disp_points != -1) {
+			int k = 10000000;
+			pos p = pos(64, 64);
+			int j = 0;
+			while (k > 0) {
+				j = disp_points % k;
+				k = k / 10;
+				if (k != 0) {
+					j = j / k;
+				}
+				gfx.drawnum(p, j);
+				p = p + pos(64, 0);
+			}
+		}
 	}
+
 }

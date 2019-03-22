@@ -89,7 +89,6 @@ void world::draw(Graphics & gfx ,rect screen)
 {
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
-	//gfx.drawspritenonchroma(0, 0, sprites::castle_bg);
 	gfx.drawsprite(bkgr.loc.x, bkgr.loc.y, screen, bkgr.level);
 	if (!charecter.dead) {
 		if (dying < 0) {

@@ -318,6 +318,89 @@ void Graphics::PutPixel( int x,int y,Color c )
 	//check rect.cross for any unexplainable assert error
 }
 
+void Graphics::drawnum(pos p, int n)
+{
+	line lines[7];
+	lines[0] = line(p, p + pos(32, 0));
+	lines[1] = line(p, p + pos(0, 32));
+	lines[2] = line(p + pos(32, 0), p + pos(32, 32));
+	lines[3] = line(p + pos(0, 32), p + pos(32, 32));
+	lines[4] = line(p + pos(0, 32), p + pos(0, 64));
+	lines[5] = line(p + pos(32, 32), p + pos(32, 64));
+	lines[6] = line(p + pos(0, 64), p + pos(32, 64));
+	assert(n < 10);
+	assert(n > -1);
+	if (n == 0) {
+		drawline(lines[0]);
+		drawline(lines[1]);
+		drawline(lines[2]);
+		drawline(lines[4]);
+		drawline(lines[5]);
+		drawline(lines[6]);
+	}
+	else if (n == 1) {
+		drawline(lines[2]);
+		drawline(lines[5]);
+	}
+	else if (n == 2) {
+		drawline(lines[0]);
+		drawline(lines[2]);
+		drawline(lines[3]);
+		drawline(lines[4]);
+		drawline(lines[6]);
+	}
+	else if (n == 3) {
+		drawline(lines[0]);
+		drawline(lines[2]);
+		drawline(lines[3]);
+		drawline(lines[5]);
+		drawline(lines[6]);
+	}
+	else if (n == 4) {
+		drawline(lines[1]);
+		drawline(lines[2]);
+		drawline(lines[3]);
+		drawline(lines[5]);
+	}
+	else if (n == 5) {
+		drawline(lines[0]);
+		drawline(lines[1]);
+		drawline(lines[3]);
+		drawline(lines[4]);
+		drawline(lines[6]);
+	}
+	else if (n == 6) {
+		drawline(lines[0]);
+		drawline(lines[1]);
+		drawline(lines[3]);
+		drawline(lines[4]);
+		drawline(lines[5]);
+		drawline(lines[6]);
+	}
+	else if (n == 7) {
+		drawline(lines[0]);
+		drawline(lines[2]);
+		drawline(lines[5]);
+	}
+	else if (n == 8) {
+		drawline(lines[0]);
+		drawline(lines[1]);
+		drawline(lines[2]);
+		drawline(lines[3]);
+		drawline(lines[4]);
+		drawline(lines[5]);
+		drawline(lines[6]);
+	}
+	else if (n == 9) {
+		drawline(lines[0]);
+		drawline(lines[1]);
+		drawline(lines[2]);
+		drawline(lines[3]);
+		drawline(lines[5]);
+		drawline(lines[6]);
+	}
+}
+
 void Graphics::drawline(line & l, Color c)
 {
 	rect ext = rect(pos(0, 0), pos(ScreenWidth, ScreenHeight));
