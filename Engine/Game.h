@@ -51,6 +51,7 @@ private:
 	bool started = false;
 	bool pointstate = false;
 	bool cred = false;
+	bool ld = false;
 	int disp_points = -1;
 	world level;
 	sprite titlescreen = sprite(std::string("castle_bg.bmp"));//temporarily

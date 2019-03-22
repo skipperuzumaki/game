@@ -24,6 +24,10 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 
 Game::Game( MainWindow& wnd )
 	:
@@ -58,6 +62,7 @@ void Game::UpdateModel()
 			level.reconfigure();
 			started = false;
 			pointstate = true;
+			save();
 		}
 		if (level.charecter.won) {
 			level.charecter.won = false;
@@ -73,8 +78,12 @@ void Game::UpdateModel()
 		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
 			cred = true;
 		}
+		else if (wnd.kbd.KeyIsPressed(unsigned('L'))) {
+			ld = true;
+		}
 		else {
 			cred = false;
+			ld = false;
 		}
 	}
 	else {
@@ -87,10 +96,50 @@ void Game::UpdateModel()
 
 void Game::load()
 {
+	std::ifstream leaderboard;
+	leaderboard.open("leaderboard.txt");
+	std::string data;
+	leaderboard >> data;
+	std::istringstream ss(data);
+	std::string line;
+	int i = 64;
+	while (std::getline(ss, line))
+	{
+		gfx.drawnumber(pos(64,i),std::stoi(line, nullptr, 10));
+		i += 64;
+	}
+	leaderboard.close();
 }
 
 void Game::save()
 {
+	std::fstream leaderboard;
+	leaderboard.open("leaderboard.txt");
+	std::string data;
+	leaderboard >> data;
+	std::istringstream ss(data);
+	std::string line;
+	int q[10];
+	while (std::getline(ss, line))
+	{
+		bool p = true;
+		int k = std::stoi(line, nullptr, 10);
+		for (int i = 0; i < 5; i++) {
+			if (k < disp_points && p) {
+				q[i] = disp_points;
+				p = false;
+			}
+			else {
+				q[i] = k;
+			}
+		}
+	}
+	leaderboard.close();
+	leaderboard.open("leaderboard.txt");
+	leaderboard.clear();
+	for (int i = 0; i < 5; i++) {
+		leaderboard << q[i] << std::endl;
+	}
 }
 
 void Game::ComposeFrame()
@@ -101,23 +150,15 @@ void Game::ComposeFrame()
 	else if (cred) {
 		gfx.drawspritenonchroma(0, 0, credits);
 	}
+	else if (ld) {
+		load();
+	}
 	else if (!pointstate) {
 		gfx.drawspritenonchroma(0, 0, titlescreen);
 	}
 	else {
 		if (disp_points != -1) {
-			int k = 10000000;
-			pos p = pos(64, 64);
-			int j = 0;
-			while (k > 0) {
-				j = disp_points % k;
-				k = k / 10;
-				if (k != 0) {
-					j = j / k;
-				}
-				gfx.drawnum(p, j);
-				p = p + pos(64, 0);
-			}
+			gfx.drawnumber(pos(64, 64), disp_points);
 		}
 	}
 

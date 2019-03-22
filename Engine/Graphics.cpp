@@ -401,6 +401,21 @@ void Graphics::drawnum(pos p, int n)
 	}
 }
 
+void Graphics::drawnumber(pos p, int n1)
+{
+	int k = 1000000000;
+	int j = 0;
+	while (k > 0) {
+		j = n1 % k;
+		k = k / 10;
+		if (k != 0) {
+			j = j / k;
+		}
+		drawnum(p, j);
+		p = p + pos(64, 0);
+	}
+}
+
 void Graphics::drawline(line & l, Color c)
 {
 	rect ext = rect(pos(0, 0), pos(ScreenWidth, ScreenHeight));

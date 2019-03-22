@@ -61,6 +61,7 @@ public:
 	}
 	void PutPixel( int x,int y,Color c );
 	void drawnum(pos p, int n);
+	void drawnumber(pos p, int n1);
 	void drawline(line &l, Color c = Colors::Red);
 	void drawspritenonchroma(int x, int y, rect r, sprite &s);
 	void drawsprite(int x, int y, rect r, sprite &s, Color chroma = Colors::Magenta);
