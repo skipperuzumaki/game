@@ -1,7 +1,7 @@
 #include "world.h"
 #include "spritecodex.h"
 
-void world::update(Keyboard& kbd, Graphics& gfx, float dt)
+void world::update(Keyboard& kbd, Graphics& gfx, float dt, bool grav)
 {
 	if (!paused) {
 		for (int i = 0; i < bkgr.police.size(); i++) {
@@ -82,6 +82,11 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt)
 			upmtm = false;
 		}
 		else { vy += 0.30f*60.0f*dt; }//seems fine enough
+		if (grav) {
+			vy = 0;
+			vx = 0;
+			charecter.pos = pos(480, 256);
+		}
 	}
 }
 

@@ -53,6 +53,8 @@ private:
 	bool timeup = false;
 	bool pointstate = false;
 	bool lvl_tm_init = false;
+	bool go_for_it;
+	int buff = 0;
 	bool cred = false;
 	bool ld = false;
 	int disp_points = -1;

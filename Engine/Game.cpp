@@ -52,28 +52,23 @@ void Game::Go()
 	gfx.EndFrame();
 	std::chrono::system_clock::time_point nd = std::chrono::system_clock::now();
 	std::chrono::duration<float> dt = nd - bgn;
-	std::chrono::duration<float> ldt = nd - lvl_strt_time;
-	if (int(ldt.count()) >= 120) {
-		timeup = true;
-	}
 	frameduration = dt.count();
 }
 
 void Game::UpdateModel()
 {
-	if (timeup) {
-		disp_points = level.charecter.points;
-		level.charecter.points = 0;
-		level.reconfigure();
-		started = false;
-		save();
+	std::chrono::system_clock::time_point nd = std::chrono::system_clock::now();
+	std::chrono::duration<float> ldt = nd - lvl_strt_time;
+	if (int(ldt.count()) >= 120 && started) {
+		timeup = true;
 	}
 	if (started) {
-		level.update(wnd.kbd, gfx, frameduration);
+		buff = 0;
+		level.update(wnd.kbd, gfx, frameduration,go_for_it);
+		go_for_it = false;
 		if (level.charecter.dead) {
 			disp_points = level.charecter.points;
 			level.charecter.points = 0;
-			level.reconfigure();
 			started = false;
 			pointstate = true;
 			save();
@@ -81,15 +76,18 @@ void Game::UpdateModel()
 		if (level.charecter.won) {
 			level.charecter.won = false;
 			started = true;
+			timeup = false;
+			lvl_tm_init = false;
 			level.reconfigure();
 		}
 	}
-	else if (!pointstate) {
-		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
+	else if (!pointstate && !timeup) {
+		if (wnd.kbd.KeyIsPressed(VK_RETURN) && buff>=5) {
+			level.reconfigure();
 			started = true;
 			disp_points = -1;
-			timeup = false;
 			lvl_tm_init = false;
+			go_for_it = true;
 		}
 		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
 			cred = true;
@@ -100,22 +98,33 @@ void Game::UpdateModel()
 		else {
 			cred = false;
 			ld = false;
+			buff += 1;
 		}
 	}
-	else if (!started) {
+	else if (pointstate) {
+		buff = 0;
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			pointstate = false;
+			started = false;
 			disp_points = -1;
 			timeup = false;
-			lvl_tm_init = false;
 		}
 	}
 	else {
+		buff = 0;
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			disp_points = -1;
 			timeup = false;
-			lvl_tm_init = false;
+			pointstate = false;
+			started = false;
 		}
+	}
+	if (timeup) {
+		buff = 0;
+		disp_points = level.charecter.points;
+		level.charecter.points = 0;
+		started = false;
+		save();
 	}
 }
 
