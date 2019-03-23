@@ -23,7 +23,6 @@
 #include "Keyboard.h"
 #include <string>
 #include <vector>
-#include <chrono>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -43,17 +42,32 @@ Game::Game( MainWindow& wnd )
 void Game::Go()
 {
 	std::chrono::system_clock::time_point bgn = std::chrono::system_clock::now();
+	if (!lvl_tm_init) {
+		lvl_strt_time = bgn;
+		lvl_tm_init = true;
+	}
 	gfx.BeginFrame();	
 	UpdateModel();
 	ComposeFrame();
 	gfx.EndFrame();
 	std::chrono::system_clock::time_point nd = std::chrono::system_clock::now();
 	std::chrono::duration<float> dt = nd - bgn;
+	std::chrono::duration<float> ldt = nd - lvl_strt_time;
+	if (int(ldt.count()) >= 120) {
+		timeup = true;
+	}
 	frameduration = dt.count();
 }
 
 void Game::UpdateModel()
 {
+	if (timeup) {
+		disp_points = level.charecter.points;
+		level.charecter.points = 0;
+		level.reconfigure();
+		started = false;
+		save();
+	}
 	if (started) {
 		level.update(wnd.kbd, gfx, frameduration);
 		if (level.charecter.dead) {
@@ -74,6 +88,8 @@ void Game::UpdateModel()
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			started = true;
 			disp_points = -1;
+			timeup = false;
+			lvl_tm_init = false;
 		}
 		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
 			cred = true;
@@ -86,10 +102,19 @@ void Game::UpdateModel()
 			ld = false;
 		}
 	}
-	else {
+	else if (!started) {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
 			pointstate = false;
 			disp_points = -1;
+			timeup = false;
+			lvl_tm_init = false;
+		}
+	}
+	else {
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
+			disp_points = -1;
+			timeup = false;
+			lvl_tm_init = false;
 		}
 	}
 }
@@ -153,13 +178,19 @@ void Game::ComposeFrame()
 	else if (ld) {
 		load();
 	}
-	else if (!pointstate) {
-		gfx.drawspritenonchroma(0, 0, titlescreen);
-	}
-	else {
+	else if (timeup) {
+		gfx.drawspritenonchroma(0, 0, timeupscreen);
 		if (disp_points != -1) {
 			gfx.drawnumber(pos(64, 64), disp_points);
 		}
+	}
+	else if (pointstate) {
+		if (disp_points != -1) {
+			gfx.drawnumber(pos(64, 64), disp_points);
+		}
+	}
+	else {
+		gfx.drawspritenonchroma(0, 0, titlescreen);
 	}
 
 }
