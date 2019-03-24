@@ -31,5 +31,6 @@ public:
 	void reset();
 	~world();
 	rect screen = rect(pos(0, 0), pos(1024, 576));
+	sprite exit = sprite(std::string("exit.bmp"));
 };
 

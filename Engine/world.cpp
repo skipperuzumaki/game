@@ -116,6 +116,7 @@ void world::draw(Graphics & gfx ,rect screen)
 	sprite wpol = sprites::police.getframe();
 	sprite epol = wpol.fliphorizontal();
 	gfx.drawsprite(bkgr.loc.x, bkgr.loc.y, screen, bkgr.level);
+	gfx.drawsprite(bkgr.endpoint.start.x, bkgr.endpoint.start.y - 19, screen, exit);
 	if (!charecter.dead) {
 		if (dying < 0) {
 			if (chfac == direction::east) {
@@ -182,7 +183,6 @@ void world::draw(Graphics & gfx ,rect screen)
 			gfx.drawline(line(k, k + pos(10, 0)), Colors::White);
 		}//temp fix
 	}
-	gfx.drawline(bkgr.endpoint, Colors::Cyan);
 }
 
 void world::reconfigure()
