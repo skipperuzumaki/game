@@ -52,6 +52,12 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt, bool grav)
 			vy = 0;
 		}
 		//movements
+		if (vy > 4.5f*60.0f*dt) {
+			vy = 4.5f*60.0f*dt;
+		}
+		else if (vy < -4.5f*60.0f*dt) {
+			vy = -4.5f*60.0f*dt;
+		}
 		pos temp = bkgr.loc;
 		bkgr.move(int(vx), int(vy));
 		if (!bkgr.safe(gfx.ScreenWidth, gfx.ScreenHeight)) {
@@ -59,21 +65,37 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt, bool grav)
 			charecter.pos.x += int(vx);
 			charecter.pos.y += int(vy);
 		}
-		if (charecter.pos.x > 480 && bkgr.extent.x4 > gfx.ScreenWidth) {
+		if (charecter.pos.x > 480 && charecter.pos.x < 500 && bkgr.extent.x4 > gfx.ScreenWidth) {
 			charecter.pos.x -= int(1);
 			bkgr.move(int(1), 0);
 		}
-		else if (charecter.pos.x < 480 && bkgr.loc.x < 0) {
+		else if (charecter.pos.x < 480 && charecter.pos.x > 460 && bkgr.loc.x < 0) {
 			charecter.pos.x += int(1);
 			bkgr.move(-int(1), 0);
 		}
-		if (charecter.pos.y > 256 && bkgr.extent.y4 > gfx.ScreenHeight) {
+		else if (charecter.pos.x >= 500 && bkgr.extent.x4 > gfx.ScreenWidth) {
+			charecter.pos.x -= int(3.0f*60.0f*dt);
+			bkgr.move(int(3.0f*60.0f*dt), 0);
+		}
+		else if (charecter.pos.x <= 460 && bkgr.loc.x < 0) {
+			charecter.pos.x += int(3.0f*60.0f*dt);
+			bkgr.move(-int(3.0f*60.0f*dt), 0);
+		}
+		if (charecter.pos.y > 256 && charecter.pos.y < 276 && bkgr.extent.y4 > gfx.ScreenHeight) {
 			charecter.pos.y -= int(1);
 			bkgr.move(0, int(1));
 		}
-		else if (charecter.pos.y < 256 && bkgr.loc.y < 0) {
+		else if (charecter.pos.y < 256 && charecter.pos.y > 236 && bkgr.loc.y < 0) {
 			charecter.pos.y += int(1);
 			bkgr.move(0, -int(1));
+		}
+		else if (charecter.pos.y >= 276 && bkgr.extent.y4 > gfx.ScreenHeight) {
+			charecter.pos.y -= int(3.0f*60.0f*dt);
+			bkgr.move(0, int(3.0f*60.0f*dt));
+		}
+		else if (charecter.pos.y <= 236 && bkgr.loc.y < 0) {
+			charecter.pos.y += int(3.0f*60.0f*dt);
+			bkgr.move(0, -int(3.0f*60.0f*dt));
 		}
 		//gravity keep last else inf gravity
 		if (bkgr.ignoregravity(charecter)) {
@@ -81,12 +103,11 @@ void world::update(Keyboard& kbd, Graphics& gfx, float dt, bool grav)
 			vx = 0.0f;
 			upmtm = false;
 		}
-		else { vy += 0.30f*60.0f*dt; }//seems fine enough
-		if (grav) {
-			vy = 0;
-			vx = 0;
-			charecter.pos = pos(480, 256);
-		}
+		else { vy += 0.30f*60.0f*dt; }
+	}
+	if (justafterconfig) {
+		paused = false;
+		justafterconfig = false;
 	}
 }
 
@@ -166,8 +187,13 @@ void world::draw(Graphics & gfx ,rect screen)
 
 void world::reconfigure()
 {
+	paused = true;
 	reset();
 	configure();
+	vy = 0;
+	vx = 0;
+	charecter.pos = pos(480, 256);
+	justafterconfig = true;
 }
 
 void world::configure()

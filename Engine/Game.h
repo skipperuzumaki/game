@@ -56,13 +56,17 @@ private:
 	bool go_for_it;
 	int buff = 0;
 	bool cred = false;
+	bool tut = false;
 	bool ld = false;
 	int disp_points = -1;
 	world level;
-	sprite titlescreen = sprite(std::string("castle_bg.bmp"));//temporarily
-	sprite pointscreen = sprite(std::string("castle_bg.bmp"));//temporarily
-	sprite timeupscreen = sprite(std::string("castle_bg.bmp"));//temporarily
+	sprite points = sprite(std::string("pointstate.bmp"));
+	sprite loading = sprite(std::string("loadingscreen.bmp"));
+	sprite titlescreen = sprite(std::string("titlescreen.bmp"));
+	sprite timeupscreen = sprite(std::string("timeup.bmp"));
 	sprite credits = sprite(std::string("game_credits.bmp"));
+	sprite tutorial = sprite(std::string("castle_bg.bmp"));
+	bool ldng = false;
 	rect screen = rect(pos(0, 0), pos(gfx.ScreenWidth, gfx.ScreenHeight));
 	std::chrono::system_clock::time_point lvl_strt_time;
 };

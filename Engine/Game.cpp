@@ -59,12 +59,20 @@ void Game::UpdateModel()
 {
 	std::chrono::system_clock::time_point nd = std::chrono::system_clock::now();
 	std::chrono::duration<float> ldt = nd - lvl_strt_time;
+	if (ldng) {
+		ldng = false;
+		level.reconfigure();
+		started = true;
+		go_for_it = true;
+		timeup = false;
+		lvl_tm_init = false;
+	}
 	if (int(ldt.count()) >= 120 && started) {
 		timeup = true;
 	}
 	if (started) {
 		buff = 0;
-		level.update(wnd.kbd, gfx, frameduration,go_for_it);
+		level.update(wnd.kbd, gfx, frameduration, go_for_it);
 		go_for_it = false;
 		if (level.charecter.dead) {
 			disp_points = level.charecter.points;
@@ -75,30 +83,32 @@ void Game::UpdateModel()
 		}
 		if (level.charecter.won) {
 			level.charecter.won = false;
-			started = true;
-			timeup = false;
-			lvl_tm_init = false;
-			level.reconfigure();
+			ldng = true;
+			go_for_it = true;
 		}
 	}
 	else if (!pointstate && !timeup) {
 		if (wnd.kbd.KeyIsPressed(VK_RETURN) && buff>=5) {
-			level.reconfigure();
-			started = true;
-			disp_points = -1;
-			lvl_tm_init = false;
+			ldng = true;
 			go_for_it = true;
+			disp_points = -1;
 		}
 		else if (wnd.kbd.KeyIsPressed(unsigned('C'))) {
 			cred = true;
 		}
-		else if (wnd.kbd.KeyIsPressed(unsigned('L'))) {
+		else if (wnd.kbd.KeyIsPressed(unsigned('H'))) {
 			ld = true;
+		}
+		else if (wnd.kbd.KeyIsPressed(unsigned('T'))) {
+			tut = true;
 		}
 		else {
 			cred = false;
 			ld = false;
-			buff += 1;
+			tut = false;
+			if (buff <= 6) {
+				buff += 1;
+			}
 		}
 	}
 	else if (pointstate) {
@@ -178,7 +188,10 @@ void Game::save()
 
 void Game::ComposeFrame()
 {
-	if (started) {
+	if (ldng) {
+		gfx.drawspritenonchroma(0, 0, loading);
+	}
+	else if (started) {
 		level.draw(gfx, screen);
 	}
 	else if (cred) {
@@ -186,6 +199,9 @@ void Game::ComposeFrame()
 	}
 	else if (ld) {
 		load();
+	}
+	else if (tut) {
+		gfx.drawspritenonchroma(0, 0, tutorial);
 	}
 	else if (timeup) {
 		gfx.drawspritenonchroma(0, 0, timeupscreen);
@@ -195,6 +211,7 @@ void Game::ComposeFrame()
 	}
 	else if (pointstate) {
 		if (disp_points != -1) {
+			gfx.drawspritenonchroma(0, 0, points);
 			gfx.drawnumber(pos(64, 64), disp_points);
 		}
 	}
